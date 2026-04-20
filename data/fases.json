@@ -1,23 +1,12 @@
 {
-  "python": [
-    {
-      "fase": 1,
-      "titulo": "Hello World",
-      "explicacao": "Use print para mostrar algo na tela",
-      "resposta": "print('Hello World')"
-    },
-    {
-      "fase": 2,
-      "titulo": "Variáveis",
-      "explicacao": "Crie uma variável x = 10",
-      "resposta": "x = 10"
-    }
-  ],
   "c": [
     {
       "fase": 1,
       "titulo": "Hello World em C",
-      "explicacao": "Use printf",
+      "explicacao": "Em C, usamos printf para mostrar mensagens na tela.",
+      "exemplo": "#include <stdio.h>\n\nint main() {\n    printf(\"Hello World\");\n    return 0;\n}",
+      "dica": "Não esqueça do ponto e vírgula no final!",
+      "desafio": "Mostre na tela: Hello World",
       "resposta": "printf(\"Hello World\");"
     }
   ]
