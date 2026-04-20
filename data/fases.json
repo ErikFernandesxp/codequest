@@ -2,12 +2,120 @@
   "c": [
     {
       "fase": 1,
-      "titulo": "Hello World em C",
-      "explicacao": "Em C, usamos printf para mostrar mensagens na tela.",
-      "exemplo": "#include <stdio.h>\n\nint main() {\n    printf(\"Hello World\");\n    return 0;\n}",
-      "dica": "Não esqueça do ponto e vírgula no final!",
-      "desafio": "Mostre na tela: Hello World",
-      "resposta": "printf(\"Hello World\");"
+      "titulo": "Estrutura básica em C",
+      "explicacao": "Todo programa em C começa com include e função main.",
+      "exemplo": "#include <stdio.h>\n\nint main() {\n    printf(\"Hello World\\n\");\n    return 0;\n}",
+      "dica": "Não esqueça do return 0;",
+      "desafio": "Crie um programa completo que mostre Hello World",
+      "resposta": "#include <stdio.h>\n\nint main() {\n    printf(\"Hello World\\n\");\n    return 0;\n}"
+    },
+    {
+      "fase": 2,
+      "titulo": "Variáveis em C",
+      "explicacao": "Variáveis precisam de tipo.",
+      "exemplo": "int x = 10;",
+      "dica": "Use int para números inteiros",
+      "desafio": "Crie um programa completo com uma variável x = 10 e mostre ela",
+      "resposta": "#include <stdio.h>\n\nint main() {\n    int x = 10;\n    printf(\"%d\", x);\n    return 0;\n}"
+    },
+    {
+      "fase": 3,
+      "titulo": "Condicional em C",
+      "explicacao": "Use if para tomar decisões.",
+      "exemplo": "if (x > 5) { printf(\"Maior\"); }",
+      "dica": "Use chaves {}",
+      "desafio": "Crie um programa que verifica se x > 5",
+      "resposta": "#include <stdio.h>\n\nint main() {\n    int x = 10;\n    if (x > 5) {\n        printf(\"Maior\");\n    }\n    return 0;\n}"
+    }
+  ],
+
+  "python": [
+    {
+      "fase": 1,
+      "titulo": "Hello World em Python",
+      "explicacao": "Use print para mostrar mensagens.",
+      "exemplo": "print('Hello World')",
+      "dica": "Python não precisa de main",
+      "desafio": "Mostre Hello World",
+      "resposta": "print('Hello World')"
+    },
+    {
+      "fase": 2,
+      "titulo": "Variáveis em Python",
+      "explicacao": "Não precisa declarar tipo.",
+      "exemplo": "x = 10",
+      "dica": "Python é dinâmico",
+      "desafio": "Crie uma variável x = 10 e mostre ela",
+      "resposta": "x = 10\nprint(x)"
+    },
+    {
+      "fase": 3,
+      "titulo": "Condicional em Python",
+      "explicacao": "Use if com identação.",
+      "exemplo": "if x > 5:\n    print('Maior')",
+      "dica": "Use 4 espaços",
+      "desafio": "Crie um if que verifica se x > 5",
+      "resposta": "x = 10\nif x > 5:\n    print('Maior')"
+    }
+  ],
+
+  "java": [
+    {
+      "fase": 1,
+      "titulo": "Estrutura básica em Java",
+      "explicacao": "Java usa classe e método main.",
+      "exemplo": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello World\");\n    }\n}",
+      "dica": "Tudo fica dentro da classe",
+      "desafio": "Crie um programa completo que mostre Hello World",
+      "resposta": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello World\");\n    }\n}"
+    },
+    {
+      "fase": 2,
+      "titulo": "Variáveis em Java",
+      "explicacao": "Java precisa de tipo.",
+      "exemplo": "int x = 10;",
+      "dica": "Sempre use tipo",
+      "desafio": "Crie um programa com variável x = 10 e mostre ela",
+      "resposta": "public class Main {\n    public static void main(String[] args) {\n        int x = 10;\n        System.out.println(x);\n    }\n}"
+    },
+    {
+      "fase": 3,
+      "titulo": "Condicional em Java",
+      "explicacao": "Use if com parênteses.",
+      "exemplo": "if (x > 5) { System.out.println(\"Maior\"); }",
+      "dica": "Use {}",
+      "desafio": "Crie um if que verifica se x > 5",
+      "resposta": "public class Main {\n    public static void main(String[] args) {\n        int x = 10;\n        if (x > 5) {\n            System.out.println(\"Maior\");\n        }\n    }\n}"
+    }
+  ],
+
+  "php": [
+    {
+      "fase": 1,
+      "titulo": "Hello World em PHP",
+      "explicacao": "PHP usa echo.",
+      "exemplo": "<?php echo \"Hello World\"; ?>",
+      "dica": "Começa com <?php",
+      "desafio": "Mostre Hello World",
+      "resposta": "<?php echo \"Hello World\"; ?>"
+    },
+    {
+      "fase": 2,
+      "titulo": "Variáveis em PHP",
+      "explicacao": "Variáveis começam com $.",
+      "exemplo": "$x = 10;",
+      "dica": "Sempre use $",
+      "desafio": "Crie variável x = 10 e mostre ela",
+      "resposta": "<?php $x = 10; echo $x; ?>"
+    },
+    {
+      "fase": 3,
+      "titulo": "Condicional em PHP",
+      "explicacao": "Use if com ().",
+      "exemplo": "if ($x > 5) { echo \"Maior\"; }",
+      "dica": "Use chaves",
+      "desafio": "Crie um if que verifica se x > 5",
+      "resposta": "<?php $x = 10; if ($x > 5) { echo \"Maior\"; } ?>"
     }
   ]
 }
