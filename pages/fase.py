@@ -2,36 +2,50 @@ import streamlit as st
 import json
 from backend.validator import validar_codigo
 
-# carregar fases
+# carregar JSON
 with open("data/fases.json") as f:
     fases = json.load(f)
 
-# sessão
+# inicializar sessão
 if "fase" not in st.session_state:
     st.session_state["fase"] = 0
 
-linguagem = st.session_state.get("linguagem", "c")
+if "linguagem" not in st.session_state:
+    st.session_state["linguagem"] = "python"
+
+# pegar linguagem segura
+linguagem = st.session_state["linguagem"].lower()
 fase_atual = st.session_state["fase"]
 
-# valida existência da linguagem
+# DEBUG (pode remover depois)
+st.write("🔎 Linguagem atual:", linguagem)
+st.write("📂 Linguagens disponíveis:", list(fases.keys()))
+
+# valida linguagem
 if linguagem not in fases:
-    st.error("❌ Linguagem não encontrada no sistema")
+    st.error(f"❌ Linguagem '{linguagem}' não encontrada no sistema")
     st.stop()
 
-# valida fim
+# valida fases vazias
+if len(fases[linguagem]) == 0:
+    st.error("❌ Essa linguagem ainda não tem fases cadastradas")
+    st.stop()
+
+# fim do jogo
 if fase_atual >= len(fases[linguagem]):
     st.success("🎉 Parabéns! Você concluiu todas as fases!")
-    st.button("🔄 Recomeçar", on_click=lambda: st.session_state.update({"fase": 0}))
+    if st.button("🔄 Reiniciar"):
+        st.session_state["fase"] = 0
+        st.rerun()
     st.stop()
 
 fase = fases[linguagem][fase_atual]
 
 # progresso
-progresso = (fase_atual + 1) / len(fases[linguagem])
-st.progress(progresso)
+st.progress((fase_atual + 1) / len(fases[linguagem]))
 
-# UI
-st.title(f"📘 {fase['titulo']}")
+# interface
+st.title(f"📘 {fase.get('titulo', 'Sem título')}")
 
 st.markdown("### 📖 Explicação")
 st.info(fase.get("explicacao", ""))
@@ -47,8 +61,9 @@ st.write(fase.get("desafio", ""))
 
 resposta = st.text_area("✍️ Digite seu código")
 
+# botão enviar
 if st.button("🚀 Enviar resposta"):
-    correto, feedback = validar_codigo(resposta, fase["resposta"])
+    correto, feedback = validar_codigo(resposta, fase.get("resposta", ""))
 
     if correto:
         st.success(feedback)
