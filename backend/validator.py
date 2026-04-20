@@ -1,17 +1,17 @@
 def validar_codigo(resposta_usuario, resposta_correta):
-    resposta_usuario = resposta_usuario.strip()
+    r_user = resposta_usuario.replace(" ", "").replace("\n", "")
+    r_ok = resposta_correta.replace(" ", "").replace("\n", "")
 
-    if resposta_usuario == resposta_correta.strip():
-        return True, "Perfeito! Você acertou 🎯"
+    if r_user == r_ok:
+        return True, "Perfeito! Código completo correto 🎯"
 
-    # feedback inteligente
-    if "printf" in resposta_correta and "printf" not in resposta_usuario:
-        return False, "Você esqueceu de usar printf!"
+    if "main" in resposta_correta and "main" not in resposta_usuario:
+        return False, "Você esqueceu a função main!"
 
-    if ";" in resposta_correta and ";" not in resposta_usuario:
-        return False, "Não esqueça do ponto e vírgula!"
+    if "#include" in resposta_correta and "#include" not in resposta_usuario:
+        return False, "Faltou incluir a biblioteca!"
 
-    if "print" in resposta_correta and "print" not in resposta_usuario:
-        return False, "Você esqueceu o print!"
+    if "return" in resposta_correta and "return" not in resposta_usuario:
+        return False, "Você esqueceu o return!"
 
-    return False, "Quase! Revise a sintaxe e tente novamente."
+    return False, "Quase! Revise a estrutura completa do código."
