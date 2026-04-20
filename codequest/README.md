@@ -77,7 +77,7 @@ codequest/
 ### 1. Clone o repositório
 
 ```id="frbl0f"
-git clone https://github.com/SEU_USUARIO/codequest.git
+git clone https://github.com/erikfernandesxp/codequest.git
 cd codequest
 ```
 
