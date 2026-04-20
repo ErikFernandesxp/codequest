@@ -15,7 +15,8 @@ linguagem_nome = st.selectbox(
 )
 
 if st.button("Confirmar"):
-    st.session_state["linguagem"] = opcoes[linguagem_nome]
+    # salva SEMPRE em minúsculo
+    st.session_state["linguagem"] = opcoes[linguagem_nome].lower()
     st.session_state["fase"] = 0
 
     st.success(f"Você escolheu {linguagem_nome} 🚀")
