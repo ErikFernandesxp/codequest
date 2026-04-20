@@ -1,0 +1,24 @@
+{
+  "python": [
+    {
+      "fase": 1,
+      "titulo": "Hello World",
+      "explicacao": "Use print para mostrar algo na tela",
+      "resposta": "print('Hello World')"
+    },
+    {
+      "fase": 2,
+      "titulo": "Variáveis",
+      "explicacao": "Crie uma variável x = 10",
+      "resposta": "x = 10"
+    }
+  ],
+  "c": [
+    {
+      "fase": 1,
+      "titulo": "Hello World em C",
+      "explicacao": "Use printf",
+      "resposta": "printf(\"Hello World\");"
+    }
+  ]
+}
