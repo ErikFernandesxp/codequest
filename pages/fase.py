@@ -2,6 +2,7 @@ import streamlit as st
 import json
 from backend.validator import validar_codigo
 from backend.memory import limpar_memoria
+from backend.ai_teacher import corrigir_codigo_ia
 
 @st.cache_data
 def carregar_fases():
@@ -9,7 +10,7 @@ def carregar_fases():
         return json.load(f)
 
 if not st.session_state.get("linguagem"):
-    st.switch_page("linguagem")
+    st.switch_page("pages/linguagem.py")
 
 fases = carregar_fases()
 
@@ -52,7 +53,7 @@ st.write(fase["desafio"])
 
 resposta = st.text_area("💻 Seu código")
 
-if st.button("Enviar"):
+if st.button("🚀 Enviar"):
     correto, feedback = validar_codigo(resposta, fase["resposta"])
 
     if correto:
@@ -65,8 +66,18 @@ if st.button("Enviar"):
             st.toast("⬆️ Subiu de nível!")
 
         st.session_state["fase"] += 1
-
         limpar_memoria()
         st.rerun()
+
     else:
         st.error(feedback)
+
+        with st.spinner("🧠 IA analisando..."):
+            explicacao = corrigir_codigo_ia(
+                resposta,
+                fase["resposta"],
+                ling
+            )
+
+        st.markdown("### 🧑‍🏫 Professor IA")
+        st.info(explicacao)
