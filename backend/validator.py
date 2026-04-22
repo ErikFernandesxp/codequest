@@ -1,21 +1,25 @@
-def limpar(texto):
-    return texto.replace(" ", "").replace("\n", "").lower()
+def clean(text):
+    return text.replace(" ", "").replace("\n", "").lower()
 
-def validar_codigo(resposta_usuario, resposta_correta):
-    if limpar(resposta_usuario) == limpar(resposta_correta):
-        return True, "Perfeito! Você acertou 🎯"
+def validar_codigo(user, correct):
+    if clean(user) == clean(correct):
+        return True, "🎯 Perfeito!"
 
-    # feedback inteligente
-    if "printf" in resposta_correta and "printf" not in resposta_usuario:
-        return False, "Você esqueceu o printf!"
+    dicas = []
 
-    if "print" in resposta_correta and "print" not in resposta_usuario:
-        return False, "Você esqueceu o print!"
+    if "print" in correct and "print" not in user:
+        dicas.append("Use print()")
 
-    if "system.out.println" in resposta_correta and "system.out.println" not in resposta_usuario.lower():
-        return False, "Você esqueceu o System.out.println!"
+    if "printf" in correct and "printf" not in user:
+        dicas.append("Use printf()")
 
-    if "echo" in resposta_correta and "echo" not in resposta_usuario:
-        return False, "Você esqueceu o echo!"
+    if "echo" in correct and "echo" not in user:
+        dicas.append("Use echo")
 
-    return False, "Quase! Revise o código."
+    if "main" in correct and "main" not in user:
+        dicas.append("Faltou main()")
+
+    if dicas:
+        return False, "💡 Dicas: " + ", ".join(dicas)
+
+    return False, "❌ Revise o código"
