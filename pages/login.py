@@ -2,10 +2,7 @@ import streamlit as st
 
 st.set_page_config(page_title="CodeQuest", layout="wide")
 
-if "logado" not in st.session_state:
-    st.session_state["logado"] = False
-
-st.title("🔐 CodeQuest - Login")
+st.title("🔐 CodeQuest Login")
 
 usuario = st.text_input("Usuário")
 senha = st.text_input("Senha", type="password")
@@ -20,7 +17,6 @@ if st.button("Entrar"):
             "fase": 0,
             "linguagem": None
         })
-        st.success("Login realizado 🚀")
-        st.switch_page("dashboard")
+        st.switch_page("pages/dashboard.py")
     else:
         st.error("Preencha todos os campos")
