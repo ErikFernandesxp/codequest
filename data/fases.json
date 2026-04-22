@@ -223,5 +223,102 @@
         }
       ]
     }
-  ]
+  ],
+  "c": [
+  {
+    "titulo": "Hello World",
+    "explicacao": "Saída em C",
+    "exemplo": "#include <stdio.h>\nint main(){printf(\"Hello\");return 0;}",
+    "desafios": [
+      {
+        "pergunta": "Mostre Hello",
+        "resposta": "#include <stdio.h>\nint main(){printf(\"Hello\");return 0;}",
+        "dica": "Use printf",
+        "erro_comum": "Esquecer include",
+        "explicacao": "C precisa de estrutura completa",
+        "logica": "Programa completo"
+      },
+      {
+        "pergunta": "Mostre C",
+        "resposta": "#include <stdio.h>\nint main(){printf(\"C\");return 0;}",
+        "dica": "Troque o texto",
+        "erro_comum": "Erro nas aspas",
+        "explicacao": "printf imprime texto",
+        "logica": "Alterar string"
+      },
+      {
+        "pergunta": "Mostre Teste",
+        "resposta": "#include <stdio.h>\nint main(){printf(\"Teste\");return 0;}",
+        "dica": "Mesmo código",
+        "erro_comum": "Sintaxe",
+        "explicacao": "Estrutura fixa",
+        "logica": "Repetição"
+      }
+    ]
+  },
+
+  {
+    "titulo": "Variáveis",
+    "explicacao": "Tipos em C",
+    "exemplo": "int x=10;",
+    "desafios": [
+      {
+        "pergunta": "Crie int x=5",
+        "resposta": "int x=5;",
+        "dica": "Use int",
+        "erro_comum": "Sem ;",
+        "explicacao": "C exige ;",
+        "logica": "declaração"
+      },
+      {
+        "pergunta": "Crie float y=2.5",
+        "resposta": "float y=2.5;",
+        "dica": "Use float",
+        "erro_comum": "Tipo errado",
+        "explicacao": "float guarda decimal",
+        "logica": "tipagem"
+      },
+      {
+        "pergunta": "Crie char c='A'",
+        "resposta": "char c='A';",
+        "dica": "Use aspas simples",
+        "erro_comum": "Aspas duplas",
+        "explicacao": "char usa aspas simples",
+        "logica": "tipo char"
+      }
+    ]
+  },
+
+  {
+    "titulo": "If",
+    "explicacao": "Condicional",
+    "exemplo": "if(x>5)",
+    "desafios": [
+      {
+        "pergunta": "x > 5",
+        "resposta": "if(x>5){printf(\"OK\");}",
+        "dica": "Use if",
+        "erro_comum": "Sem {}",
+        "explicacao": "Blocos usam {}",
+        "logica": "condição"
+      },
+      {
+        "pergunta": "x == 10",
+        "resposta": "if(x==10){printf(\"Dez\");}",
+        "dica": "Use ==",
+        "erro_comum": "Usar =",
+        "explicacao": "== compara",
+        "logica": "comparação"
+      },
+      {
+        "pergunta": "x < 3",
+        "resposta": "if(x<3){printf(\"Baixo\");}",
+        "dica": "Use <",
+        "erro_comum": "Erro operador",
+        "explicacao": "Comparadores",
+        "logica": "controle"
+      }
+    ]
+  }
+]
 }
