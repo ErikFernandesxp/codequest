@@ -18,7 +18,9 @@ if st.button("Entrar"):
             "xp": 0,
             "nivel": 1,
             "fase": 0,
-            "linguagem": None
+            "linguagem": None,
+            "desafio_atual": 0,
+            "acertos_fase": 0
         })
         st.switch_page("pages/dashboard.py")
     else:
