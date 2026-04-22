@@ -11,7 +11,9 @@ st.sidebar.metric("Nível", st.session_state.get("nivel", 1))
 st.markdown("""
 ## 🚀 Bem-vindo
 
-Escolha uma linguagem e comece a evoluir.
+- Escolha uma linguagem
+- Complete desafios
+- Evolua no jogo
 """)
 
 if st.button("📚 Escolher Linguagem"):
