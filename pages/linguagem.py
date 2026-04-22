@@ -14,4 +14,4 @@ ling = st.selectbox("Selecione:", list(opcoes.keys()))
 if st.button("🚀 Começar"):
     st.session_state["linguagem"] = opcoes[ling]
     st.session_state["fase"] = 0
-    st.switch_page("fase")
+    st.switch_page("pages/fase.py")
