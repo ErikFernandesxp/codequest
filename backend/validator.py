@@ -14,21 +14,21 @@ def validar_codigo(user, correct):
     feedback = []
 
     if "print" in correct and "print" not in user:
-        feedback.append("Use print()")
+        feedback.append("Você esqueceu de usar print()")
 
     if "printf" in correct and "printf" not in user:
-        feedback.append("Use printf()")
+        feedback.append("Você precisa usar printf()")
 
     if "echo" in correct and "echo" not in user:
-        feedback.append("Use echo")
+        feedback.append("Use echo para exibir texto")
 
     if "for" in correct and "for" not in user:
-        feedback.append("Use for")
+        feedback.append("Use um loop for")
 
     if "if" in correct and "if" not in user:
-        feedback.append("Use if")
+        feedback.append("Use uma estrutura if")
 
     if feedback:
-        return False, "Professor:\n- " + "\n- ".join(feedback)
+        return False, "\n".join(feedback)
 
-    return False, "Revise a sintaxe"
+    return False, "Revise a sintaxe geral"
