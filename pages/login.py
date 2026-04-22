@@ -1,11 +1,26 @@
 import streamlit as st
-from backend.crud import criar_usuario
 
-st.title("Login")
+st.set_page_config(page_title="CodeQuest", layout="wide")
 
-email = st.text_input("Digite seu email")
+if "logado" not in st.session_state:
+    st.session_state["logado"] = False
+
+st.title("🔐 CodeQuest - Login")
+
+usuario = st.text_input("Usuário")
+senha = st.text_input("Senha", type="password")
 
 if st.button("Entrar"):
-    criar_usuario(email)
-    st.session_state["user"] = email
-    st.success("Logado com sucesso!")
+    if usuario and senha:
+        st.session_state.update({
+            "logado": True,
+            "usuario": usuario,
+            "xp": 0,
+            "nivel": 1,
+            "fase": 0,
+            "linguagem": None
+        })
+        st.success("Login realizado 🚀")
+        st.switch_page("dashboard")
+    else:
+        st.error("Preencha todos os campos")
