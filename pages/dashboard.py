@@ -1,7 +1,7 @@
 import streamlit as st
 
 if not st.session_state.get("logado"):
-    st.switch_page("login")
+    st.switch_page("pages/login.py")
 
 st.title("🎮 CodeQuest")
 
@@ -11,17 +11,11 @@ st.sidebar.metric("Nível", st.session_state.get("nivel", 1))
 st.markdown("""
 ## 🚀 Bem-vindo
 
-- Escolha uma linguagem
-- Complete desafios
-- Ganhe XP e evolua
+Escolha uma linguagem e comece a evoluir.
 """)
 
-col1, col2 = st.columns(2)
+if st.button("📚 Escolher Linguagem"):
+    st.switch_page("pages/linguagem.py")
 
-with col1:
-    if st.button("📚 Escolher Linguagem"):
-        st.switch_page("linguagem")
-
-with col2:
-    if st.button("🎯 Continuar"):
-        st.switch_page("fase")
+if st.button("🎯 Continuar"):
+    st.switch_page("pages/fase.py")
