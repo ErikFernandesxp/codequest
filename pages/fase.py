@@ -2,14 +2,14 @@ import streamlit as st
 import json
 from backend.validator import validar_codigo
 from backend.memory import limpar_memoria
-from backend.ai_teacher import corrigir_codigo_ia
 
 @st.cache_data
 def carregar_fases():
     with open("data/fases.json") as f:
         return json.load(f)
 
-if not st.session_state.get("linguagem"):
+# proteção
+if "linguagem" not in st.session_state:
     st.switch_page("pages/linguagem.py")
 
 fases = carregar_fases()
@@ -17,17 +17,20 @@ fases = carregar_fases()
 ling = st.session_state["linguagem"]
 fase_atual = st.session_state.get("fase", 0)
 
+# HUD
 st.sidebar.metric("XP", st.session_state.get("xp", 0))
 st.sidebar.metric("Nível", st.session_state.get("nivel", 1))
 
+# valida linguagem
 if ling not in fases:
     st.error("Linguagem inválida")
     st.stop()
 
+# fim
 if fase_atual >= len(fases[ling]):
-    st.success("🎉 Você finalizou!")
+    st.success("🎉 Você concluiu todas as fases!")
 
-    if st.button("Reiniciar"):
+    if st.button("🔄 Reiniciar"):
         st.session_state["fase"] = 0
         st.rerun()
 
@@ -35,6 +38,7 @@ if fase_atual >= len(fases[ling]):
 
 fase = fases[ling][fase_atual]
 
+# progresso
 st.progress((fase_atual + 1) / len(fases[ling]))
 
 st.title(f"🎯 Fase {fase_atual+1} - {fase['titulo']}")
@@ -51,7 +55,7 @@ with col2:
 st.markdown("### 🎯 Desafio")
 st.write(fase["desafio"])
 
-resposta = st.text_area("💻 Seu código")
+resposta = st.text_area("💻 Digite seu código")
 
 if st.button("🚀 Enviar"):
     correto, feedback = validar_codigo(resposta, fase["resposta"])
@@ -66,18 +70,11 @@ if st.button("🚀 Enviar"):
             st.toast("⬆️ Subiu de nível!")
 
         st.session_state["fase"] += 1
+
         limpar_memoria()
         st.rerun()
 
     else:
-        st.error(feedback)
-
-        with st.spinner("🧠 IA analisando..."):
-            explicacao = corrigir_codigo_ia(
-                resposta,
-                fase["resposta"],
-                ling
-            )
-
-        st.markdown("### 🧑‍🏫 Professor IA")
-        st.info(explicacao)
+        st.error("❌ Código incorreto")
+        st.markdown("### 🧑‍🏫 Professor")
+        st.info(feedback)
