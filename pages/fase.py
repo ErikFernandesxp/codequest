@@ -1,73 +1,72 @@
 import streamlit as st
 import json
 from backend.validator import validar_codigo
+from backend.memory import limpar_memoria
 
-# carregar JSON
-with open("data/fases.json") as f:
-    fases = json.load(f)
+@st.cache_data
+def carregar_fases():
+    with open("data/fases.json") as f:
+        return json.load(f)
 
-# inicializar sessão
-if "fase" not in st.session_state:
-    st.session_state["fase"] = 0
+if not st.session_state.get("linguagem"):
+    st.switch_page("linguagem")
 
-if "linguagem" not in st.session_state:
-    st.session_state["linguagem"] = "python"
+fases = carregar_fases()
 
-# pegar linguagem segura
-linguagem = st.session_state["linguagem"].lower()
-fase_atual = st.session_state["fase"]
+ling = st.session_state["linguagem"]
+fase_atual = st.session_state.get("fase", 0)
 
-# DEBUG (pode remover depois)
-st.write("🔎 Linguagem atual:", linguagem)
-st.write("📂 Linguagens disponíveis:", list(fases.keys()))
+st.sidebar.metric("XP", st.session_state.get("xp", 0))
+st.sidebar.metric("Nível", st.session_state.get("nivel", 1))
 
-# valida linguagem
-if linguagem not in fases:
-    st.error(f"❌ Linguagem '{linguagem}' não encontrada no sistema")
+if ling not in fases:
+    st.error("Linguagem inválida")
     st.stop()
 
-# valida fases vazias
-if len(fases[linguagem]) == 0:
-    st.error("❌ Essa linguagem ainda não tem fases cadastradas")
-    st.stop()
+if fase_atual >= len(fases[ling]):
+    st.success("🎉 Você finalizou!")
 
-# fim do jogo
-if fase_atual >= len(fases[linguagem]):
-    st.success("🎉 Parabéns! Você concluiu todas as fases!")
-    if st.button("🔄 Reiniciar"):
+    if st.button("Reiniciar"):
         st.session_state["fase"] = 0
         st.rerun()
+
     st.stop()
 
-fase = fases[linguagem][fase_atual]
+fase = fases[ling][fase_atual]
 
-# progresso
-st.progress((fase_atual + 1) / len(fases[linguagem]))
+st.progress((fase_atual + 1) / len(fases[ling]))
 
-# interface
-st.title(f"📘 {fase.get('titulo', 'Sem título')}")
+st.title(f"🎯 Fase {fase_atual+1} - {fase['titulo']}")
 
-st.markdown("### 📖 Explicação")
-st.info(fase.get("explicacao", ""))
+col1, col2 = st.columns(2)
 
-st.markdown("### 🧪 Exemplo")
-st.code(fase.get("exemplo", ""), language=linguagem)
+with col1:
+    st.info(fase["explicacao"])
+    st.warning("💡 " + fase["dica"])
 
-st.markdown("### 💡 Dica")
-st.warning(fase.get("dica", ""))
+with col2:
+    st.code(fase["exemplo"], language=ling)
 
 st.markdown("### 🎯 Desafio")
-st.write(fase.get("desafio", ""))
+st.write(fase["desafio"])
 
-resposta = st.text_area("✍️ Digite seu código")
+resposta = st.text_area("💻 Seu código")
 
-# botão enviar
-if st.button("🚀 Enviar resposta"):
-    correto, feedback = validar_codigo(resposta, fase.get("resposta", ""))
+if st.button("Enviar"):
+    correto, feedback = validar_codigo(resposta, fase["resposta"])
 
     if correto:
         st.success(feedback)
+
+        st.session_state["xp"] += 10
+
+        if st.session_state["xp"] >= st.session_state["nivel"] * 50:
+            st.session_state["nivel"] += 1
+            st.toast("⬆️ Subiu de nível!")
+
         st.session_state["fase"] += 1
+
+        limpar_memoria()
         st.rerun()
     else:
         st.error(feedback)
