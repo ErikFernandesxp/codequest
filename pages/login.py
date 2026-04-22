@@ -1,4 +1,7 @@
 import streamlit as st
+from backend.session import init_session
+
+init_session(st)
 
 st.set_page_config(page_title="CodeQuest", layout="wide")
 
@@ -19,4 +22,4 @@ if st.button("Entrar"):
         })
         st.switch_page("pages/dashboard.py")
     else:
-        st.error("Preencha todos os campos")
+        st.error("Preencha os campos")
