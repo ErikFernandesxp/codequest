@@ -1,4 +1,7 @@
 import streamlit as st
+from backend.session import init_session
+
+init_session(st)
 
 st.title("📚 Escolha sua Linguagem")
 
