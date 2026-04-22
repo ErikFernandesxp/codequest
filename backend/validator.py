@@ -1,9 +1,15 @@
 def clean(text):
-    return text.replace(" ", "").replace("\n", "").lower()
+    return (
+        text.replace(" ", "")
+        .replace("\n", "")
+        .replace('"', "")
+        .replace("'", "")
+        .lower()
+    )
 
 def validar_codigo(user, correct):
     if clean(user) == clean(correct):
-        return True, "🎯 Perfeito!"
+        return True, "Perfeito!"
 
     feedback = []
 
@@ -16,16 +22,13 @@ def validar_codigo(user, correct):
     if "echo" in correct and "echo" not in user:
         feedback.append("Use echo")
 
-    if "main" in correct and "main" not in user:
-        feedback.append("Faltou main()")
+    if "for" in correct and "for" not in user:
+        feedback.append("Use for")
 
-    if "#include" in correct and "#include" not in user:
-        feedback.append("Faltou #include <stdio.h>")
-
-    if "return" in correct and "return" not in user:
-        feedback.append("Faltou return 0")
+    if "if" in correct and "if" not in user:
+        feedback.append("Use if")
 
     if feedback:
-        return False, "🧑‍🏫 Professor:\n\n- " + "\n- ".join(feedback)
+        return False, "Professor:\n- " + "\n- ".join(feedback)
 
-    return False, "❌ Revise o código"
+    return False, "Revise a sintaxe"
