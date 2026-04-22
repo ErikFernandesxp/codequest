@@ -1,14 +1,21 @@
 import streamlit as st
+
+# 🔥 TEM QUE SER O PRIMEIRO
+st.set_page_config(layout="wide")
+
 import json
 import os
 from backend.session import init_session
 from backend.validator import validar_codigo
 
-st.set_page_config(layout="wide")
-
+# 🔄 inicia sessão
 init_session(st)
 
-# 🔥 carregar JSON com segurança
+# 🔒 proteção de login
+if not st.session_state.get("logado", False):
+    st.switch_page("pages/login.py")
+
+# 📂 carregar fases
 @st.cache_data
 def carregar_fases():
     caminho = os.path.join(os.getcwd(), "data", "fases.json")
@@ -27,18 +34,22 @@ if not ling or ling not in fases:
 
 # 🔐 fim do jogo
 if fase_idx >= len(fases[ling]):
-    st.success("🎉 Você finalizou o jogo!")
+    st.success("🎉 Você finalizou todas as fases!")
+
+    if st.button("🔄 Reiniciar jogo"):
+        st.session_state["fase"] = 0
+        st.session_state["desafio_atual"] = 0
+        st.session_state["xp"] = 0
+        st.session_state["vidas"] = 3
+        st.rerun()
+
     st.stop()
 
 fase = fases[ling][fase_idx]
 
-# 🔐 valida estrutura básica
-if not isinstance(fase, dict):
-    st.error("❌ Fase inválida no JSON")
-    st.stop()
-
-if "desafios" not in fase:
-    st.error("❌ JSON sem desafios")
+# 🔐 valida fase
+if not isinstance(fase, dict) or "desafios" not in fase:
+    st.error("❌ Erro no JSON da fase")
     st.stop()
 
 desafios = fase["desafios"]
@@ -50,7 +61,7 @@ if idx >= len(desafios):
 
 desafio = desafios[idx]
 
-# 🔥 COMPATIBILIDADE (JSON ANTIGO vs NOVO)
+# 🔥 compatibilidade JSON antigo
 if isinstance(desafio, str):
     respostas = fase.get("respostas", [])
     resposta_correta = respostas[idx] if idx < len(respostas) else ""
@@ -60,13 +71,12 @@ if isinstance(desafio, str):
         "resposta": resposta_correta,
         "dica": "Revise o exemplo acima",
         "erro_comum": "Erro de sintaxe",
-        "explicacao": "Observe como o código funciona no exemplo",
+        "explicacao": "Observe o exemplo da fase",
         "logica": "Siga o padrão apresentado"
     }
 
-# 🔐 valida final
 if not isinstance(desafio, dict):
-    st.error("❌ Erro no formato do desafio")
+    st.error("❌ Desafio inválido")
     st.stop()
 
 # 🎮 HUD
@@ -82,6 +92,7 @@ if st.session_state["vidas"] <= 0:
         st.session_state["vidas"] = 3
         st.session_state["fase"] = 0
         st.session_state["desafio_atual"] = 0
+        st.session_state["xp"] = 0
         st.rerun()
 
     st.stop()
@@ -114,6 +125,7 @@ if st.button("Enviar"):
 
     if ok:
         st.success("✅ Correto!")
+        st.toast("XP +10 🚀")
 
         st.session_state["xp"] += 10
         st.session_state["desafio_atual"] += 1
