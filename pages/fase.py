@@ -1,7 +1,10 @@
 import streamlit as st
 import json
+from backend.session import init_session
 from backend.validator import validar_codigo
 from backend.memory import limpar_memoria
+
+init_session(st)
 
 @st.cache_data
 def carregar_fases():
@@ -9,28 +12,27 @@ def carregar_fases():
         return json.load(f)
 
 # proteção
-if "linguagem" not in st.session_state:
+if not st.session_state["linguagem"]:
     st.switch_page("pages/linguagem.py")
 
 fases = carregar_fases()
 
 ling = st.session_state["linguagem"]
-fase_atual = st.session_state.get("fase", 0)
+fase_atual = st.session_state["fase"]
 
-# HUD
-st.sidebar.metric("XP", st.session_state.get("xp", 0))
-st.sidebar.metric("Nível", st.session_state.get("nivel", 1))
+st.sidebar.metric("XP", st.session_state["xp"])
+st.sidebar.metric("Nível", st.session_state["nivel"])
 
-# valida linguagem
+# erro de linguagem
 if ling not in fases:
     st.error("Linguagem inválida")
     st.stop()
 
-# fim
+# fim do jogo
 if fase_atual >= len(fases[ling]):
-    st.success("🎉 Você concluiu todas as fases!")
+    st.success("🎉 Você concluiu tudo!")
 
-    if st.button("🔄 Reiniciar"):
+    if st.button("Reiniciar"):
         st.session_state["fase"] = 0
         st.rerun()
 
@@ -38,7 +40,6 @@ if fase_atual >= len(fases[ling]):
 
 fase = fases[ling][fase_atual]
 
-# progresso
 st.progress((fase_atual + 1) / len(fases[ling]))
 
 st.title(f"🎯 Fase {fase_atual+1} - {fase['titulo']}")
