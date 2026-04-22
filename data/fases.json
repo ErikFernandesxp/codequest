@@ -320,5 +320,71 @@
       }
     ]
   }
+],
+  "java": [
+  {
+    "titulo": "Print",
+    "explicacao": "Saída em Java",
+    "exemplo": "System.out.println()",
+    "desafios": [
+      {
+        "pergunta": "Mostre Hello",
+        "resposta": "System.out.println(\"Hello\");",
+        "dica": "Use System.out.println",
+        "erro_comum": "Sem ;",
+        "explicacao": "Java exige ;",
+        "logica": "método"
+      },
+      {
+        "pergunta": "Mostre Java",
+        "resposta": "System.out.println(\"Java\");",
+        "dica": "Troque texto",
+        "erro_comum": "Aspas",
+        "explicacao": "Texto entre aspas",
+        "logica": "string"
+      },
+      {
+        "pergunta": "Mostre Teste",
+        "resposta": "System.out.println(\"Teste\");",
+        "dica": "Repita padrão",
+        "erro_comum": "Erro sintaxe",
+        "explicacao": "Mesmo método",
+        "logica": "repetição"
+      }
+    ]
+  }
+],
+  "php": [
+  {
+    "titulo": "Echo",
+    "explicacao": "Saída em PHP",
+    "exemplo": "echo \"Hello\";",
+    "desafios": [
+      {
+        "pergunta": "Mostre Hello",
+        "resposta": "echo \"Hello\";",
+        "dica": "Use echo",
+        "erro_comum": "Sem ;",
+        "explicacao": "PHP exige ;",
+        "logica": "comando"
+      },
+      {
+        "pergunta": "Mostre PHP",
+        "resposta": "echo \"PHP\";",
+        "dica": "Troque texto",
+        "erro_comum": "Aspas",
+        "explicacao": "Texto entre aspas",
+        "logica": "string"
+      },
+      {
+        "pergunta": "Mostre Teste",
+        "resposta": "echo \"Teste\";",
+        "dica": "Repita",
+        "erro_comum": "Erro sintaxe",
+        "explicacao": "Echo imprime",
+        "logica": "repetição"
+      }
+    ]
+  }
 ]
 }
