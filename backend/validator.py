@@ -2,11 +2,8 @@ def clean(text):
     return text.replace(" ", "").replace("\n", "").lower()
 
 def validar_codigo(user, correct):
-    user_clean = clean(user)
-    correct_clean = clean(correct)
-
-    if user_clean == correct_clean:
-        return True, "🎯 Perfeito! Código correto!"
+    if clean(user) == clean(correct):
+        return True, "🎯 Perfeito!"
 
     feedback = []
 
