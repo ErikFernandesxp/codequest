@@ -1,63 +1,35 @@
 {
   "python": [
     {
-      "titulo": "Introdução ao print",
-      "explicacao": "O print exibe mensagens na tela",
-      "exemplo": "print('Olá mundo')",
-      "dica": "Use print()",
-      "desafios": [
-        "Mostre 'Hello World'",
-        "Mostre 'Python é top'",
-        "Mostre seu nome"
-      ],
-      "respostas": [
-        "print('Hello World')",
-        "print('Python é top')",
-        "print('Seu nome')"
-      ]
+      "titulo": "Print",
+      "explicacao": "Exibir texto na tela",
+      "exemplo": "print('Hello')",
+      "desafios": ["Mostre Hello", "Mostre Python", "Mostre Teste"],
+      "respostas": ["print('Hello')", "print('Python')", "print('Teste')"]
     },
     {
       "titulo": "Variáveis",
-      "explicacao": "Variáveis guardam valores",
+      "explicacao": "Guardar valores",
       "exemplo": "x = 10",
-      "dica": "Não precisa declarar tipo",
-      "desafios": [
-        "Crie x = 5",
-        "Crie nome = 'Ana'",
-        "Crie idade = 20"
-      ],
-      "respostas": [
-        "x = 5",
-        "nome = 'Ana'",
-        "idade = 20"
-      ]
+      "desafios": ["x = 5", "nome = Ana", "idade = 20"],
+      "respostas": ["x = 5", "nome = 'Ana'", "idade = 20"]
     },
     {
       "titulo": "If",
       "explicacao": "Condicional",
-      "exemplo": "if x > 5:\n print('ok')",
-      "dica": "Use indentação",
-      "desafios": [
-        "Se x > 5 mostre 'OK'",
-        "Se idade >= 18 mostre 'Maior'",
-        "Se x == 10 mostre 'Dez'"
-      ],
+      "exemplo": "if x>5:\n print(x)",
+      "desafios": ["if x > 5", "if x == 10", "if x < 3"],
       "respostas": [
-        "x = 10\nif x > 5:\n print('OK')",
-        "idade = 18\nif idade >= 18:\n print('Maior')",
-        "x = 10\nif x == 10:\n print('Dez')"
+        "x=10\nif x>5:\n print(x)",
+        "x=10\nif x==10:\n print(x)",
+        "x=2\nif x<3:\n print(x)"
       ]
     },
     {
-      "titulo": "Laço for",
-      "explicacao": "Repetição",
-      "exemplo": "for i in range(5): print(i)",
-      "dica": "Use range",
-      "desafios": [
-        "Mostre 0 até 4",
-        "Mostre 1 até 5",
-        "Mostre 0 até 9"
-      ],
+      "titulo": "For",
+      "explicacao": "Loop",
+      "exemplo": "for i in range(5)",
+      "desafios": ["0 a 4", "1 a 5", "0 a 9"],
       "respostas": [
         "for i in range(5): print(i)",
         "for i in range(1,6): print(i)",
@@ -66,50 +38,35 @@
     },
     {
       "titulo": "Funções",
-      "explicacao": "Blocos reutilizáveis",
-      "exemplo": "def soma(a,b): return a+b",
-      "dica": "Use def",
-      "desafios": [
-        "Crie função soma",
-        "Crie função dobro",
-        "Crie função saudacao"
-      ],
+      "explicacao": "Criar funções",
+      "exemplo": "def soma(a,b)",
+      "desafios": ["soma", "dobro", "quadrado"],
       "respostas": [
         "def soma(a,b): return a+b",
         "def dobro(x): return x*2",
-        "def saudacao(): print('Olá')"
+        "def quadrado(x): return x*x"
       ]
     },
     {
       "titulo": "Listas",
-      "explicacao": "Coleção de dados",
-      "exemplo": "lista = [1,2,3]",
-      "dica": "Use []",
-      "desafios": [
-        "Crie lista com 1,2,3",
-        "Crie lista com nomes",
-        "Crie lista vazia"
-      ],
+      "explicacao": "Arrays",
+      "exemplo": "[1,2,3]",
+      "desafios": ["lista 1,2,3", "lista nomes", "lista vazia"],
       "respostas": [
-        "lista = [1,2,3]",
-        "nomes = ['Ana','João']",
-        "lista = []"
+        "lista=[1,2,3]",
+        "nomes=['Ana','Joao']",
+        "lista=[]"
       ]
     },
     {
       "titulo": "Dicionário",
-      "explicacao": "Chave e valor",
-      "exemplo": "pessoa = {'nome':'Ana'}",
-      "dica": "Use {}",
-      "desafios": [
-        "Crie dict nome",
-        "Crie dict idade",
-        "Crie dict completo"
-      ],
+      "explicacao": "Chave valor",
+      "exemplo": "{'nome':'Ana'}",
+      "desafios": ["nome", "idade", "completo"],
       "respostas": [
-        "pessoa = {'nome':'Ana'}",
-        "pessoa = {'idade':20}",
-        "pessoa = {'nome':'Ana','idade':20}"
+        "p={'nome':'Ana'}",
+        "p={'idade':20}",
+        "p={'nome':'Ana','idade':20}"
       ]
     }
   ],
@@ -117,35 +74,75 @@
   "c": [
     {
       "titulo": "Hello World",
-      "explicacao": "Exibir texto",
-      "exemplo": "#include <stdio.h>\nint main(){printf(\"Hello World\");return 0;}",
-      "dica": "Use printf",
-      "desafios": [
-        "Hello World",
-        "Mostrar 'C é top'",
-        "Mostrar 'Teste'"
-      ],
+      "explicacao": "Saída",
+      "exemplo": "#include <stdio.h>\nint main(){printf(\"Hello\");return 0;}",
+      "desafios": ["Hello", "C é top", "Teste"],
       "respostas": [
-        "#include <stdio.h>\nint main(){printf(\"Hello World\");return 0;}",
+        "#include <stdio.h>\nint main(){printf(\"Hello\");return 0;}",
         "#include <stdio.h>\nint main(){printf(\"C é top\");return 0;}",
         "#include <stdio.h>\nint main(){printf(\"Teste\");return 0;}"
       ]
     },
-
     {
       "titulo": "Variáveis",
-      "explicacao": "Declarar tipo",
-      "exemplo": "int x = 10;",
-      "dica": "Use tipo",
-      "desafios": [
-        "int x = 5",
-        "float y = 2.5",
-        "char c = 'A'"
-      ],
+      "explicacao": "Tipos",
+      "exemplo": "int x=10;",
+      "desafios": ["int x=5", "float y=2.5", "char c='A'"],
+      "respostas": ["int x=5;", "float y=2.5;", "char c='A';"]
+    },
+    {
+      "titulo": "If",
+      "explicacao": "Condicional",
+      "exemplo": "if(x>5)",
+      "desafios": ["x>5", "x==10", "x<3"],
       "respostas": [
-        "int x = 5;",
-        "float y = 2.5;",
-        "char c = 'A';"
+        "if(x>5){printf(\"OK\");}",
+        "if(x==10){printf(\"Dez\");}",
+        "if(x<3){printf(\"Baixo\");}"
+      ]
+    },
+    {
+      "titulo": "For",
+      "explicacao": "Loop",
+      "exemplo": "for(int i=0;i<5;i++)",
+      "desafios": ["0 a 4", "1 a 5", "0 a 9"],
+      "respostas": [
+        "for(int i=0;i<5;i++){printf(\"%d\",i);}",
+        "for(int i=1;i<=5;i++){printf(\"%d\",i);}",
+        "for(int i=0;i<10;i++){printf(\"%d\",i);}"
+      ]
+    },
+    {
+      "titulo": "Funções",
+      "explicacao": "Funções",
+      "exemplo": "int soma(int a,int b)",
+      "desafios": ["soma", "dobro", "quadrado"],
+      "respostas": [
+        "int soma(int a,int b){return a+b;}",
+        "int dobro(int x){return x*2;}",
+        "int quadrado(int x){return x*x;}"
+      ]
+    },
+    {
+      "titulo": "Arrays",
+      "explicacao": "Vetores",
+      "exemplo": "int arr[3]",
+      "desafios": ["1,2,3", "5 elementos", "vazio"],
+      "respostas": [
+        "int arr[3]={1,2,3};",
+        "int arr[5];",
+        "int arr[0];"
+      ]
+    },
+    {
+      "titulo": "Struct",
+      "explicacao": "Estruturas",
+      "exemplo": "struct Pessoa",
+      "desafios": ["idade", "nome", "completo"],
+      "respostas": [
+        "struct Pessoa{int idade;};",
+        "struct Pessoa{char nome[50];};",
+        "struct Pessoa{char nome[50];int idade;};"
       ]
     }
   ],
@@ -154,17 +151,78 @@
     {
       "titulo": "Print",
       "explicacao": "Saída",
-      "exemplo": "System.out.println(\"Hello\");",
-      "dica": "Use System.out.println",
-      "desafios": [
-        "Hello World",
-        "Java é top",
-        "Teste"
-      ],
+      "exemplo": "System.out.println()",
+      "desafios": ["Hello", "Java", "Teste"],
       "respostas": [
-        "System.out.println(\"Hello World\");",
-        "System.out.println(\"Java é top\");",
+        "System.out.println(\"Hello\");",
+        "System.out.println(\"Java\");",
         "System.out.println(\"Teste\");"
+      ]
+    },
+    {
+      "titulo": "Variáveis",
+      "explicacao": "Tipos",
+      "exemplo": "int x",
+      "desafios": ["int", "double", "String"],
+      "respostas": [
+        "int x=5;",
+        "double y=2.5;",
+        "String nome=\"Ana\";"
+      ]
+    },
+    {
+      "titulo": "If",
+      "explicacao": "Condicional",
+      "exemplo": "if(x>5)",
+      "desafios": ["x>5", "x==10", "x<3"],
+      "respostas": [
+        "if(x>5){System.out.println(\"OK\");}",
+        "if(x==10){System.out.println(\"Dez\");}",
+        "if(x<3){System.out.println(\"Baixo\");}"
+      ]
+    },
+    {
+      "titulo": "For",
+      "explicacao": "Loop",
+      "exemplo": "for(int i=0;i<5;i++)",
+      "desafios": ["0 a 4", "1 a 5", "0 a 9"],
+      "respostas": [
+        "for(int i=0;i<5;i++){System.out.println(i);}",
+        "for(int i=1;i<=5;i++){System.out.println(i);}",
+        "for(int i=0;i<10;i++){System.out.println(i);}"
+      ]
+    },
+    {
+      "titulo": "Métodos",
+      "explicacao": "Funções",
+      "exemplo": "int soma()",
+      "desafios": ["soma", "dobro", "quadrado"],
+      "respostas": [
+        "int soma(int a,int b){return a+b;}",
+        "int dobro(int x){return x*2;}",
+        "int quadrado(int x){return x*x;}"
+      ]
+    },
+    {
+      "titulo": "Arrays",
+      "explicacao": "Vetores",
+      "exemplo": "int[] arr",
+      "desafios": ["1,2,3", "5 elementos", "vazio"],
+      "respostas": [
+        "int[] arr={1,2,3};",
+        "int[] arr=new int[5];",
+        "int[] arr={};"
+      ]
+    },
+    {
+      "titulo": "Classes",
+      "explicacao": "POO",
+      "exemplo": "class Pessoa",
+      "desafios": ["Pessoa", "Carro", "Teste"],
+      "respostas": [
+        "class Pessoa{}",
+        "class Carro{}",
+        "class Teste{}"
       ]
     }
   ],
@@ -173,17 +231,78 @@
     {
       "titulo": "Echo",
       "explicacao": "Saída",
-      "exemplo": "echo \"Hello\";",
-      "dica": "Use echo",
-      "desafios": [
-        "Hello World",
-        "PHP é top",
-        "Teste"
-      ],
+      "exemplo": "echo",
+      "desafios": ["Hello", "PHP", "Teste"],
       "respostas": [
-        "echo \"Hello World\";",
-        "echo \"PHP é top\";",
+        "echo \"Hello\";",
+        "echo \"PHP\";",
         "echo \"Teste\";"
+      ]
+    },
+    {
+      "titulo": "Variáveis",
+      "explicacao": "Use $",
+      "exemplo": "$x",
+      "desafios": ["$x", "$nome", "$idade"],
+      "respostas": [
+        "$x=5;",
+        "$nome=\"Ana\";",
+        "$idade=20;"
+      ]
+    },
+    {
+      "titulo": "If",
+      "explicacao": "Condicional",
+      "exemplo": "if($x>5)",
+      "desafios": ["x>5", "x==10", "x<3"],
+      "respostas": [
+        "if($x>5){echo \"OK\";}",
+        "if($x==10){echo \"Dez\";}",
+        "if($x<3){echo \"Baixo\";}"
+      ]
+    },
+    {
+      "titulo": "For",
+      "explicacao": "Loop",
+      "exemplo": "for($i=0;$i<5;$i++)",
+      "desafios": ["0 a 4", "1 a 5", "0 a 9"],
+      "respostas": [
+        "for($i=0;$i<5;$i++){echo $i;}",
+        "for($i=1;$i<=5;$i++){echo $i;}",
+        "for($i=0;$i<10;$i++){echo $i;}"
+      ]
+    },
+    {
+      "titulo": "Funções",
+      "explicacao": "Funções",
+      "exemplo": "function soma()",
+      "desafios": ["soma", "dobro", "quadrado"],
+      "respostas": [
+        "function soma($a,$b){return $a+$b;}",
+        "function dobro($x){return $x*2;}",
+        "function quadrado($x){return $x*$x;}"
+      ]
+    },
+    {
+      "titulo": "Arrays",
+      "explicacao": "Vetores",
+      "exemplo": "$arr",
+      "desafios": ["1,2,3", "nomes", "vazio"],
+      "respostas": [
+        "$arr=[1,2,3];",
+        "$nomes=[\"Ana\",\"Joao\"];",
+        "$arr=[];"
+      ]
+    },
+    {
+      "titulo": "Associativo",
+      "explicacao": "Chave valor",
+      "exemplo": "=>",
+      "desafios": ["nome", "idade", "completo"],
+      "respostas": [
+        "$p=['nome'=>'Ana'];",
+        "$p=['idade'=>20];",
+        "$p=['nome'=>'Ana','idade'=>20];"
       ]
     }
   ]
