@@ -2,7 +2,6 @@ import streamlit as st
 import json
 from backend.session import init_session
 from backend.validator import validar_codigo
-from backend.memory import limpar_memoria
 
 init_session(st)
 
@@ -15,88 +14,58 @@ if not st.session_state["linguagem"]:
     st.switch_page("pages/linguagem.py")
 
 fases = carregar_fases()
-
 ling = st.session_state["linguagem"]
 fase_atual = st.session_state["fase"]
 
+# HUD
 st.sidebar.metric("XP", st.session_state["xp"])
 st.sidebar.metric("Nível", st.session_state["nivel"])
+st.sidebar.metric("❤️ Vidas", st.session_state["vidas"])
 
-if ling not in fases:
-    st.error("Linguagem inválida")
-    st.stop()
+if st.session_state["vidas"] <= 0:
+    st.error("💀 Game Over")
 
-if fase_atual >= len(fases[ling]):
-    st.success("🎉 Você zerou o jogo!")
-
-    if st.button("🔄 Reiniciar"):
+    if st.button("🔄 Recomeçar"):
+        st.session_state["vidas"] = 3
         st.session_state["fase"] = 0
         st.session_state["desafio_atual"] = 0
-        st.session_state["acertos_fase"] = 0
         st.rerun()
 
     st.stop()
 
 fase = fases[ling][fase_atual]
 
-# 🔥 SUPORTE A DOIS FORMATOS
-if "desafios" in fase:
-    desafios = fase["desafios"]
-    respostas = fase["respostas"]
-else:
-    desafios = [fase["desafio"]]
-    respostas = [fase["resposta"]]
+desafios = fase["desafios"]
+respostas = fase["respostas"]
 
-desafio_idx = st.session_state["desafio_atual"]
+idx = st.session_state["desafio_atual"]
 
-st.progress((fase_atual + 1) / len(fases[ling]))
+st.title(f"🎯 Fase {fase_atual+1}")
 
-st.title(f"🎯 Fase {fase_atual+1} - {fase['titulo']}")
+st.write(fase["explicacao"])
+st.code(fase["exemplo"], language=ling)
 
-col1, col2 = st.columns(2)
+st.markdown(f"### Desafio {idx+1}")
+st.write(desafios[idx])
 
-with col1:
-    st.info(fase["explicacao"])
-    st.warning("💡 " + fase["dica"])
+resposta = st.text_area("Digite seu código")
 
-with col2:
-    st.code(fase["exemplo"], language=ling)
+if st.button("Enviar"):
+    ok, feedback = validar_codigo(resposta, respostas[idx])
 
-st.markdown(f"### 🧩 Desafio {desafio_idx+1} de {len(desafios)}")
-st.progress((desafio_idx + 1) / len(desafios))
-
-st.write(desafios[desafio_idx])
-
-resposta = st.text_area("💻 Seu código", key=f"input_{desafio_idx}")
-
-if st.button("🚀 Enviar"):
-    correto, feedback = validar_codigo(
-        resposta,
-        respostas[desafio_idx]
-    )
-
-    if correto:
-        st.success("✅ Correto!")
-
-        st.session_state["xp"] += 5
+    if ok:
+        st.success("✅ Acertou!")
+        st.session_state["xp"] += 10
         st.session_state["desafio_atual"] += 1
 
-        limpar_memoria()
-
-        # terminou fase
         if st.session_state["desafio_atual"] >= len(desafios):
             st.success("🏆 Fase concluída!")
-
             st.session_state["fase"] += 1
             st.session_state["desafio_atual"] = 0
-
-            if st.session_state["xp"] >= st.session_state["nivel"] * 50:
-                st.session_state["nivel"] += 1
-                st.toast("⬆️ Subiu de nível!")
 
         st.rerun()
 
     else:
-        st.error("❌ Incorreto")
-        st.markdown("### 🧑‍🏫 Professor")
+        st.session_state["vidas"] -= 1
+        st.error("❌ Errou")
         st.info(feedback)
