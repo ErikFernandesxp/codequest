@@ -1,20 +1,15 @@
 import streamlit as st
+from backend.session import init_session
 
-if not st.session_state.get("logado"):
+init_session(st)
+
+if not st.session_state["logado"]:
     st.switch_page("pages/login.py")
 
 st.title("🎮 CodeQuest")
 
-st.sidebar.metric("XP", st.session_state.get("xp", 0))
-st.sidebar.metric("Nível", st.session_state.get("nivel", 1))
-
-st.markdown("""
-## 🚀 Bem-vindo
-
-- Escolha uma linguagem
-- Complete desafios
-- Evolua no jogo
-""")
+st.sidebar.metric("XP", st.session_state["xp"])
+st.sidebar.metric("Nível", st.session_state["nivel"])
 
 if st.button("📚 Escolher Linguagem"):
     st.switch_page("pages/linguagem.py")
