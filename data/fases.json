@@ -1,308 +1,226 @@
 {
   "python": [
     {
-      "titulo": "Print",
-      "explicacao": "Exibir texto na tela",
+      "titulo": "Saída com print",
+      "explicacao": "Aprenda a exibir mensagens na tela",
       "exemplo": "print('Hello')",
-      "desafios": ["Mostre Hello", "Mostre Python", "Mostre Teste"],
-      "respostas": ["print('Hello')", "print('Python')", "print('Teste')"]
+      "desafios": [
+        {
+          "pergunta": "Mostre Hello",
+          "resposta": "print('Hello')",
+          "dica": "Use print()",
+          "erro_comum": "Esquecer aspas",
+          "explicacao": "print exibe texto",
+          "logica": "Função + string"
+        },
+        {
+          "pergunta": "Mostre Python",
+          "resposta": "print('Python')",
+          "dica": "Troque o texto",
+          "erro_comum": "Erro nas aspas",
+          "explicacao": "Texto precisa estar entre aspas",
+          "logica": "Mudança de argumento"
+        },
+        {
+          "pergunta": "Mostre Teste",
+          "resposta": "print('Teste')",
+          "dica": "Use print novamente",
+          "erro_comum": "Sintaxe errada",
+          "explicacao": "print aceita qualquer texto",
+          "logica": "Repetição"
+        }
+      ]
     },
+
     {
       "titulo": "Variáveis",
-      "explicacao": "Guardar valores",
+      "explicacao": "Guardar dados",
       "exemplo": "x = 10",
-      "desafios": ["x = 5", "nome = Ana", "idade = 20"],
-      "respostas": ["x = 5", "nome = 'Ana'", "idade = 20"]
-    },
-    {
-      "titulo": "If",
-      "explicacao": "Condicional",
-      "exemplo": "if x>5:\n print(x)",
-      "desafios": ["if x > 5", "if x == 10", "if x < 3"],
-      "respostas": [
-        "x=10\nif x>5:\n print(x)",
-        "x=10\nif x==10:\n print(x)",
-        "x=2\nif x<3:\n print(x)"
+      "desafios": [
+        {
+          "pergunta": "Crie x = 5",
+          "resposta": "x = 5",
+          "dica": "Use =",
+          "erro_comum": "Usar ==",
+          "explicacao": "Variáveis armazenam valores",
+          "logica": "atribuição"
+        },
+        {
+          "pergunta": "Crie nome = Ana",
+          "resposta": "nome = 'Ana'",
+          "dica": "Use aspas",
+          "erro_comum": "Sem aspas",
+          "explicacao": "Texto usa aspas",
+          "logica": "string"
+        },
+        {
+          "pergunta": "Crie idade = 20",
+          "resposta": "idade = 20",
+          "dica": "Número não usa aspas",
+          "erro_comum": "Aspas em número",
+          "explicacao": "Inteiros são números",
+          "logica": "tipo int"
+        }
       ]
     },
+
     {
-      "titulo": "For",
-      "explicacao": "Loop",
+      "titulo": "Condicional IF",
+      "explicacao": "Tomar decisões",
+      "exemplo": "if x > 5:\n print(x)",
+      "desafios": [
+        {
+          "pergunta": "Mostre x se x > 5",
+          "resposta": "x=10\nif x>5:\n print(x)",
+          "dica": "Use if",
+          "erro_comum": "Falta :",
+          "explicacao": "if verifica condição",
+          "logica": "condição + ação"
+        },
+        {
+          "pergunta": "Mostre x se x == 10",
+          "resposta": "x=10\nif x==10:\n print(x)",
+          "dica": "Use ==",
+          "erro_comum": "Usar =",
+          "explicacao": "== compara valores",
+          "logica": "comparação"
+        },
+        {
+          "pergunta": "Mostre x se x < 3",
+          "resposta": "x=2\nif x<3:\n print(x)",
+          "dica": "Use <",
+          "erro_comum": "Erro na condição",
+          "explicacao": "Comparadores controlam fluxo",
+          "logica": "condicional"
+        }
+      ]
+    },
+
+    {
+      "titulo": "Loops FOR",
+      "explicacao": "Repetição",
       "exemplo": "for i in range(5)",
-      "desafios": ["0 a 4", "1 a 5", "0 a 9"],
-      "respostas": [
-        "for i in range(5): print(i)",
-        "for i in range(1,6): print(i)",
-        "for i in range(10): print(i)"
+      "desafios": [
+        {
+          "pergunta": "Conte de 0 a 4",
+          "resposta": "for i in range(5): print(i)",
+          "dica": "Use range",
+          "erro_comum": "Erro no range",
+          "explicacao": "range define intervalo",
+          "logica": "loop controlado"
+        },
+        {
+          "pergunta": "Conte de 1 a 5",
+          "resposta": "for i in range(1,6): print(i)",
+          "dica": "Use dois parâmetros",
+          "erro_comum": "Intervalo errado",
+          "explicacao": "range(inicio,fim)",
+          "logica": "controle de início/fim"
+        },
+        {
+          "pergunta": "Conte de 0 a 9",
+          "resposta": "for i in range(10): print(i)",
+          "dica": "Use range(10)",
+          "erro_comum": "Limite errado",
+          "explicacao": "range exclui o final",
+          "logica": "loop"
+        }
       ]
     },
+
     {
       "titulo": "Funções",
       "explicacao": "Criar funções",
       "exemplo": "def soma(a,b)",
-      "desafios": ["soma", "dobro", "quadrado"],
-      "respostas": [
-        "def soma(a,b): return a+b",
-        "def dobro(x): return x*2",
-        "def quadrado(x): return x*x"
+      "desafios": [
+        {
+          "pergunta": "Crie função soma",
+          "resposta": "def soma(a,b): return a+b",
+          "dica": "Use def",
+          "erro_comum": "Sem return",
+          "explicacao": "Funções retornam valores",
+          "logica": "entrada → processamento → saída"
+        },
+        {
+          "pergunta": "Crie dobro",
+          "resposta": "def dobro(x): return x*2",
+          "dica": "Multiplique por 2",
+          "erro_comum": "Erro na operação",
+          "explicacao": "Função simples",
+          "logica": "transformação"
+        },
+        {
+          "pergunta": "Crie quadrado",
+          "resposta": "def quadrado(x): return x*x",
+          "dica": "Multiplique x por x",
+          "erro_comum": "Erro de cálculo",
+          "explicacao": "Potência simples",
+          "logica": "x²"
+        }
       ]
     },
+
     {
       "titulo": "Listas",
       "explicacao": "Arrays",
       "exemplo": "[1,2,3]",
-      "desafios": ["lista 1,2,3", "lista nomes", "lista vazia"],
-      "respostas": [
-        "lista=[1,2,3]",
-        "nomes=['Ana','Joao']",
-        "lista=[]"
+      "desafios": [
+        {
+          "pergunta": "Crie lista 1,2,3",
+          "resposta": "lista=[1,2,3]",
+          "dica": "Use []",
+          "erro_comum": "Usar {}",
+          "explicacao": "Listas armazenam vários valores",
+          "logica": "coleção"
+        },
+        {
+          "pergunta": "Crie lista de nomes",
+          "resposta": "nomes=['Ana','Joao']",
+          "dica": "Use strings",
+          "erro_comum": "Sem aspas",
+          "explicacao": "Lista de textos",
+          "logica": "array"
+        },
+        {
+          "pergunta": "Crie lista vazia",
+          "resposta": "lista=[]",
+          "dica": "Use []",
+          "erro_comum": "Sintaxe errada",
+          "explicacao": "Lista vazia é válida",
+          "logica": "inicialização"
+        }
       ]
     },
+
     {
       "titulo": "Dicionário",
-      "explicacao": "Chave valor",
+      "explicacao": "Chave e valor",
       "exemplo": "{'nome':'Ana'}",
-      "desafios": ["nome", "idade", "completo"],
-      "respostas": [
-        "p={'nome':'Ana'}",
-        "p={'idade':20}",
-        "p={'nome':'Ana','idade':20}"
-      ]
-    }
-  ],
-
-  "c": [
-    {
-      "titulo": "Hello World",
-      "explicacao": "Saída",
-      "exemplo": "#include <stdio.h>\nint main(){printf(\"Hello\");return 0;}",
-      "desafios": ["Hello", "C é top", "Teste"],
-      "respostas": [
-        "#include <stdio.h>\nint main(){printf(\"Hello\");return 0;}",
-        "#include <stdio.h>\nint main(){printf(\"C é top\");return 0;}",
-        "#include <stdio.h>\nint main(){printf(\"Teste\");return 0;}"
-      ]
-    },
-    {
-      "titulo": "Variáveis",
-      "explicacao": "Tipos",
-      "exemplo": "int x=10;",
-      "desafios": ["int x=5", "float y=2.5", "char c='A'"],
-      "respostas": ["int x=5;", "float y=2.5;", "char c='A';"]
-    },
-    {
-      "titulo": "If",
-      "explicacao": "Condicional",
-      "exemplo": "if(x>5)",
-      "desafios": ["x>5", "x==10", "x<3"],
-      "respostas": [
-        "if(x>5){printf(\"OK\");}",
-        "if(x==10){printf(\"Dez\");}",
-        "if(x<3){printf(\"Baixo\");}"
-      ]
-    },
-    {
-      "titulo": "For",
-      "explicacao": "Loop",
-      "exemplo": "for(int i=0;i<5;i++)",
-      "desafios": ["0 a 4", "1 a 5", "0 a 9"],
-      "respostas": [
-        "for(int i=0;i<5;i++){printf(\"%d\",i);}",
-        "for(int i=1;i<=5;i++){printf(\"%d\",i);}",
-        "for(int i=0;i<10;i++){printf(\"%d\",i);}"
-      ]
-    },
-    {
-      "titulo": "Funções",
-      "explicacao": "Funções",
-      "exemplo": "int soma(int a,int b)",
-      "desafios": ["soma", "dobro", "quadrado"],
-      "respostas": [
-        "int soma(int a,int b){return a+b;}",
-        "int dobro(int x){return x*2;}",
-        "int quadrado(int x){return x*x;}"
-      ]
-    },
-    {
-      "titulo": "Arrays",
-      "explicacao": "Vetores",
-      "exemplo": "int arr[3]",
-      "desafios": ["1,2,3", "5 elementos", "vazio"],
-      "respostas": [
-        "int arr[3]={1,2,3};",
-        "int arr[5];",
-        "int arr[0];"
-      ]
-    },
-    {
-      "titulo": "Struct",
-      "explicacao": "Estruturas",
-      "exemplo": "struct Pessoa",
-      "desafios": ["idade", "nome", "completo"],
-      "respostas": [
-        "struct Pessoa{int idade;};",
-        "struct Pessoa{char nome[50];};",
-        "struct Pessoa{char nome[50];int idade;};"
-      ]
-    }
-  ],
-
-  "java": [
-    {
-      "titulo": "Print",
-      "explicacao": "Saída",
-      "exemplo": "System.out.println()",
-      "desafios": ["Hello", "Java", "Teste"],
-      "respostas": [
-        "System.out.println(\"Hello\");",
-        "System.out.println(\"Java\");",
-        "System.out.println(\"Teste\");"
-      ]
-    },
-    {
-      "titulo": "Variáveis",
-      "explicacao": "Tipos",
-      "exemplo": "int x",
-      "desafios": ["int", "double", "String"],
-      "respostas": [
-        "int x=5;",
-        "double y=2.5;",
-        "String nome=\"Ana\";"
-      ]
-    },
-    {
-      "titulo": "If",
-      "explicacao": "Condicional",
-      "exemplo": "if(x>5)",
-      "desafios": ["x>5", "x==10", "x<3"],
-      "respostas": [
-        "if(x>5){System.out.println(\"OK\");}",
-        "if(x==10){System.out.println(\"Dez\");}",
-        "if(x<3){System.out.println(\"Baixo\");}"
-      ]
-    },
-    {
-      "titulo": "For",
-      "explicacao": "Loop",
-      "exemplo": "for(int i=0;i<5;i++)",
-      "desafios": ["0 a 4", "1 a 5", "0 a 9"],
-      "respostas": [
-        "for(int i=0;i<5;i++){System.out.println(i);}",
-        "for(int i=1;i<=5;i++){System.out.println(i);}",
-        "for(int i=0;i<10;i++){System.out.println(i);}"
-      ]
-    },
-    {
-      "titulo": "Métodos",
-      "explicacao": "Funções",
-      "exemplo": "int soma()",
-      "desafios": ["soma", "dobro", "quadrado"],
-      "respostas": [
-        "int soma(int a,int b){return a+b;}",
-        "int dobro(int x){return x*2;}",
-        "int quadrado(int x){return x*x;}"
-      ]
-    },
-    {
-      "titulo": "Arrays",
-      "explicacao": "Vetores",
-      "exemplo": "int[] arr",
-      "desafios": ["1,2,3", "5 elementos", "vazio"],
-      "respostas": [
-        "int[] arr={1,2,3};",
-        "int[] arr=new int[5];",
-        "int[] arr={};"
-      ]
-    },
-    {
-      "titulo": "Classes",
-      "explicacao": "POO",
-      "exemplo": "class Pessoa",
-      "desafios": ["Pessoa", "Carro", "Teste"],
-      "respostas": [
-        "class Pessoa{}",
-        "class Carro{}",
-        "class Teste{}"
-      ]
-    }
-  ],
-
-  "php": [
-    {
-      "titulo": "Echo",
-      "explicacao": "Saída",
-      "exemplo": "echo",
-      "desafios": ["Hello", "PHP", "Teste"],
-      "respostas": [
-        "echo \"Hello\";",
-        "echo \"PHP\";",
-        "echo \"Teste\";"
-      ]
-    },
-    {
-      "titulo": "Variáveis",
-      "explicacao": "Use $",
-      "exemplo": "$x",
-      "desafios": ["$x", "$nome", "$idade"],
-      "respostas": [
-        "$x=5;",
-        "$nome=\"Ana\";",
-        "$idade=20;"
-      ]
-    },
-    {
-      "titulo": "If",
-      "explicacao": "Condicional",
-      "exemplo": "if($x>5)",
-      "desafios": ["x>5", "x==10", "x<3"],
-      "respostas": [
-        "if($x>5){echo \"OK\";}",
-        "if($x==10){echo \"Dez\";}",
-        "if($x<3){echo \"Baixo\";}"
-      ]
-    },
-    {
-      "titulo": "For",
-      "explicacao": "Loop",
-      "exemplo": "for($i=0;$i<5;$i++)",
-      "desafios": ["0 a 4", "1 a 5", "0 a 9"],
-      "respostas": [
-        "for($i=0;$i<5;$i++){echo $i;}",
-        "for($i=1;$i<=5;$i++){echo $i;}",
-        "for($i=0;$i<10;$i++){echo $i;}"
-      ]
-    },
-    {
-      "titulo": "Funções",
-      "explicacao": "Funções",
-      "exemplo": "function soma()",
-      "desafios": ["soma", "dobro", "quadrado"],
-      "respostas": [
-        "function soma($a,$b){return $a+$b;}",
-        "function dobro($x){return $x*2;}",
-        "function quadrado($x){return $x*$x;}"
-      ]
-    },
-    {
-      "titulo": "Arrays",
-      "explicacao": "Vetores",
-      "exemplo": "$arr",
-      "desafios": ["1,2,3", "nomes", "vazio"],
-      "respostas": [
-        "$arr=[1,2,3];",
-        "$nomes=[\"Ana\",\"Joao\"];",
-        "$arr=[];"
-      ]
-    },
-    {
-      "titulo": "Associativo",
-      "explicacao": "Chave valor",
-      "exemplo": "=>",
-      "desafios": ["nome", "idade", "completo"],
-      "respostas": [
-        "$p=['nome'=>'Ana'];",
-        "$p=['idade'=>20];",
-        "$p=['nome'=>'Ana','idade'=>20];"
+      "desafios": [
+        {
+          "pergunta": "Crie dicionário nome",
+          "resposta": "p={'nome':'Ana'}",
+          "dica": "Use {}",
+          "erro_comum": "Usar []",
+          "explicacao": "Dicionários usam chave:valor",
+          "logica": "mapa"
+        },
+        {
+          "pergunta": "Crie idade",
+          "resposta": "p={'idade':20}",
+          "dica": "Número sem aspas",
+          "erro_comum": "Aspas erradas",
+          "explicacao": "Valor numérico",
+          "logica": "chave/valor"
+        },
+        {
+          "pergunta": "Crie completo",
+          "resposta": "p={'nome':'Ana','idade':20}",
+          "dica": "Separe com vírgula",
+          "erro_comum": "Falta vírgula",
+          "explicacao": "Múltiplos pares",
+          "logica": "estrutura composta"
+        }
       ]
     }
   ]
