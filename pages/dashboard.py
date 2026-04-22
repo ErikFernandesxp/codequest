@@ -11,6 +11,12 @@ st.title("🎮 CodeQuest")
 st.sidebar.metric("XP", st.session_state["xp"])
 st.sidebar.metric("Nível", st.session_state["nivel"])
 
+st.markdown("""
+## 🚀 Bem-vindo ao CodeQuest
+
+Aprenda programação jogando 🎮
+""")
+
 if st.button("📚 Escolher Linguagem"):
     st.switch_page("pages/linguagem.py")
 
