@@ -5,7 +5,9 @@ def init_session(st):
         "xp": 0,
         "nivel": 1,
         "fase": 0,
-        "linguagem": None
+        "linguagem": None,
+        "desafio_atual": 0,
+        "acertos_fase": 0
     }
 
     for key, value in defaults.items():
