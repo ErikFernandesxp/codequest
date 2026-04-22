@@ -7,9 +7,9 @@ def init_session(st):
         "fase": 0,
         "linguagem": None,
         "desafio_atual": 0,
-        "acertos_fase": 0
+        "vidas": 3
     }
 
-    for key, value in defaults.items():
-        if key not in st.session_state:
-            st.session_state[key] = value
+    for k, v in defaults.items():
+        if k not in st.session_state:
+            st.session_state[k] = v
