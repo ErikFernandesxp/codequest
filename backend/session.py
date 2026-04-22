@@ -1,12 +1,14 @@
 def init_session(st):
+
     defaults = {
-        "logado": True,
-        "usuario": "guest",
+        "logado": False,
+        "usuario": None,
+        "usuarios": {},
+        "linguagem": None,
+        "fase": 0,
+        "desafio_atual": 0,
         "xp": 0,
         "nivel": 1,
-        "fase": 0,
-        "linguagem": None,
-        "desafio_atual": 0,
         "vidas": 3
     }
 
