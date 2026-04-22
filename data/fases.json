@@ -17,14 +17,6 @@
       "resposta": "x = 10"
     },
     {
-      "titulo": "Print variável",
-      "explicacao": "Mostrar variável",
-      "exemplo": "print(x)",
-      "dica": "Use print",
-      "desafio": "Mostre x",
-      "resposta": "x = 10\nprint(x)"
-    },
-    {
       "titulo": "If",
       "explicacao": "Condicional",
       "exemplo": "if x > 5:\n print('ok')",
@@ -45,6 +37,25 @@
     }
   ],
 
-  "java": [],
-  "php": []
+  "java": [
+    {
+      "titulo": "Hello World",
+      "explicacao": "Use System.out.println",
+      "exemplo": "System.out.println(\"Hello World\");",
+      "dica": "Java usa System.out.println",
+      "desafio": "Mostre Hello World",
+      "resposta": "System.out.println(\"Hello World\");"
+    }
+  ],
+
+  "php": [
+    {
+      "titulo": "Hello World",
+      "explicacao": "Use echo",
+      "exemplo": "echo \"Hello World\";",
+      "dica": "Use echo",
+      "desafio": "Mostre Hello World",
+      "resposta": "echo \"Hello World\";"
+    }
+  ]
 }
