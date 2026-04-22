@@ -3,25 +3,27 @@ from backend.session import init_session
 
 init_session(st)
 
-st.set_page_config(page_title="CodeQuest", layout="wide")
+st.title("🔐 Login")
 
-st.title("🔐 CodeQuest Login")
+usuarios = st.session_state.get("usuarios", {})
 
-usuario = st.text_input("Usuário")
-senha = st.text_input("Senha", type="password")
+email = st.text_input("📧 Email")
+senha = st.text_input("🔒 Senha", type="password")
 
-if st.button("Entrar"):
-    if usuario and senha:
-        st.session_state.update({
-            "logado": True,
-            "usuario": usuario,
-            "xp": 0,
-            "nivel": 1,
-            "fase": 0,
-            "linguagem": None,
-            "desafio_atual": 0,
-            "acertos_fase": 0
-        })
-        st.switch_page("pages/dashboard.py")
-    else:
-        st.error("Preencha os campos")
+col1, col2 = st.columns(2)
+
+with col1:
+    if st.button("Entrar"):
+
+        if email in usuarios and usuarios[email]["senha"] == senha:
+            st.session_state["logado"] = True
+            st.session_state["usuario"] = usuarios[email]["nome"]
+
+            st.success("Login realizado!")
+            st.switch_page("pages/linguagem.py")
+        else:
+            st.error("Email ou senha incorretos")
+
+with col2:
+    if st.button("Criar Conta"):
+        st.switch_page("pages/cadastro.py")
