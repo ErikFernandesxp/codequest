@@ -1,4 +1,5 @@
 import streamlit as st
+import re
 
 st.set_page_config(page_title="CodeQuest - Cadastro", page_icon="📝", layout="centered")
 
@@ -9,6 +10,10 @@ init_session(st)
 
 if st.session_state.get("logado"):
     st.switch_page("pages/dashboard.py")
+
+def email_valido(email: str) -> bool:
+    padrao = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    return re.match(padrao, email) is not None
 
 st.title("🎮 CodeQuest")
 st.subheader("📝 Criar nova conta")
@@ -23,6 +28,8 @@ with st.form("form_cadastro"):
 if cadastrar:
     if not nome or not email or not senha or not confirmar:
         st.error("Preencha todos os campos.")
+    elif not email_valido(email):
+        st.error("Email inválido. Verifique se digitou corretamente (ex: nome@gmail.com)")
     elif senha != confirmar:
         st.error("As senhas não conferem.")
     elif len(senha) < 6:
