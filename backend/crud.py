@@ -44,11 +44,20 @@ def verificar_e_conceder_badges(user_id: str, usuario: dict, total_fases: int, l
     if nivel >= 20 and "nivel_20" not in badges_atuais:
         novas_badges.append("nivel_20")
 
-    # Badges de linguagem completa
-    for lang, total in fases_por_lang.items():
-        concluidas = len([p for p in fases_por_lang.get(lang, []) if p])
+    # Badges de linguagem completa — fases_por_lang é {"python": 3, "java": 2}
+    import json, os
+    try:
+        caminho = os.path.join(os.getcwd(), "data", "fases.json")
+        with open(caminho, encoding="utf-8") as f:
+            todas_fases = json.load(f)
+    except Exception:
+        todas_fases = {}
+
+    for lang in ["python", "c", "java", "php"]:
+        total_lang = len(todas_fases.get(lang, []))
+        concluidas_lang = fases_por_lang.get(lang, 0)
         badge_key = f"{lang}_completo"
-        if total > 0 and concluidas >= total and badge_key not in badges_atuais:
+        if total_lang > 0 and concluidas_lang >= total_lang and badge_key not in badges_atuais:
             novas_badges.append(badge_key)
 
     # Badge todas linguagens
