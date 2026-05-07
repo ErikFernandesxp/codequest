@@ -6,12 +6,23 @@ import json
 import os
 from backend.session import init_session, calcular_nivel
 from backend.validator import validar_codigo
-from backend.crud import salvar_progresso, atualizar_xp_nivel
+from backend.crud import salvar_progresso, atualizar_xp_nivel, calcular_vidas_regeneradas, atualizar_vidas, buscar_perfil, verificar_e_conceder_badges
 
 init_session(st)
 
 if not st.session_state.get("logado"):
     st.switch_page("pages/login.py")
+
+# Sincroniza vidas com banco ao entrar na fase
+if not st.session_state.get("vidas_sincronizadas"):
+    perfil = buscar_perfil(st.session_state["user_id"])
+    if perfil:
+        vidas_novas = calcular_vidas_regeneradas(
+            perfil.get("ultima_vida", ""),
+            perfil.get("vidas", 3)
+        )
+        st.session_state["vidas"] = vidas_novas
+        st.session_state["vidas_sincronizadas"] = True
 
 @st.cache_data
 def carregar_fases():
@@ -19,7 +30,14 @@ def carregar_fases():
     with open(caminho, encoding="utf-8") as f:
         return json.load(f)
 
+@st.cache_data
+def carregar_badges_config():
+    caminho = os.path.join(os.getcwd(), "data", "badges.json")
+    with open(caminho, encoding="utf-8") as f:
+        return json.load(f)
+
 fases = carregar_fases()
+badges_config = carregar_badges_config()
 
 ling = st.session_state.get("linguagem")
 fase_idx = st.session_state.get("fase", 0)
@@ -30,6 +48,7 @@ if not ling or ling not in fases:
         st.switch_page("pages/linguagem.py")
     st.stop()
 
+# ─── Sidebar HUD ─────────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown(f"### 👤 {st.session_state['usuario']}")
     st.metric("⚡ XP", st.session_state["xp"])
@@ -37,6 +56,7 @@ with st.sidebar:
     xp_mod = st.session_state["xp"] % 50
     st.progress(xp_mod / 50, text=f"XP para próx. nível: {xp_mod}/50")
     st.metric("❤️ Vidas", st.session_state["vidas"])
+    st.metric("🔥 Streak", f"{st.session_state.get('streak', 0)} dias")
     st.divider()
     lang_icons = {"python": "🐍", "c": "⚙️", "java": "☕", "php": "🌐"}
     total = len(fases[ling])
@@ -44,15 +64,19 @@ with st.sidebar:
                 text=f"{lang_icons.get(ling,'')} {ling.upper()}: fase {fase_idx+1}/{total}")
     st.divider()
     if st.button("🏠 Dashboard", use_container_width=True):
+        st.session_state["vidas_sincronizadas"] = False
         st.switch_page("pages/dashboard.py")
 
+# ─── Game Over ────────────────────────────────────────────────────────────────
 if st.session_state["vidas"] <= 0:
     st.error("💀 Game Over! Você ficou sem vidas.")
-    if st.button("🔄 Recomeçar"):
-        st.session_state.update({"vidas": 3, "fase": 0, "desafio_atual": 0})
-        st.rerun()
+    st.info("❤️ Suas vidas regeneram 1 a cada 30 minutos. Volte mais tarde!")
+    if st.button("🏠 Voltar ao Menu"):
+        st.session_state["vidas_sincronizadas"] = False
+        st.switch_page("pages/dashboard.py")
     st.stop()
 
+# ─── Fim do jogo ─────────────────────────────────────────────────────────────
 if fase_idx >= len(fases[ling]):
     st.balloons()
     st.success("🎉 Parabéns! Você finalizou todas as fases desta linguagem!")
@@ -60,10 +84,11 @@ if fase_idx >= len(fases[ling]):
     col1, col2 = st.columns(2)
     with col1:
         if st.button("📚 Escolher outra linguagem", use_container_width=True, type="primary"):
+            st.session_state["vidas_sincronizadas"] = False
             st.switch_page("pages/linguagem.py")
     with col2:
         if st.button("🔄 Reiniciar trilha", use_container_width=True):
-            st.session_state.update({"fase": 0, "desafio_atual": 0, "vidas": 3})
+            st.session_state.update({"fase": 0, "desafio_atual": 0, "vidas_sincronizadas": False})
             st.rerun()
     st.stop()
 
@@ -93,6 +118,7 @@ if isinstance(desafio, str):
         "logica": "Siga o padrão apresentado"
     }
 
+# ─── Interface ────────────────────────────────────────────────────────────────
 st.title(f"🎯 Fase {fase_idx + 1} — {fase.get('titulo', '')}")
 st.caption(f"Desafio {idx + 1} de {len(desafios)}")
 st.progress((idx + 1) / len(desafios))
@@ -119,10 +145,12 @@ pular = col_btn2.button("⏭️ Pular (-1 ❤️)", use_container_width=True)
 voltar = col_btn3.button("🏠 Menu", use_container_width=True)
 
 if voltar:
+    st.session_state["vidas_sincronizadas"] = False
     st.switch_page("pages/dashboard.py")
 
 if pular:
     st.session_state["vidas"] -= 1
+    atualizar_vidas(st.session_state["user_id"], st.session_state["vidas"])
     vidas_rest = st.session_state["vidas"]
     if vidas_rest <= 0:
         st.error("💀 Sem vidas! Game Over ao pular.")
@@ -162,6 +190,20 @@ if enviar:
                 st.session_state["fase"] += 1
                 st.session_state["desafio_atual"] = 0
 
+                # Verifica badges ao concluir fase
+                from backend.crud import buscar_progresso
+                progresso = buscar_progresso(st.session_state["user_id"])
+                total_fases = len(progresso)
+                perfil_atual = buscar_perfil(st.session_state["user_id"])
+                novas_badges, cfg = verificar_e_conceder_badges(
+                    st.session_state["user_id"],
+                    perfil_atual or {},
+                    total_fases
+                )
+                for b in novas_badges:
+                    info = cfg.get(b, {})
+                    st.toast(f"🏅 Badge: {info.get('emoji','')} {info.get('nome','')}", icon="🎉")
+
             if subiu_nivel:
                 st.balloons()
                 st.success(f"🎉 Subiu para o Nível {novo_nivel}!")
@@ -170,6 +212,7 @@ if enviar:
 
         else:
             st.session_state["vidas"] -= 1
+            atualizar_vidas(st.session_state["user_id"], st.session_state["vidas"])
             vidas_rest = st.session_state["vidas"]
 
             st.error(f"❌ Resposta incorreta! ({vidas_rest} {'vida' if vidas_rest == 1 else 'vidas'} restante{'s' if vidas_rest != 1 else ''})")
