@@ -1,0 +1,72 @@
+{
+  "primeira_fase": {
+    "nome": "Primeiros Passos",
+    "emoji": "👶",
+    "descricao": "Concluiu sua primeira fase"
+  },
+  "cinco_fases": {
+    "nome": "Em Ritmo",
+    "emoji": "🎯",
+    "descricao": "Concluiu 5 fases"
+  },
+  "dez_fases": {
+    "nome": "Dedicado",
+    "emoji": "💪",
+    "descricao": "Concluiu 10 fases"
+  },
+  "streak_3": {
+    "nome": "Consistente",
+    "emoji": "🔥",
+    "descricao": "3 dias seguidos jogando"
+  },
+  "streak_7": {
+    "nome": "Semana Perfeita",
+    "emoji": "⚡",
+    "descricao": "7 dias seguidos jogando"
+  },
+  "streak_30": {
+    "nome": "Imparável",
+    "emoji": "🌟",
+    "descricao": "30 dias seguidos jogando"
+  },
+  "nivel_5": {
+    "nome": "Iniciante",
+    "emoji": "🥉",
+    "descricao": "Alcançou o nível 5"
+  },
+  "nivel_10": {
+    "nome": "Intermediário",
+    "emoji": "🥈",
+    "descricao": "Alcançou o nível 10"
+  },
+  "nivel_20": {
+    "nome": "Avançado",
+    "emoji": "🥇",
+    "descricao": "Alcançou o nível 20"
+  },
+  "python_completo": {
+    "nome": "Pythonista",
+    "emoji": "🐍",
+    "descricao": "Zerou todas as fases de Python"
+  },
+  "java_completo": {
+    "nome": "Java Master",
+    "emoji": "☕",
+    "descricao": "Zerou todas as fases de Java"
+  },
+  "c_completo": {
+    "nome": "C Warrior",
+    "emoji": "⚙️",
+    "descricao": "Zerou todas as fases de C"
+  },
+  "php_completo": {
+    "nome": "PHP Dev",
+    "emoji": "🌐",
+    "descricao": "Zerou todas as fases de PHP"
+  },
+  "todas_linguagens": {
+    "nome": "Poliglota",
+    "emoji": "🏆",
+    "descricao": "Zerou todas as linguagens"
+  }
+}
