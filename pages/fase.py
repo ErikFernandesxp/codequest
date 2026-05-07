@@ -13,7 +13,6 @@ init_session(st)
 if not st.session_state.get("logado"):
     st.switch_page("pages/login.py")
 
-# ─── Carregar fases ─────────────────────────────────────────────────────────
 @st.cache_data
 def carregar_fases():
     caminho = os.path.join(os.getcwd(), "data", "fases.json")
@@ -31,7 +30,6 @@ if not ling or ling not in fases:
         st.switch_page("pages/linguagem.py")
     st.stop()
 
-# ─── Sidebar HUD ─────────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown(f"### 👤 {st.session_state['usuario']}")
     st.metric("⚡ XP", st.session_state["xp"])
@@ -48,7 +46,6 @@ with st.sidebar:
     if st.button("🏠 Dashboard", use_container_width=True):
         st.switch_page("pages/dashboard.py")
 
-# ─── Game Over ────────────────────────────────────────────────────────────────
 if st.session_state["vidas"] <= 0:
     st.error("💀 Game Over! Você ficou sem vidas.")
     if st.button("🔄 Recomeçar"):
@@ -56,7 +53,6 @@ if st.session_state["vidas"] <= 0:
         st.rerun()
     st.stop()
 
-# ─── Fim do jogo ─────────────────────────────────────────────────────────────
 if fase_idx >= len(fases[ling]):
     st.balloons()
     st.success("🎉 Parabéns! Você finalizou todas as fases desta linguagem!")
@@ -86,7 +82,6 @@ if idx >= len(desafios):
 
 desafio = desafios[idx]
 
-# Compatibilidade com formato antigo (string)
 if isinstance(desafio, str):
     respostas = fase.get("respostas", [])
     desafio = {
@@ -98,7 +93,6 @@ if isinstance(desafio, str):
         "logica": "Siga o padrão apresentado"
     }
 
-# ─── Interface ────────────────────────────────────────────────────────────────
 st.title(f"🎯 Fase {fase_idx + 1} — {fase.get('titulo', '')}")
 st.caption(f"Desafio {idx + 1} de {len(desafios)}")
 st.progress((idx + 1) / len(desafios))
@@ -119,19 +113,22 @@ st.markdown(f"### 🧩 {desafio.get('pergunta', '')}")
 resposta = st.text_area("💻 Digite seu código:", height=120, key=f"input_{fase_idx}_{idx}",
                          placeholder="Escreva sua resposta aqui...")
 
-col_btn1, col_btn2, _ = st.columns([1, 1, 3])
+col_btn1, col_btn2, col_btn3, _ = st.columns([1, 1, 1, 2])
 enviar = col_btn1.button("🚀 Enviar", type="primary", use_container_width=True)
-pular = col_btn2.button("⏭️ Pular", use_container_width=True)
+pular = col_btn2.button("⏭️ Pular (-1 ❤️)", use_container_width=True)
+voltar = col_btn3.button("🏠 Menu", use_container_width=True)
+
+if voltar:
+    st.switch_page("pages/dashboard.py")
 
 if pular:
     st.session_state["vidas"] -= 1
     vidas_rest = st.session_state["vidas"]
-
     if vidas_rest <= 0:
         st.error("💀 Sem vidas! Game Over ao pular.")
         st.rerun()
     else:
-        st.warning(f"⏭️ Fase pulada! Você perdeu uma vida. Restam {vidas_rest} ❤️")
+        st.warning(f"⏭️ Desafio pulado! Você perdeu uma vida. Restam {vidas_rest} ❤️")
         st.session_state["desafio_atual"] += 1
         if st.session_state["desafio_atual"] >= len(desafios):
             st.session_state["fase"] += 1
@@ -148,7 +145,6 @@ if enviar:
             st.success("✅ Correto! Muito bem!")
             st.toast("🚀 +10 XP!")
 
-            # Atualiza XP e nível
             novo_xp = st.session_state["xp"] + 10
             novo_nivel = calcular_nivel(novo_xp)
             subiu_nivel = novo_nivel > st.session_state["nivel"]
@@ -156,7 +152,6 @@ if enviar:
             st.session_state["xp"] = novo_xp
             st.session_state["nivel"] = novo_nivel
 
-            # Persiste no Supabase
             atualizar_xp_nivel(st.session_state["user_id"], novo_xp, novo_nivel)
 
             st.session_state["desafio_atual"] += 1
