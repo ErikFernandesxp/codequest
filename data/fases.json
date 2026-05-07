@@ -1,0 +1,1240 @@
+{
+  "python": [
+    {
+      "titulo": "Saída com print",
+      "explicacao": "A função print() exibe mensagens na tela. É o primeiro comando que todo programador aprende.",
+      "exemplo": "print('Olá, mundo!')\nprint('Python é incrível!')",
+      "desafios": [
+        {
+          "pergunta": "Exiba a mensagem: Olá, mundo!",
+          "resposta": "print('Olá, mundo!')",
+          "dica": "Use print() com o texto entre aspas",
+          "erro_comum": "Esquecer as aspas ao redor do texto",
+          "explicacao": "print() é uma função que recebe um texto (string) entre aspas e o exibe na tela",
+          "logica": "print( 'texto aqui' )"
+        },
+        {
+          "pergunta": "Exiba seu nome na tela",
+          "resposta": "print('Erik')",
+          "dica": "Coloque seu nome entre aspas dentro do print()",
+          "erro_comum": "Esquecer as aspas ou o parêntese de fechamento",
+          "explicacao": "Qualquer texto pode ser exibido com print(), basta colocá-lo entre aspas simples ou duplas",
+          "logica": "print('seu_nome')"
+        },
+        {
+          "pergunta": "Exiba duas linhas: Linha 1 e Linha 2 usando dois prints",
+          "resposta": "print('Linha 1')\nprint('Linha 2')",
+          "dica": "Use print() duas vezes, uma para cada linha",
+          "erro_comum": "Tentar colocar tudo em um único print sem quebra de linha",
+          "explicacao": "Cada chamada de print() exibe uma linha separada automaticamente",
+          "logica": "print('Linha 1')\nprint('Linha 2')"
+        },
+        {
+          "pergunta": "Exiba o resultado de 10 + 5 usando print",
+          "resposta": "print(10 + 5)",
+          "dica": "Você pode colocar uma conta matemática dentro do print()",
+          "erro_comum": "Colocar a conta entre aspas, o que a tornaria texto e não cálculo",
+          "explicacao": "print() pode exibir números e cálculos diretamente, sem aspas",
+          "logica": "print(número ou cálculo)"
+        },
+        {
+          "pergunta": "Exiba: Eu estou aprendendo Python!",
+          "resposta": "print('Eu estou aprendendo Python!')",
+          "dica": "Lembre-se das aspas ao redor de toda a frase",
+          "erro_comum": "Esquecer o ponto de exclamação ou usar aspas erradas",
+          "explicacao": "Frases inteiras com pontuação podem ser exibidas normalmente com print()",
+          "logica": "print('frase completa aqui')"
+        }
+      ]
+    },
+    {
+      "titulo": "Variáveis",
+      "explicacao": "Variáveis são como caixas que guardam valores. Em Python você cria uma variável simplesmente escrevendo nome = valor.",
+      "exemplo": "nome = 'Ana'\nidade = 25\nprint(nome)\nprint(idade)",
+      "desafios": [
+        {
+          "pergunta": "Crie uma variável chamada nome com o valor 'João'",
+          "resposta": "nome = 'João'",
+          "dica": "Use o sinal = para atribuir um valor à variável",
+          "erro_comum": "Usar == em vez de = para atribuição",
+          "explicacao": "= é o operador de atribuição. nome = 'João' cria a variável nome e guarda o texto João nela",
+          "logica": "nome_da_variavel = valor"
+        },
+        {
+          "pergunta": "Crie uma variável idade com o valor 20 e exiba ela com print",
+          "resposta": "idade = 20\nprint(idade)",
+          "dica": "Primeiro crie a variável, depois use print() para exibi-la",
+          "erro_comum": "Colocar aspas no número: idade = '20' guarda texto, não número",
+          "explicacao": "Números inteiros não usam aspas. print(idade) exibe o valor guardado na variável",
+          "logica": "variavel = valor\nprint(variavel)"
+        },
+        {
+          "pergunta": "Crie as variáveis x=10 e y=3 e exiba a soma delas",
+          "resposta": "x = 10\ny = 3\nprint(x + y)",
+          "dica": "Crie as duas variáveis e some dentro do print()",
+          "erro_comum": "Tentar somar strings em vez de números",
+          "explicacao": "Variáveis numéricas podem ser somadas diretamente com o operador +",
+          "logica": "x = 10\ny = 3\nprint(x + y)"
+        },
+        {
+          "pergunta": "Crie uma variável preco=9.99 e exiba ela",
+          "resposta": "preco = 9.99\nprint(preco)",
+          "dica": "Números decimais usam ponto, não vírgula",
+          "erro_comum": "Usar vírgula: preco = 9,99 causa erro em Python",
+          "explicacao": "Números com casas decimais (float) usam ponto como separador decimal",
+          "logica": "preco = 9.99\nprint(preco)"
+        },
+        {
+          "pergunta": "Crie variável ativo=True e exiba ela",
+          "resposta": "ativo = True\nprint(ativo)",
+          "dica": "True e False são valores booleanos, sem aspas e com letra maiúscula",
+          "erro_comum": "Escrever true com letra minúscula ou entre aspas",
+          "explicacao": "Booleanos representam verdadeiro (True) ou falso (False). Sempre com T ou F maiúsculo",
+          "logica": "variavel = True ou False"
+        }
+      ]
+    },
+    {
+      "titulo": "Strings e Formatação",
+      "explicacao": "Strings são textos. Você pode juntá-las, formatá-las e inserir variáveis dentro delas usando f-strings.",
+      "exemplo": "nome = 'Ana'\nidade = 25\nprint(f'Meu nome é {nome} e tenho {idade} anos')",
+      "desafios": [
+        {
+          "pergunta": "Una as strings 'Olá' e 'mundo' com + e exiba",
+          "resposta": "print('Olá' + ' ' + 'mundo')",
+          "dica": "Use + para juntar strings, lembre de adicionar espaço entre elas",
+          "erro_comum": "Esquecer o espaço: 'Olá'+'mundo' vira 'Olámund'",
+          "explicacao": "O operador + concatena (junta) strings em Python",
+          "logica": "print('texto1' + ' ' + 'texto2')"
+        },
+        {
+          "pergunta": "Crie nome='Maria' e use f-string para exibir: Olá, Maria!",
+          "resposta": "nome = 'Maria'\nprint(f'Olá, {nome}!')",
+          "dica": "f-strings começam com f antes das aspas e usam {} para inserir variáveis",
+          "erro_comum": "Esquecer o f antes das aspas ou não usar chaves {}",
+          "explicacao": "f'texto {variavel}' é a forma mais moderna e legível de formatar strings em Python",
+          "logica": "print(f'texto {variavel} mais texto')"
+        },
+        {
+          "pergunta": "Crie nome='Carlos' e idade=30, exiba: Carlos tem 30 anos",
+          "resposta": "nome = 'Carlos'\nidade = 30\nprint(f'{nome} tem {idade} anos')",
+          "dica": "Use f-string com duas variáveis entre chaves",
+          "erro_comum": "Colocar as variáveis entre aspas dentro da f-string",
+          "explicacao": "Você pode inserir quantas variáveis quiser dentro de uma f-string usando {}",
+          "logica": "print(f'{var1} texto {var2}')"
+        },
+        {
+          "pergunta": "Exiba o tamanho da string 'Python' usando len()",
+          "resposta": "print(len('Python'))",
+          "dica": "A função len() retorna o número de caracteres de uma string",
+          "erro_comum": "Esquecer os parênteses do len ou do print",
+          "explicacao": "len() conta quantos caracteres tem uma string. 'Python' tem 6 caracteres",
+          "logica": "print(len('texto'))"
+        },
+        {
+          "pergunta": "Transforme a string 'python' em maiúsculas e exiba",
+          "resposta": "print('python'.upper())",
+          "dica": "Strings têm o método .upper() que converte para maiúsculas",
+          "erro_comum": "Escrever UPPER() sem ponto antes",
+          "explicacao": "Métodos de string são chamados com ponto após a string: 'texto'.upper()",
+          "logica": "'texto'.upper()"
+        }
+      ]
+    },
+    {
+      "titulo": "Entrada do Usuário",
+      "explicacao": "A função input() permite que o programa receba dados digitados pelo usuário.",
+      "exemplo": "nome = input('Digite seu nome: ')\nprint(f'Olá, {nome}!')",
+      "desafios": [
+        {
+          "pergunta": "Receba o nome do usuário e exiba: Olá, [nome]!",
+          "resposta": "nome = input('Digite seu nome: ')\nprint(f'Olá, {nome}!')",
+          "dica": "Use input() para receber o dado e guarde em uma variável",
+          "erro_comum": "Esquecer de guardar o resultado do input em uma variável",
+          "explicacao": "input() pausa o programa, espera o usuário digitar e retorna o texto digitado",
+          "logica": "variavel = input('mensagem')\nprint(variavel)"
+        },
+        {
+          "pergunta": "Receba dois números e exiba a soma (converta com int())",
+          "resposta": "a = int(input('Primeiro número: '))\nb = int(input('Segundo número: '))\nprint(a + b)",
+          "dica": "input() sempre retorna texto, use int() para converter para número",
+          "erro_comum": "Tentar somar sem converter: '5' + '3' vira '53', não 8",
+          "explicacao": "int() converte texto para número inteiro. Sem isso, o + juntaria os textos",
+          "logica": "num = int(input('número: '))"
+        },
+        {
+          "pergunta": "Receba a idade do usuário e exiba se é maior ou menor de 18",
+          "resposta": "idade = int(input('Sua idade: '))\nif idade >= 18:\n print('Maior de idade')\nelse:\n print('Menor de idade')",
+          "dica": "Converta a idade para int e use if/else para comparar com 18",
+          "erro_comum": "Comparar string com número sem converter",
+          "explicacao": "Combinando input() com if/else criamos programas que tomam decisões baseadas no usuário",
+          "logica": "valor = int(input())\nif valor >= 18:\n print('sim')"
+        }
+      ]
+    },
+    {
+      "titulo": "Condicional IF",
+      "explicacao": "O if permite que o programa tome decisões. Se a condição for verdadeira, executa um bloco. O else executa quando a condição é falsa.",
+      "exemplo": "idade = 18\nif idade >= 18:\n    print('Maior de idade')\nelse:\n    print('Menor de idade')",
+      "desafios": [
+        {
+          "pergunta": "Crie x=10 e exiba 'positivo' se x for maior que zero",
+          "resposta": "x = 10\nif x > 0:\n print('positivo')",
+          "dica": "Use if com o operador > e lembre do : no final",
+          "erro_comum": "Esquecer os dois pontos : após a condição",
+          "explicacao": "if condição: executa o bloco indentado abaixo quando a condição é verdadeira",
+          "logica": "if variavel > 0:\n print('algo')"
+        },
+        {
+          "pergunta": "Crie nota=7 e exiba 'aprovado' se >= 6, senão 'reprovado'",
+          "resposta": "nota = 7\nif nota >= 6:\n print('aprovado')\nelse:\n print('reprovado')",
+          "dica": "Use if para aprovado e else para reprovado",
+          "erro_comum": "Esquecer o else ou não indentar corretamente",
+          "explicacao": "else executa quando a condição do if é falsa. Juntos cobrem todos os casos",
+          "logica": "if condicao:\n bloco_verdadeiro\nelse:\n bloco_falso"
+        },
+        {
+          "pergunta": "Crie temp=25 e classifique: < 15 frio, 15-25 agradável, > 25 quente",
+          "resposta": "temp = 25\nif temp < 15:\n print('frio')\nelif temp <= 25:\n print('agradável')\nelse:\n print('quente')",
+          "dica": "Use elif para a condição do meio",
+          "erro_comum": "Usar if em vez de elif para o segundo caso",
+          "explicacao": "elif (else if) testa outra condição quando a anterior é falsa. Pode ter vários elif",
+          "logica": "if cond1:\n ...\nelif cond2:\n ...\nelse:\n ..."
+        },
+        {
+          "pergunta": "Verifique se número 15 é par ou ímpar usando %",
+          "resposta": "n = 15\nif n % 2 == 0:\n print('par')\nelse:\n print('ímpar')",
+          "dica": "O operador % retorna o resto da divisão. Par tem resto 0",
+          "erro_comum": "Usar / em vez de % para verificar paridade",
+          "explicacao": "% é o operador módulo (resto). 15 % 2 = 1, então 15 é ímpar",
+          "logica": "if n % 2 == 0:\n print('par')"
+        },
+        {
+          "pergunta": "Verifique se 'Python' está na lista ['Java', 'Python', 'C']",
+          "resposta": "linguagens = ['Java', 'Python', 'C']\nif 'Python' in linguagens:\n print('encontrado')",
+          "dica": "Use o operador in para verificar se um elemento está em uma lista",
+          "erro_comum": "Usar == em vez de in para buscar em listas",
+          "explicacao": "O operador in verifica pertencimento. Muito útil com listas e strings",
+          "logica": "if elemento in lista:\n ..."
+        }
+      ]
+    },
+    {
+      "titulo": "Loops FOR",
+      "explicacao": "O loop for repete um bloco de código para cada item de uma sequência. É ideal quando você sabe quantas vezes quer repetir.",
+      "exemplo": "for i in range(5):\n    print(i)\n\nfruits = ['maçã', 'banana', 'uva']\nfor fruta in fruits:\n    print(fruta)",
+      "desafios": [
+        {
+          "pergunta": "Exiba os números de 0 a 4 usando for e range",
+          "resposta": "for i in range(5):\n print(i)",
+          "dica": "range(5) gera os números 0, 1, 2, 3, 4",
+          "erro_comum": "Usar range(4) que vai apenas até 3",
+          "explicacao": "range(n) gera uma sequência de 0 até n-1. range(5) gera 0,1,2,3,4",
+          "logica": "for i in range(n):\n print(i)"
+        },
+        {
+          "pergunta": "Exiba os números de 1 a 10 usando for",
+          "resposta": "for i in range(1, 11):\n print(i)",
+          "dica": "Use range(inicio, fim) onde fim é exclusivo",
+          "erro_comum": "Usar range(1, 10) que vai apenas até 9",
+          "explicacao": "range(1, 11) começa em 1 e vai até 10 (11 é exclusivo)",
+          "logica": "for i in range(1, 11):\n print(i)"
+        },
+        {
+          "pergunta": "Percorra a lista ['Python', 'Java', 'C'] e exiba cada item",
+          "resposta": "linguagens = ['Python', 'Java', 'C']\nfor lang in linguagens:\n print(lang)",
+          "dica": "O for percorre cada elemento da lista automaticamente",
+          "erro_comum": "Usar índices manualmente em vez de iterar diretamente",
+          "explicacao": "O for atribui cada item da lista à variável lang em cada iteração",
+          "logica": "for item in lista:\n print(item)"
+        },
+        {
+          "pergunta": "Some todos os números de 1 a 100 e exiba o resultado",
+          "resposta": "total = 0\nfor i in range(1, 101):\n total += i\nprint(total)",
+          "dica": "Crie uma variável total=0 e vá somando com +=",
+          "erro_comum": "Esquecer de inicializar total=0 antes do loop",
+          "explicacao": "+= soma e atribui ao mesmo tempo. total += i é igual a total = total + i",
+          "logica": "total = 0\nfor i in range(1, 101):\n total += i"
+        },
+        {
+          "pergunta": "Exiba apenas os números pares de 0 a 20",
+          "resposta": "for i in range(0, 21, 2):\n print(i)",
+          "dica": "Use range(0, 21, 2) onde o terceiro parâmetro é o passo",
+          "erro_comum": "Usar if dentro do loop em vez do passo do range",
+          "explicacao": "range(inicio, fim, passo) permite pular de 2 em 2, 3 em 3, etc.",
+          "logica": "for i in range(0, 21, 2):\n print(i)"
+        }
+      ]
+    },
+    {
+      "titulo": "Loop WHILE",
+      "explicacao": "O while repete enquanto uma condição for verdadeira. Use quando não sabe exatamente quantas vezes vai repetir.",
+      "exemplo": "contador = 0\nwhile contador < 5:\n    print(contador)\n    contador += 1",
+      "desafios": [
+        {
+          "pergunta": "Use while para exibir números de 1 a 5",
+          "resposta": "i = 1\nwhile i <= 5:\n print(i)\n i += 1",
+          "dica": "Inicialize uma variável, use while com condição e incremente dentro do loop",
+          "erro_comum": "Esquecer de incrementar i, causando loop infinito",
+          "explicacao": "Sem i += 1 o loop nunca termina pois i sempre será 1",
+          "logica": "i = 1\nwhile i <= 5:\n print(i)\n i += 1"
+        },
+        {
+          "pergunta": "Some números de 1 a 10 usando while e exiba o total",
+          "resposta": "i = 1\ntotal = 0\nwhile i <= 10:\n total += i\n i += 1\nprint(total)",
+          "dica": "Use duas variáveis: uma para o contador e outra para o total",
+          "erro_comum": "Colocar o print dentro do while em vez de fora",
+          "explicacao": "O print deve ficar fora do while para exibir apenas o resultado final",
+          "logica": "i=1\ntotal=0\nwhile i<=10:\n total+=i\n i+=1\nprint(total)"
+        },
+        {
+          "pergunta": "Use while True com break para parar quando i chegar em 3",
+          "resposta": "i = 0\nwhile True:\n i += 1\n if i == 3:\n  break\n print(i)",
+          "dica": "while True cria loop infinito. break sai do loop",
+          "erro_comum": "Esquecer o break causando loop infinito",
+          "explicacao": "break interrompe o loop imediatamente quando executado",
+          "logica": "while True:\n if condicao:\n  break"
+        }
+      ]
+    },
+    {
+      "titulo": "Funções",
+      "explicacao": "Funções são blocos de código reutilizáveis. Você as define com def e pode chamá-las quantas vezes quiser.",
+      "exemplo": "def saudacao(nome):\n    return f'Olá, {nome}!'\n\nresultado = saudacao('Ana')\nprint(resultado)",
+      "desafios": [
+        {
+          "pergunta": "Crie função somar(a, b) que retorna a soma e chame com 3 e 5",
+          "resposta": "def somar(a, b):\n return a + b\nprint(somar(3, 5))",
+          "dica": "Use def para definir e return para retornar o valor",
+          "erro_comum": "Esquecer o return ou chamar a função sem print",
+          "explicacao": "return envia o resultado de volta para quem chamou a função",
+          "logica": "def funcao(param):\n return valor\nprint(funcao(arg))"
+        },
+        {
+          "pergunta": "Crie função quadrado(n) que retorna n ao quadrado",
+          "resposta": "def quadrado(n):\n return n ** 2\nprint(quadrado(4))",
+          "dica": "Use ** para potência em Python",
+          "erro_comum": "Usar ^em vez de ** para potência",
+          "explicacao": "** é o operador de potência em Python. n**2 é n ao quadrado",
+          "logica": "def quadrado(n):\n return n ** 2"
+        },
+        {
+          "pergunta": "Crie função maior(a, b) que retorna o maior entre dois números",
+          "resposta": "def maior(a, b):\n if a > b:\n  return a\n return b\nprint(maior(7, 3))",
+          "dica": "Compare os dois valores com if e retorne o maior",
+          "erro_comum": "Usar max() em vez de fazer a lógica manualmente",
+          "explicacao": "A função verifica se a é maior e retorna a, senão retorna b",
+          "logica": "def maior(a, b):\n if a > b:\n  return a\n return b"
+        },
+        {
+          "pergunta": "Crie função com parâmetro padrão: saudar(nome, msg='Olá')",
+          "resposta": "def saudar(nome, msg='Olá'):\n return f'{msg}, {nome}!'\nprint(saudar('Ana'))\nprint(saudar('João', 'Oi'))",
+          "dica": "Parâmetros padrão têm um valor definido com = na assinatura da função",
+          "erro_comum": "Colocar o parâmetro padrão antes do parâmetro obrigatório",
+          "explicacao": "Parâmetros com valor padrão são opcionais ao chamar a função",
+          "logica": "def func(obrigatorio, opcional='padrão'):"
+        },
+        {
+          "pergunta": "Crie função fatorial(n) recursiva que calcula n!",
+          "resposta": "def fatorial(n):\n if n <= 1:\n  return 1\n return n * fatorial(n-1)\nprint(fatorial(5))",
+          "dica": "A função deve chamar ela mesma com n-1. Caso base: n<=1 retorna 1",
+          "erro_comum": "Esquecer o caso base causando recursão infinita",
+          "explicacao": "Recursão é quando uma função chama ela mesma. Sempre precisa de um caso base para parar",
+          "logica": "def fatorial(n):\n if n<=1: return 1\n return n*fatorial(n-1)"
+        }
+      ]
+    },
+    {
+      "titulo": "Listas",
+      "explicacao": "Listas guardam múltiplos valores em ordem. Você pode adicionar, remover e acessar itens por índice (começando em 0).",
+      "exemplo": "frutas = ['maçã', 'banana', 'uva']\nfrutas.append('laranja')\nprint(frutas[0])  # maçã\nprint(len(frutas))  # 4",
+      "desafios": [
+        {
+          "pergunta": "Crie lista numeros=[1,2,3,4,5] e exiba o primeiro e último elemento",
+          "resposta": "numeros = [1, 2, 3, 4, 5]\nprint(numeros[0])\nprint(numeros[-1])",
+          "dica": "Índice 0 é o primeiro. -1 é o último",
+          "erro_comum": "Usar índice 1 para o primeiro elemento em vez de 0",
+          "explicacao": "Listas em Python começam no índice 0. -1 acessa o último elemento de forma elegante",
+          "logica": "lista[0]  # primeiro\nlista[-1]  # último"
+        },
+        {
+          "pergunta": "Crie lista vazia, adicione 3 frutas com append e exiba",
+          "resposta": "frutas = []\nfrutas.append('maçã')\nfrutas.append('banana')\nfrutas.append('uva')\nprint(frutas)",
+          "dica": "[] cria lista vazia. .append() adiciona ao final",
+          "erro_comum": "Usar + em vez de .append() para adicionar itens",
+          "explicacao": ".append() é o método para adicionar elementos ao final de uma lista",
+          "logica": "lista = []\nlista.append(item)"
+        },
+        {
+          "pergunta": "Ordene a lista [3,1,4,1,5,9,2,6] e exiba",
+          "resposta": "numeros = [3, 1, 4, 1, 5, 9, 2, 6]\nnumeros.sort()\nprint(numeros)",
+          "dica": "Use .sort() para ordenar a lista in-place",
+          "erro_comum": "Usar sorted() sem guardar o resultado ou confundir com .sort()",
+          "explicacao": ".sort() ordena a lista modificando ela. sorted() retorna uma nova lista ordenada",
+          "logica": "lista.sort()"
+        },
+        {
+          "pergunta": "Remova o item 'banana' da lista ['maçã','banana','uva']",
+          "resposta": "frutas = ['maçã', 'banana', 'uva']\nfrutas.remove('banana')\nprint(frutas)",
+          "dica": "Use .remove() passando o valor que quer remover",
+          "erro_comum": "Usar del com índice em vez de .remove() com valor",
+          "explicacao": ".remove() busca e remove a primeira ocorrência do valor na lista",
+          "logica": "lista.remove(valor)"
+        },
+        {
+          "pergunta": "Fatie a lista [0,1,2,3,4,5,6,7,8,9] para pegar do índice 2 ao 5",
+          "resposta": "numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\nprint(numeros[2:6])",
+          "dica": "Use [inicio:fim] onde fim é exclusivo",
+          "erro_comum": "Usar [2:5] que não inclui o índice 5",
+          "explicacao": "Slicing [2:6] pega os elementos nos índices 2, 3, 4 e 5",
+          "logica": "lista[inicio:fim]"
+        }
+      ]
+    },
+    {
+      "titulo": "Dicionários",
+      "explicacao": "Dicionários armazenam pares chave:valor. São ideais para representar objetos com propriedades.",
+      "exemplo": "pessoa = {\n    'nome': 'Ana',\n    'idade': 25,\n    'cidade': 'São Paulo'\n}\nprint(pessoa['nome'])\npessoa['email'] = 'ana@email.com'",
+      "desafios": [
+        {
+          "pergunta": "Crie dicionário pessoa com nome='João' e idade=30, exiba o nome",
+          "resposta": "pessoa = {'nome': 'João', 'idade': 30}\nprint(pessoa['nome'])",
+          "dica": "Use chaves {} e acesse valores com ['chave']",
+          "erro_comum": "Usar () ou [] em vez de {} para criar dicionário",
+          "explicacao": "Dicionários usam {} e acessam valores pela chave entre colchetes",
+          "logica": "dicio = {'chave': 'valor'}\nprint(dicio['chave'])"
+        },
+        {
+          "pergunta": "Adicione a chave 'email' ao dicionário pessoa e exiba o dicionário completo",
+          "resposta": "pessoa = {'nome': 'João', 'idade': 30}\npessoa['email'] = 'joao@email.com'\nprint(pessoa)",
+          "dica": "Atribua um valor a uma nova chave como se fosse variável",
+          "erro_comum": "Tentar usar .append() em dicionário como se fosse lista",
+          "explicacao": "Adicionar nova chave é simples: dicio['nova_chave'] = valor",
+          "logica": "dicio['nova_chave'] = valor"
+        },
+        {
+          "pergunta": "Percorra o dicionário {'a':1,'b':2,'c':3} exibindo chave e valor",
+          "resposta": "d = {'a': 1, 'b': 2, 'c': 3}\nfor chave, valor in d.items():\n print(chave, valor)",
+          "dica": "Use .items() para obter pares chave-valor no for",
+          "erro_comum": "Iterar diretamente sem .items() que retorna só as chaves",
+          "explicacao": ".items() retorna tuplas (chave, valor) que podem ser desempacotadas no for",
+          "logica": "for k, v in dicio.items():\n print(k, v)"
+        },
+        {
+          "pergunta": "Use .get() para buscar chave inexistente sem erro",
+          "resposta": "pessoa = {'nome': 'Ana'}\ntelefone = pessoa.get('telefone', 'não informado')\nprint(telefone)",
+          "dica": ".get(chave, valor_padrão) não gera erro se a chave não existir",
+          "erro_comum": "Acessar diretamente com [] que gera KeyError se não existir",
+          "explicacao": ".get() é seguro: retorna o valor padrão em vez de erro se a chave não existir",
+          "logica": "dicio.get('chave', 'padrão')"
+        }
+      ]
+    },
+    {
+      "titulo": "Tratamento de Erros",
+      "explicacao": "try/except permite capturar erros e tratar situações inesperadas sem que o programa trave.",
+      "exemplo": "try:\n    numero = int(input('Digite um número: '))\n    print(10 / numero)\nexcept ValueError:\n    print('Isso não é um número!')\nexcept ZeroDivisionError:\n    print('Não pode dividir por zero!')",
+      "desafios": [
+        {
+          "pergunta": "Use try/except para capturar erro de divisão por zero ao dividir 10/0",
+          "resposta": "try:\n print(10 / 0)\nexcept ZeroDivisionError:\n print('Erro: divisão por zero!')",
+          "dica": "Coloque a operação dentro do try e capture ZeroDivisionError",
+          "erro_comum": "Escrever o nome do erro errado ou esquecer os dois pontos",
+          "explicacao": "ZeroDivisionError é o erro específico de divisão por zero em Python",
+          "logica": "try:\n operacao\nexcept TipoDeErro:\n tratamento"
+        },
+        {
+          "pergunta": "Capture ValueError ao tentar converter 'abc' para int",
+          "resposta": "try:\n numero = int('abc')\nexcept ValueError:\n print('Não é um número válido!')",
+          "dica": "int('abc') gera ValueError pois abc não é número",
+          "erro_comum": "Usar except sem especificar o tipo de erro",
+          "explicacao": "ValueError ocorre quando o valor tem tipo correto mas conteúdo inválido para conversão",
+          "logica": "try:\n int('texto')\nexcept ValueError:\n print('erro')"
+        },
+        {
+          "pergunta": "Use try/except/finally onde finally sempre executa uma mensagem",
+          "resposta": "try:\n print(10 / 2)\nexcept ZeroDivisionError:\n print('erro')\nfinally:\n print('sempre executa')",
+          "dica": "finally executa sempre, com ou sem erro",
+          "erro_comum": "Colocar finally antes do except",
+          "explicacao": "finally é útil para fechar arquivos ou conexões que devem ser fechados independente de erro",
+          "logica": "try:\n ...\nexcept:\n ...\nfinally:\n ..."
+        }
+      ]
+    }
+  ],
+  "c": [
+    {
+      "titulo": "Hello World em C",
+      "explicacao": "Em C todo programa começa com includes e a função main(). printf() exibe texto na tela e \\n pula linha.",
+      "exemplo": "#include <stdio.h>\nint main() {\n    printf(\"Olá, mundo!\\n\");\n    return 0;\n}",
+      "desafios": [
+        {
+          "pergunta": "Escreva o programa completo que exibe: Hello, World!",
+          "resposta": "#include <stdio.h>\nint main(){printf(\"Hello, World!\\n\");return 0;}",
+          "dica": "Inclua stdio.h, crie main() e use printf()",
+          "erro_comum": "Esquecer #include <stdio.h> ou o return 0",
+          "explicacao": "Todo programa C precisa de #include <stdio.h> para usar printf e de main() como ponto de entrada",
+          "logica": "#include <stdio.h>\nint main(){\n printf(\"texto\");\n return 0;\n}"
+        },
+        {
+          "pergunta": "Exiba seu nome e em seguida uma nova linha com sua cidade",
+          "resposta": "#include <stdio.h>\nint main(){printf(\"Erik\\n\");printf(\"Salvador\\n\");return 0;}",
+          "dica": "Use dois printf(), um para cada linha. \\n pula a linha",
+          "erro_comum": "Esquecer \\n causando tudo na mesma linha",
+          "explicacao": "\\n é o caractere de nova linha em C. Sem ele, o próximo printf continua na mesma linha",
+          "logica": "printf(\"texto\\n\");"
+        },
+        {
+          "pergunta": "Exiba o resultado de 8 + 4 usando printf com %d",
+          "resposta": "#include <stdio.h>\nint main(){printf(\"%d\\n\", 8+4);return 0;}",
+          "dica": "Use %d como placeholder para inteiro dentro da string",
+          "erro_comum": "Colocar o cálculo entre aspas: printf(\"8+4\") exibe o texto, não o resultado",
+          "explicacao": "%d é o especificador de formato para inteiros em C. printf(\"%d\", valor) substitui %d pelo valor",
+          "logica": "printf(\"%d\\n\", valor_inteiro);"
+        },
+        {
+          "pergunta": "Exiba: C é rápido! usando printf",
+          "resposta": "#include <stdio.h>\nint main(){printf(\"C é rápido!\\n\");return 0;}",
+          "dica": "Coloque a frase entre aspas duplas dentro do printf",
+          "erro_comum": "Usar aspas simples em vez de duplas em C",
+          "explicacao": "Em C strings sempre usam aspas duplas. Aspas simples são para caracteres únicos (char)",
+          "logica": "printf(\"frase aqui\\n\");"
+        }
+      ]
+    },
+    {
+      "titulo": "Variáveis e Tipos em C",
+      "explicacao": "Em C você deve declarar o tipo da variável antes de usá-la. Os principais tipos são int, float, double e char.",
+      "exemplo": "int idade = 25;\nfloat altura = 1.75;\nchar inicial = 'A';\nprintf(\"%d %.2f %c\\n\", idade, altura, inicial);",
+      "desafios": [
+        {
+          "pergunta": "Declare int x=10 e exiba com printf usando %d",
+          "resposta": "#include <stdio.h>\nint main(){int x=10;printf(\"%d\\n\",x);return 0;}",
+          "dica": "Declare o tipo antes do nome: int x = 10;",
+          "erro_comum": "Esquecer o ; no final da declaração",
+          "explicacao": "Em C toda instrução termina com ;. %d é o especificador para int",
+          "logica": "int variavel = valor;\nprintf(\"%d\\n\", variavel);"
+        },
+        {
+          "pergunta": "Declare float preco=9.99 e exiba com %f",
+          "resposta": "#include <stdio.h>\nint main(){float preco=9.99;printf(\"%f\\n\",preco);return 0;}",
+          "dica": "Use float para números decimais e %f no printf",
+          "erro_comum": "Usar %d para float, que exibiria lixo de memória",
+          "explicacao": "%f exibe números de ponto flutuante. Use %.2f para limitar a 2 casas decimais",
+          "logica": "float variavel = 9.99;\nprintf(\"%f\\n\", variavel);"
+        },
+        {
+          "pergunta": "Declare char letra='A' e exiba com %c",
+          "resposta": "#include <stdio.h>\nint main(){char letra='A';printf(\"%c\\n\",letra);return 0;}",
+          "dica": "char usa aspas simples e %c no printf",
+          "erro_comum": "Usar aspas duplas para char — isso seria uma string, não um char",
+          "explicacao": "char guarda um único caractere com aspas simples. %c exibe o caractere",
+          "logica": "char c = 'X';\nprintf(\"%c\\n\", c);"
+        },
+        {
+          "pergunta": "Declare duas variáveis int, some e exiba o resultado",
+          "resposta": "#include <stdio.h>\nint main(){int a=5;int b=3;printf(\"%d\\n\",a+b);return 0;}",
+          "dica": "Declare as duas variáveis e some no printf",
+          "erro_comum": "Esquecer de declarar o tipo de cada variável",
+          "explicacao": "Cada variável em C precisa ter seu tipo declarado individualmente",
+          "logica": "int a=5;\nint b=3;\nprintf(\"%d\\n\",a+b);"
+        },
+        {
+          "pergunta": "Use scanf para ler um inteiro e exibi-lo",
+          "resposta": "#include <stdio.h>\nint main(){int n;scanf(\"%d\",&n);printf(\"%d\\n\",n);return 0;}",
+          "dica": "scanf usa & antes da variável para passar o endereço",
+          "erro_comum": "Esquecer o & no scanf causando comportamento indefinido",
+          "explicacao": "& passa o endereço da variável para scanf poder gravar o valor nela",
+          "logica": "int n;\nscanf(\"%d\", &n);\nprintf(\"%d\\n\", n);"
+        }
+      ]
+    },
+    {
+      "titulo": "Operadores em C",
+      "explicacao": "C suporta operadores aritméticos (+,-,*,/,%), relacionais (==,!=,>,<) e lógicos (&&, ||, !).",
+      "exemplo": "int a = 10, b = 3;\nprintf(\"%d\\n\", a + b);  // 13\nprintf(\"%d\\n\", a % b);  // 1\nprintf(\"%d\\n\", a > b);  // 1 (verdadeiro)",
+      "desafios": [
+        {
+          "pergunta": "Calcule e exiba o resto da divisão de 17 por 5",
+          "resposta": "#include <stdio.h>\nint main(){printf(\"%d\\n\",17%5);return 0;}",
+          "dica": "Use o operador % para obter o resto da divisão",
+          "erro_comum": "Usar / em vez de % para obter o resto",
+          "explicacao": "% é o operador módulo. 17 % 5 = 2 pois 17 = 5*3 + 2",
+          "logica": "printf(\"%d\\n\", a % b);"
+        },
+        {
+          "pergunta": "Verifique se 10 é igual a 10 com == e exiba o resultado (1 ou 0)",
+          "resposta": "#include <stdio.h>\nint main(){printf(\"%d\\n\",10==10);return 0;}",
+          "dica": "Em C, verdadeiro é 1 e falso é 0",
+          "erro_comum": "Usar = em vez de == para comparação",
+          "explicacao": "== compara valores e retorna 1 (verdadeiro) ou 0 (falso) em C",
+          "logica": "printf(\"%d\\n\", a == b);"
+        },
+        {
+          "pergunta": "Use operador && para verificar se 5>3 E 10>7",
+          "resposta": "#include <stdio.h>\nint main(){printf(\"%d\\n\",(5>3)&&(10>7));return 0;}",
+          "dica": "&& é o operador lógico E (AND)",
+          "erro_comum": "Usar & simples em vez de && para lógico",
+          "explicacao": "&& retorna 1 apenas se ambas as condições forem verdadeiras",
+          "logica": "printf(\"%d\\n\", (cond1) && (cond2));"
+        }
+      ]
+    },
+    {
+      "titulo": "Condicional IF em C",
+      "explicacao": "O if em C funciona similar a outras linguagens, mas as condições ficam entre parênteses e os blocos entre chaves.",
+      "exemplo": "int nota = 7;\nif (nota >= 6) {\n    printf(\"Aprovado\\n\");\n} else {\n    printf(\"Reprovado\\n\");\n}",
+      "desafios": [
+        {
+          "pergunta": "Verifique se x=15 é maior que 10 e exiba 'maior' ou 'menor'",
+          "resposta": "#include <stdio.h>\nint main(){int x=15;if(x>10){printf(\"maior\\n\");}else{printf(\"menor\\n\");}return 0;}",
+          "dica": "Em C a condição vai entre () e o bloco entre {}",
+          "erro_comum": "Esquecer os parênteses ao redor da condição",
+          "explicacao": "if (condição) { bloco } — parênteses na condição são obrigatórios em C",
+          "logica": "if(condicao){\n printf(\"sim\");\n}else{\n printf(\"não\");\n}"
+        },
+        {
+          "pergunta": "Classifique nota=8: >=9 ótimo, >=6 bom, senão ruim",
+          "resposta": "#include <stdio.h>\nint main(){int nota=8;if(nota>=9){printf(\"ótimo\\n\");}else if(nota>=6){printf(\"bom\\n\");}else{printf(\"ruim\\n\");}return 0;}",
+          "dica": "Use else if para condições intermediárias",
+          "erro_comum": "Usar elif em vez de else if (isso é Python, não C)",
+          "explicacao": "Em C usa-se else if, não elif como em Python",
+          "logica": "if(c1){...}else if(c2){...}else{...}"
+        },
+        {
+          "pergunta": "Verifique se número 4 é par usando if e operador %",
+          "resposta": "#include <stdio.h>\nint main(){int n=4;if(n%2==0){printf(\"par\\n\");}else{printf(\"ímpar\\n\");}return 0;}",
+          "dica": "n%2==0 significa que n é divisível por 2, logo par",
+          "erro_comum": "Usar n%2=0 com = simples em vez de ==",
+          "explicacao": "% retorna o resto. Se n%2==0 o número é par pois não tem resto",
+          "logica": "if(n%2==0){\n printf(\"par\");\n}"
+        },
+        {
+          "pergunta": "Use operador ternário para exibir 'positivo' ou 'negativo' para x=-5",
+          "resposta": "#include <stdio.h>\nint main(){int x=-5;printf(\"%s\\n\",x>0?\"positivo\":\"negativo\");return 0;}",
+          "dica": "Sintaxe: condição ? valor_verdadeiro : valor_falso",
+          "erro_comum": "Confundir a sintaxe com if normal",
+          "explicacao": "O operador ternário ? : é uma forma compacta de if/else para expressões simples",
+          "logica": "printf(\"%s\\n\", x>0 ? \"sim\" : \"não\");"
+        }
+      ]
+    },
+    {
+      "titulo": "Loops em C",
+      "explicacao": "C tem três tipos de loop: for (quando sabe quantas vezes), while (enquanto condição) e do-while (executa ao menos uma vez).",
+      "exemplo": "// for\nfor (int i = 0; i < 5; i++) {\n    printf(\"%d\\n\", i);\n}\n\n// while\nint j = 0;\nwhile (j < 5) {\n    printf(\"%d\\n\", j++);\n}",
+      "desafios": [
+        {
+          "pergunta": "Use for para exibir números de 1 a 10",
+          "resposta": "#include <stdio.h>\nint main(){for(int i=1;i<=10;i++){printf(\"%d\\n\",i);}return 0;}",
+          "dica": "for(inicialização; condição; incremento)",
+          "erro_comum": "Usar i<10 em vez de i<=10, parando no 9",
+          "explicacao": "for(int i=1; i<=10; i++) começa em 1, executa enquanto i<=10 e incrementa i a cada vez",
+          "logica": "for(int i=1;i<=10;i++){\n printf(\"%d\\n\",i);\n}"
+        },
+        {
+          "pergunta": "Use for para calcular e exibir o fatorial de 5",
+          "resposta": "#include <stdio.h>\nint main(){int fat=1;for(int i=1;i<=5;i++){fat*=i;}printf(\"%d\\n\",fat);return 0;}",
+          "dica": "Multiplique fat por i a cada iteração. Comece fat=1",
+          "erro_comum": "Inicializar fat=0 que sempre resultará em 0",
+          "explicacao": "*= multiplica e atribui. fat *= i é o mesmo que fat = fat * i",
+          "logica": "int fat=1;\nfor(int i=1;i<=5;i++){\n fat*=i;\n}"
+        },
+        {
+          "pergunta": "Use while para exibir potências de 2 menores que 100",
+          "resposta": "#include <stdio.h>\nint main(){int n=1;while(n<100){printf(\"%d\\n\",n);n*=2;}return 0;}",
+          "dica": "Comece com n=1 e multiplique por 2 a cada iteração",
+          "erro_comum": "Usar n+2 em vez de n*2 para dobrar",
+          "explicacao": "n*=2 dobra o valor de n a cada iteração: 1,2,4,8,16,32,64",
+          "logica": "int n=1;\nwhile(n<100){\n printf(\"%d\\n\",n);\n n*=2;\n}"
+        },
+        {
+          "pergunta": "Use do-while para exibir números de 1 a 5",
+          "resposta": "#include <stdio.h>\nint main(){int i=1;do{printf(\"%d\\n\",i);i++;}while(i<=5);return 0;}",
+          "dica": "do { } while(condição); — executa pelo menos uma vez",
+          "erro_comum": "Esquecer o ; após o while no do-while",
+          "explicacao": "do-while executa o bloco e depois verifica a condição, garantindo ao menos uma execução",
+          "logica": "int i=1;\ndo{\n printf(\"%d\\n\",i);\n i++;\n}while(i<=5);"
+        }
+      ]
+    },
+    {
+      "titulo": "Funções em C",
+      "explicacao": "Funções em C precisam ter o tipo de retorno declarado. void significa que não retorna nada.",
+      "exemplo": "int somar(int a, int b) {\n    return a + b;\n}\n\nint main() {\n    printf(\"%d\\n\", somar(3, 5));\n    return 0;\n}",
+      "desafios": [
+        {
+          "pergunta": "Crie função int dobro(int n) que retorna n*2 e chame com 7",
+          "resposta": "#include <stdio.h>\nint dobro(int n){return n*2;}\nint main(){printf(\"%d\\n\",dobro(7));return 0;}",
+          "dica": "Declare a função antes do main com tipo de retorno e parâmetros tipados",
+          "erro_comum": "Esquecer o tipo int antes do nome da função",
+          "explicacao": "Em C funções precisam ter tipo de retorno declarado. int significa que retorna um inteiro",
+          "logica": "int funcao(int param){\n return valor;\n}"
+        },
+        {
+          "pergunta": "Crie função void saudar(char nome[]) que exibe 'Olá, [nome]!'",
+          "resposta": "#include <stdio.h>\nvoid saudar(char nome[]){printf(\"Olá, %s!\\n\",nome);}\nint main(){saudar(\"Ana\");return 0;}",
+          "dica": "void não retorna nada. %s é o especificador para strings",
+          "erro_comum": "Usar %c em vez de %s para string",
+          "explicacao": "void indica que a função não retorna valor. %s exibe strings (arrays de char)",
+          "logica": "void funcao(char s[]){\n printf(\"%s\\n\",s);\n}"
+        },
+        {
+          "pergunta": "Crie função int maior(int a, int b) que retorna o maior",
+          "resposta": "#include <stdio.h>\nint maior(int a,int b){if(a>b)return a;return b;}\nint main(){printf(\"%d\\n\",maior(8,3));return 0;}",
+          "dica": "Compare os dois e retorne o maior usando if",
+          "erro_comum": "Esquecer de declarar os tipos dos parâmetros",
+          "explicacao": "Cada parâmetro em C precisa ter seu tipo declarado: int maior(int a, int b)",
+          "logica": "int maior(int a,int b){\n if(a>b) return a;\n return b;\n}"
+        }
+      ]
+    },
+    {
+      "titulo": "Arrays em C",
+      "explicacao": "Arrays em C têm tamanho fixo e são declarados com o tipo, nome e tamanho entre colchetes.",
+      "exemplo": "int numeros[5] = {10, 20, 30, 40, 50};\nprintf(\"%d\\n\", numeros[0]);  // 10\nprintf(\"%d\\n\", numeros[4]);  // 50",
+      "desafios": [
+        {
+          "pergunta": "Declare array int nums[5]={1,2,3,4,5} e exiba o primeiro e último",
+          "resposta": "#include <stdio.h>\nint main(){int nums[5]={1,2,3,4,5};printf(\"%d %d\\n\",nums[0],nums[4]);return 0;}",
+          "dica": "Índices vão de 0 a 4 para array de tamanho 5",
+          "erro_comum": "Acessar nums[5] que está fora do array (undefined behavior)",
+          "explicacao": "Array de 5 elementos tem índices 0,1,2,3,4. Nunca acesse além do tamanho-1",
+          "logica": "int arr[5]={...};\nprintf(\"%d\",arr[0]);\nprintf(\"%d\",arr[4]);"
+        },
+        {
+          "pergunta": "Use for para somar todos elementos de int arr[4]={5,10,15,20}",
+          "resposta": "#include <stdio.h>\nint main(){int arr[4]={5,10,15,20};int soma=0;for(int i=0;i<4;i++){soma+=arr[i];}printf(\"%d\\n\",soma);return 0;}",
+          "dica": "Percorra com for de 0 a 3 e some cada arr[i]",
+          "erro_comum": "Usar i<=4 no for, acessando posição fora do array",
+          "explicacao": "for de 0 a tamanho-1 percorre todos os elementos. soma+=arr[i] acumula a soma",
+          "logica": "int soma=0;\nfor(int i=0;i<4;i++){\n soma+=arr[i];\n}"
+        }
+      ]
+    },
+    {
+      "titulo": "Ponteiros em C",
+      "explicacao": "Ponteiros guardam endereços de memória. São um conceito fundamental e único de C. Use & para obter endereço e * para acessar o valor.",
+      "exemplo": "int x = 10;\nint *ptr = &x;\nprintf(\"%d\\n\", *ptr);  // 10\n*ptr = 20;\nprintf(\"%d\\n\", x);    // 20",
+      "desafios": [
+        {
+          "pergunta": "Declare int x=42, crie ponteiro ptr para x e exiba o valor via ponteiro",
+          "resposta": "#include <stdio.h>\nint main(){int x=42;int *ptr=&x;printf(\"%d\\n\",*ptr);return 0;}",
+          "dica": "int *ptr = &x cria ponteiro. *ptr acessa o valor apontado",
+          "erro_comum": "Esquecer o * ao declarar o ponteiro ou ao acessar o valor",
+          "explicacao": "& obtém o endereço da variável. * no acesso desreferencia (vai ao valor no endereço)",
+          "logica": "int *ptr = &variavel;\nprintf(\"%d\\n\", *ptr);"
+        },
+        {
+          "pergunta": "Use ponteiro para trocar os valores de duas variáveis int a=5, b=10",
+          "resposta": "#include <stdio.h>\nvoid trocar(int *a,int *b){int tmp=*a;*a=*b;*b=tmp;}\nint main(){int a=5,b=10;trocar(&a,&b);printf(\"%d %d\\n\",a,b);return 0;}",
+          "dica": "Passe &a e &b para a função e use variável temporária para troca",
+          "erro_comum": "Passar os valores em vez dos endereços",
+          "explicacao": "Sem ponteiros a função não consegue modificar as variáveis originais do main",
+          "logica": "void trocar(int *a,int *b){\n int tmp=*a;\n *a=*b;\n *b=tmp;\n}"
+        }
+      ]
+    }
+  ],
+  "java": [
+    {
+      "titulo": "Hello World em Java",
+      "explicacao": "Java é orientado a objetos. Todo código fica dentro de uma classe e o programa começa pelo método main.",
+      "exemplo": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Olá, mundo!\");\n    }\n}",
+      "desafios": [
+        {
+          "pergunta": "Exiba: Hello, World! usando System.out.println",
+          "resposta": "System.out.println(\"Hello, World!\");",
+          "dica": "System.out.println() exibe e pula linha. Não esqueça o ; no final",
+          "erro_comum": "Esquecer o ; ou usar print em vez de println",
+          "explicacao": "println (print line) exibe o texto e vai para próxima linha automaticamente",
+          "logica": "System.out.println(\"texto\");"
+        },
+        {
+          "pergunta": "Exiba seu nome e sua cidade em linhas separadas",
+          "resposta": "System.out.println(\"Erik\");\nSystem.out.println(\"Salvador\");",
+          "dica": "Use dois System.out.println, um para cada linha",
+          "erro_comum": "Tentar usar \\n dentro de println sem necessidade",
+          "explicacao": "println já pula a linha automaticamente. Cada chamada cria uma nova linha",
+          "logica": "System.out.println(\"linha1\");\nSystem.out.println(\"linha2\");"
+        },
+        {
+          "pergunta": "Exiba o resultado de 15 * 4 usando System.out.println",
+          "resposta": "System.out.println(15 * 4);",
+          "dica": "Coloque o cálculo diretamente dentro do println sem aspas",
+          "erro_comum": "Colocar o cálculo entre aspas, exibindo o texto em vez do resultado",
+          "explicacao": "println pode receber expressões numéricas diretamente e calcula antes de exibir",
+          "logica": "System.out.println(calculo);"
+        },
+        {
+          "pergunta": "Use System.out.print (sem ln) para exibir dois textos na mesma linha",
+          "resposta": "System.out.print(\"Olá, \");\nSystem.out.print(\"mundo!\");",
+          "dica": "print não pula linha. println pula linha",
+          "erro_comum": "Usar println que pularia a linha entre os dois textos",
+          "explicacao": "print mantém o cursor na mesma linha. Use quando quiser continuar na mesma linha",
+          "logica": "System.out.print(\"sem pular\");\nSystem.out.print(\"mesma linha\");"
+        }
+      ]
+    },
+    {
+      "titulo": "Variáveis em Java",
+      "explicacao": "Java é fortemente tipado: você deve declarar o tipo de cada variável. Os tipos primitivos principais são int, double, boolean e char.",
+      "exemplo": "int idade = 25;\ndouble altura = 1.75;\nboolean ativo = true;\nchar inicial = 'A';\nString nome = \"Ana\";",
+      "desafios": [
+        {
+          "pergunta": "Declare int idade=20 e exiba com System.out.println",
+          "resposta": "int idade = 20;\nSystem.out.println(idade);",
+          "dica": "Declare o tipo antes do nome da variável",
+          "erro_comum": "Esquecer o tipo int ou o ; no final",
+          "explicacao": "Java exige declaração de tipo. int para inteiros, seguido de nome e valor",
+          "logica": "int variavel = valor;\nSystem.out.println(variavel);"
+        },
+        {
+          "pergunta": "Declare String nome='Ana' e exiba: Olá, Ana!",
+          "resposta": "String nome = \"Ana\";\nSystem.out.println(\"Olá, \" + nome + \"!\");",
+          "dica": "String usa aspas duplas. Concatene com +",
+          "erro_comum": "Usar aspas simples para String — em Java aspas simples são para char",
+          "explicacao": "String é um tipo especial em Java (com S maiúsculo). Aspas duplas são obrigatórias",
+          "logica": "String s = \"texto\";\nSystem.out.println(\"oi \" + s);"
+        },
+        {
+          "pergunta": "Declare double pi=3.14 e int raio=5, calcule e exiba a área (pi*raio*raio)",
+          "resposta": "double pi = 3.14;\nint raio = 5;\nSystem.out.println(pi * raio * raio);",
+          "dica": "O resultado de double * int é double automaticamente",
+          "erro_comum": "Declarar pi como int, perdendo as casas decimais",
+          "explicacao": "double guarda números decimais com precisão. int * double resulta em double",
+          "logica": "double pi=3.14;\nint r=5;\nSystem.out.println(pi*r*r);"
+        },
+        {
+          "pergunta": "Declare boolean maior=true e use if para exibir mensagem baseada nele",
+          "resposta": "boolean maior = true;\nif (maior) {\n System.out.println(\"É maior de idade\");\n}",
+          "dica": "boolean pode ser usado diretamente como condição do if",
+          "erro_comum": "Escrever boolean com B maiúsculo — os tipos primitivos são minúsculos",
+          "explicacao": "boolean é um tipo primitivo em Java (minúsculo). true e false também são minúsculos",
+          "logica": "boolean b = true;\nif (b) { ... }"
+        }
+      ]
+    },
+    {
+      "titulo": "Condicionais em Java",
+      "explicacao": "if, else if e else em Java funcionam igual a C, com condições entre parênteses e blocos entre chaves.",
+      "exemplo": "int nota = 8;\nif (nota >= 9) {\n    System.out.println(\"Excelente\");\n} else if (nota >= 6) {\n    System.out.println(\"Aprovado\");\n} else {\n    System.out.println(\"Reprovado\");\n}",
+      "desafios": [
+        {
+          "pergunta": "Verifique se x=7 é positivo, negativo ou zero",
+          "resposta": "int x = 7;\nif (x > 0) {\n System.out.println(\"positivo\");\n} else if (x < 0) {\n System.out.println(\"negativo\");\n} else {\n System.out.println(\"zero\");\n}",
+          "dica": "Use if, else if e else para cobrir os três casos",
+          "erro_comum": "Usar elif em vez de else if (isso é Python)",
+          "explicacao": "Java usa else if (duas palavras separadas) para condições adicionais",
+          "logica": "if(x>0){...}else if(x<0){...}else{...}"
+        },
+        {
+          "pergunta": "Use switch para exibir o dia da semana para int dia=3 (1=Seg...7=Dom)",
+          "resposta": "int dia = 3;\nswitch (dia) {\n case 1: System.out.println(\"Segunda\"); break;\n case 2: System.out.println(\"Terça\"); break;\n case 3: System.out.println(\"Quarta\"); break;\n default: System.out.println(\"Outro\");\n}",
+          "dica": "switch testa o valor e case define cada opção. Não esqueça o break",
+          "erro_comum": "Esquecer o break causando fall-through (executar todos os casos abaixo)",
+          "explicacao": "switch é mais eficiente que vários if quando testamos uma variável contra valores fixos",
+          "logica": "switch(var){\n case 1: ...; break;\n default: ...;\n}"
+        },
+        {
+          "pergunta": "Use operador ternário para atribuir 'par' ou 'ímpar' a uma String",
+          "resposta": "int n = 7;\nString resultado = (n % 2 == 0) ? \"par\" : \"ímpar\";\nSystem.out.println(resultado);",
+          "dica": "condição ? valor_true : valor_false",
+          "erro_comum": "Esquecer os parênteses ao redor da condição",
+          "explicacao": "O ternário em Java pode ser atribuído a uma variável diretamente",
+          "logica": "String s = (cond) ? \"sim\" : \"não\";"
+        }
+      ]
+    },
+    {
+      "titulo": "Loops em Java",
+      "explicacao": "Java tem for, while, do-while e o for-each para coleções. A sintaxe é similar ao C.",
+      "exemplo": "// for tradicional\nfor (int i = 0; i < 5; i++) {\n    System.out.println(i);\n}\n\n// for-each\nint[] nums = {1, 2, 3};\nfor (int n : nums) {\n    System.out.println(n);\n}",
+      "desafios": [
+        {
+          "pergunta": "Use for para exibir a tabuada do 7 (7x1 até 7x10)",
+          "resposta": "for (int i = 1; i <= 10; i++) {\n System.out.println(\"7 x \" + i + \" = \" + (7*i));\n}",
+          "dica": "Itere de 1 a 10 e multiplique por 7",
+          "erro_comum": "Esquecer os parênteses em (7*i) causando concatenação de string",
+          "explicacao": "Sem parênteses, 7*i seria concatenado como string. Com parênteses, calcula primeiro",
+          "logica": "for(int i=1;i<=10;i++){\n System.out.println(\"7 x \"+i+\" = \"+(7*i));\n}"
+        },
+        {
+          "pergunta": "Use while para exibir números ímpares de 1 a 15",
+          "resposta": "int i = 1;\nwhile (i <= 15) {\n System.out.println(i);\n i += 2;\n}",
+          "dica": "Comece em 1 e incremente de 2 em 2",
+          "erro_comum": "Usar i++ em vez de i+=2, exibindo todos os números",
+          "explicacao": "Começando em 1 e somando 2 a cada vez: 1,3,5,7,9,11,13,15",
+          "logica": "int i=1;\nwhile(i<=15){\n System.out.println(i);\n i+=2;\n}"
+        },
+        {
+          "pergunta": "Use for-each para somar elementos de int[] nums={10,20,30,40}",
+          "resposta": "int[] nums = {10, 20, 30, 40};\nint soma = 0;\nfor (int n : nums) {\n soma += n;\n}\nSystem.out.println(soma);",
+          "dica": "for (tipo variavel : array) percorre cada elemento",
+          "erro_comum": "Usar for tradicional quando for-each é mais elegante aqui",
+          "explicacao": "for-each (for aprimorado) é a forma mais legível de percorrer arrays e coleções",
+          "logica": "for(int n : array){\n soma += n;\n}"
+        }
+      ]
+    },
+    {
+      "titulo": "Métodos em Java",
+      "explicacao": "Métodos em Java são funções dentro de classes. Precisam de modificador de acesso, tipo de retorno e podem ter parâmetros.",
+      "exemplo": "public static int somar(int a, int b) {\n    return a + b;\n}\n\n// chamada:\nint resultado = somar(3, 5);\nSystem.out.println(resultado);",
+      "desafios": [
+        {
+          "pergunta": "Crie método static int quadrado(int n) que retorna n ao quadrado",
+          "resposta": "public static int quadrado(int n) {\n return n * n;\n}",
+          "dica": "Use public static para método independente de objeto. return o resultado",
+          "erro_comum": "Usar ** em vez de * para multiplicação (** não existe em Java)",
+          "explicacao": "Java não tem operador **. Use Math.pow(n,2) ou simplesmente n*n",
+          "logica": "public static int quadrado(int n){\n return n * n;\n}"
+        },
+        {
+          "pergunta": "Crie método static boolean ehPar(int n) que retorna true se n for par",
+          "resposta": "public static boolean ehPar(int n) {\n return n % 2 == 0;\n}",
+          "dica": "Retorne diretamente a expressão booleana n%2==0",
+          "erro_comum": "Usar if/else quando pode retornar a expressão diretamente",
+          "explicacao": "n%2==0 já é uma expressão booleana, não precisa de if para retornar true/false",
+          "logica": "public static boolean ehPar(int n){\n return n % 2 == 0;\n}"
+        },
+        {
+          "pergunta": "Crie método static void imprimirLinha(String texto, int vezes) que imprime o texto n vezes",
+          "resposta": "public static void imprimirLinha(String texto, int vezes) {\n for (int i = 0; i < vezes; i++) {\n  System.out.println(texto);\n }\n}",
+          "dica": "void não retorna nada. Use for para repetir",
+          "erro_comum": "Retornar algo de um método void",
+          "explicacao": "void indica ausência de retorno. O método executa uma ação sem devolver valor",
+          "logica": "public static void metodo(String s, int n){\n for(int i=0;i<n;i++){\n  System.out.println(s);\n }\n}"
+        }
+      ]
+    },
+    {
+      "titulo": "Arrays e ArrayList em Java",
+      "explicacao": "Arrays têm tamanho fixo. ArrayList é dinâmico e faz parte das Collections do Java.",
+      "exemplo": "// Array fixo\nint[] nums = {1, 2, 3, 4, 5};\n\n// ArrayList dinâmico\nimport java.util.ArrayList;\nArrayList<String> lista = new ArrayList<>();\nlista.add(\"Java\");\nlista.add(\"Python\");",
+      "desafios": [
+        {
+          "pergunta": "Declare int[] notas={8,7,9,6,10} e calcule a média",
+          "resposta": "int[] notas = {8, 7, 9, 6, 10};\nint soma = 0;\nfor (int n : notas) soma += n;\nSystem.out.println(soma / notas.length);",
+          "dica": "Use notas.length para o tamanho do array",
+          "erro_comum": "Dividir por 5 hardcoded em vez de usar notas.length",
+          "explicacao": ".length retorna o tamanho do array. Usar variável evita erros ao mudar o array",
+          "logica": "int soma=0;\nfor(int n:notas) soma+=n;\nSystem.out.println(soma/notas.length);"
+        },
+        {
+          "pergunta": "Crie ArrayList<String> com 3 linguagens, adicione uma e exiba o tamanho",
+          "resposta": "ArrayList<String> langs = new ArrayList<>();\nlangs.add(\"Java\");\nlangs.add(\"Python\");\nlangs.add(\"C\");\nlangs.add(\"PHP\");\nSystem.out.println(langs.size());",
+          "dica": "ArrayList usa .add() para adicionar e .size() para tamanho",
+          "erro_comum": "Usar .length em vez de .size() para ArrayList",
+          "explicacao": "Arrays usam .length. ArrayList e coleções usam .size()",
+          "logica": "ArrayList<String> lista = new ArrayList<>();\nlista.add(\"item\");\nlista.size();"
+        }
+      ]
+    },
+    {
+      "titulo": "Orientação a Objetos",
+      "explicacao": "Java é orientado a objetos. Classes definem atributos e comportamentos. Objetos são instâncias de classes.",
+      "exemplo": "class Pessoa {\n    String nome;\n    int idade;\n    \n    void apresentar() {\n        System.out.println(\"Olá, sou \" + nome);\n    }\n}\n\nPessoa p = new Pessoa();\np.nome = \"Ana\";\np.apresentar();",
+      "desafios": [
+        {
+          "pergunta": "Crie classe Carro com atributos marca e ano, instancie e exiba os valores",
+          "resposta": "class Carro {\n String marca;\n int ano;\n}\nCarro c = new Carro();\nc.marca = \"Toyota\";\nc.ano = 2023;\nSystem.out.println(c.marca + \" \" + c.ano);",
+          "dica": "Defina a classe com atributos, crie objeto com new e acesse com ponto",
+          "erro_comum": "Esquecer o new ao instanciar a classe",
+          "explicacao": "new Carro() aloca memória e cria uma instância da classe. Sem new, c seria null",
+          "logica": "class Nome {\n tipo atributo;\n}\nNome obj = new Nome();\nobj.atributo = valor;"
+        },
+        {
+          "pergunta": "Adicione construtor à classe Carro que recebe marca e ano",
+          "resposta": "class Carro {\n String marca;\n int ano;\n Carro(String marca, int ano) {\n  this.marca = marca;\n  this.ano = ano;\n }\n}\nCarro c = new Carro(\"Honda\", 2022);\nSystem.out.println(c.marca);",
+          "dica": "Construtor tem o mesmo nome da classe e usa this para distinguir atributo do parâmetro",
+          "erro_comum": "Esquecer this. causando o parâmetro sobrescrever a si mesmo",
+          "explicacao": "this.marca refere-se ao atributo da classe. marca (sem this) seria o parâmetro do construtor",
+          "logica": "Classe(tipo param){\n this.atrib = param;\n}"
+        }
+      ]
+    }
+  ],
+  "php": [
+    {
+      "titulo": "Hello World em PHP",
+      "explicacao": "PHP é uma linguagem para web. Todo código PHP fica entre <?php e ?>. echo exibe conteúdo na página.",
+      "exemplo": "<?php\necho \"Olá, mundo!\";\necho \"<br>\";\necho \"PHP é ótimo para web!\";\n?>",
+      "desafios": [
+        {
+          "pergunta": "Exiba: Hello, World! usando echo",
+          "resposta": "<?php\necho \"Hello, World!\";\n?>",
+          "dica": "Todo código PHP começa com <?php. Use echo para exibir",
+          "erro_comum": "Esquecer <?php no início ou o ; no final do echo",
+          "explicacao": "<?php abre o bloco PHP. echo exibe texto. Todo statement termina com ;",
+          "logica": "<?php\necho \"texto\";\n?>"
+        },
+        {
+          "pergunta": "Exiba seu nome e idade em linhas separadas usando echo e <br>",
+          "resposta": "<?php\necho \"Erik<br>\";\necho \"25 anos<br>\";\n?>",
+          "dica": "Use <br> para quebra de linha em HTML ou \\n para texto puro",
+          "erro_comum": "Usar \\n sem estar em contexto de texto puro (no HTML não funciona)",
+          "explicacao": "PHP gera HTML, então <br> cria quebra de linha visível na página web",
+          "logica": "echo \"texto<br>\";"
+        },
+        {
+          "pergunta": "Use echo para exibir o resultado de 100 / 4",
+          "resposta": "<?php\necho 100 / 4;\n?>",
+          "dica": "Coloque o cálculo sem aspas no echo",
+          "erro_comum": "Colocar o cálculo entre aspas: echo \"100/4\" exibe o texto",
+          "explicacao": "echo pode receber expressões numéricas diretamente, calculando antes de exibir",
+          "logica": "echo expressao_numerica;"
+        },
+        {
+          "pergunta": "Use print_r para exibir o array [1, 2, 3]",
+          "resposta": "<?php\nprint_r([1, 2, 3]);\n?>",
+          "dica": "print_r() exibe arrays de forma legível",
+          "erro_comum": "Usar echo com array diretamente, que gera erro",
+          "explicacao": "echo não consegue exibir arrays diretamente. print_r() formata e exibe arrays",
+          "logica": "print_r(array);"
+        }
+      ]
+    },
+    {
+      "titulo": "Variáveis em PHP",
+      "explicacao": "Variáveis em PHP sempre começam com $. Não precisam de declaração de tipo — o PHP é dinamicamente tipado.",
+      "exemplo": "<?php\n$nome = \"Ana\";\n$idade = 25;\n$altura = 1.65;\n$ativo = true;\necho $nome;\n?>",
+      "desafios": [
+        {
+          "pergunta": "Crie $nome='João' e exiba: Olá, João!",
+          "resposta": "<?php\n$nome = 'João';\necho \"Olá, $nome!\";\n?>",
+          "dica": "Variáveis PHP começam com $. Dentro de aspas duplas, $var é interpolado",
+          "erro_comum": "Usar aspas simples para interpolação — em PHP aspas simples não interpolam variáveis",
+          "explicacao": "PHP interpola variáveis automaticamente dentro de aspas duplas. Aspas simples exibem literal",
+          "logica": "$var = 'valor';\necho \"texto $var\";"
+        },
+        {
+          "pergunta": "Crie $preco=49.90 e exiba formatado com 2 casas decimais usando number_format",
+          "resposta": "<?php\n$preco = 49.90;\necho number_format($preco, 2, ',', '.');\n?>",
+          "dica": "number_format(valor, decimais, sep_decimal, sep_milhar)",
+          "erro_comum": "Usar printf como em C em vez de number_format",
+          "explicacao": "number_format() formata números com separadores personalizados",
+          "logica": "echo number_format($num, 2, ',', '.');"
+        },
+        {
+          "pergunta": "Crie $a=10 e $b=3, exiba a soma, diferença, produto e divisão",
+          "resposta": "<?php\n$a = 10;\n$b = 3;\necho $a + $b . \"<br>\";\necho $a - $b . \"<br>\";\necho $a * $b . \"<br>\";\necho $a / $b . \"<br>\";\n?>",
+          "dica": "Use . para concatenar strings com valores em PHP",
+          "erro_comum": "Usar + para concatenar strings (PHP usa . para concatenação)",
+          "explicacao": "Em PHP . concatena strings. + é apenas para soma numérica",
+          "logica": "echo $a + $b . \"<br>\";"
+        },
+        {
+          "pergunta": "Use a função gettype() para exibir o tipo de $x = 42",
+          "resposta": "<?php\n$x = 42;\necho gettype($x);\n?>",
+          "dica": "gettype() retorna o tipo da variável como string",
+          "erro_comum": "Tentar usar typeof como no JavaScript",
+          "explicacao": "PHP usa gettype() para verificar tipos. Retorna: integer, string, boolean, array, etc.",
+          "logica": "echo gettype($variavel);"
+        }
+      ]
+    },
+    {
+      "titulo": "Strings em PHP",
+      "explicacao": "PHP tem funções poderosas para manipulação de strings como strlen, strtoupper, str_replace e explode.",
+      "exemplo": "<?php\n$texto = \"Hello, World!\";\necho strlen($texto);        // 13\necho strtoupper($texto);    // HELLO, WORLD!\necho str_replace(\"World\", \"PHP\", $texto);\n?>",
+      "desafios": [
+        {
+          "pergunta": "Exiba o tamanho da string 'Programação' usando strlen",
+          "resposta": "<?php\necho strlen('Programação');\n?>",
+          "dica": "strlen() retorna o número de bytes/caracteres da string",
+          "erro_comum": "Usar length como em JavaScript",
+          "explicacao": "strlen() é a função PHP para tamanho de string, diferente do JavaScript que usa .length",
+          "logica": "echo strlen($string);"
+        },
+        {
+          "pergunta": "Converta 'php é incrível' para maiúsculas e exiba",
+          "resposta": "<?php\necho strtoupper('php é incrível');\n?>",
+          "dica": "strtoupper() converte toda a string para maiúsculas",
+          "erro_comum": "Usar toUpperCase() que é JavaScript",
+          "explicacao": "PHP usa strtoupper() e strtolower() para converter maiúsculas/minúsculas",
+          "logica": "echo strtoupper($string);"
+        },
+        {
+          "pergunta": "Substitua 'mundo' por 'PHP' na string 'Olá, mundo!' usando str_replace",
+          "resposta": "<?php\n$resultado = str_replace('mundo', 'PHP', 'Olá, mundo!');\necho $resultado;\n?>",
+          "dica": "str_replace(busca, substituto, string_original)",
+          "erro_comum": "Inverter a ordem dos parâmetros",
+          "explicacao": "str_replace recebe: o que buscar, pelo que substituir, e onde buscar",
+          "logica": "str_replace('busca', 'novo', $string)"
+        },
+        {
+          "pergunta": "Divida a string 'João,Ana,Pedro' por vírgula e exiba o array com print_r",
+          "resposta": "<?php\n$nomes = explode(',', 'João,Ana,Pedro');\nprint_r($nomes);\n?>",
+          "dica": "explode(delimitador, string) divide a string em array",
+          "erro_comum": "Usar split() que existe em outras linguagens mas não é padrão em PHP",
+          "explicacao": "explode() divide string em array pelo delimitador. implode() faz o inverso",
+          "logica": "$array = explode(',', $string);"
+        }
+      ]
+    },
+    {
+      "titulo": "Condicionais em PHP",
+      "explicacao": "if, else if e else em PHP funcionam igual ao C/Java, com condições entre parênteses.",
+      "exemplo": "<?php\n$nota = 7;\nif ($nota >= 9) {\n    echo \"Excelente\";\n} elseif ($nota >= 6) {\n    echo \"Aprovado\";\n} else {\n    echo \"Reprovado\";\n}\n?>",
+      "desafios": [
+        {
+          "pergunta": "Verifique se $idade=20 é maior de 18 e exiba mensagem apropriada",
+          "resposta": "<?php\n$idade = 20;\nif ($idade >= 18) {\n echo 'Maior de idade';\n} else {\n echo 'Menor de idade';\n}\n?>",
+          "dica": "Lembre do $ antes das variáveis",
+          "erro_comum": "Esquecer o $ nas variáveis dentro do if",
+          "explicacao": "Em PHP todas as variáveis precisam do $ inclusive dentro de condições",
+          "logica": "if($var >= valor){\n echo 'sim';\n}else{\n echo 'não';\n}"
+        },
+        {
+          "pergunta": "Use elseif para classificar $temp=28: <15 frio, 15-25 agradável, >25 quente",
+          "resposta": "<?php\n$temp = 28;\nif ($temp < 15) {\n echo 'frio';\n} elseif ($temp <= 25) {\n echo 'agradável';\n} else {\n echo 'quente';\n}\n?>",
+          "dica": "PHP usa elseif (uma palavra) ou else if (duas palavras), ambos funcionam",
+          "erro_comum": "Usar elif que é Python",
+          "explicacao": "PHP aceita tanto elseif quanto else if. elseif é mais comum em PHP",
+          "logica": "if($t<15){...}elseif($t<=25){...}else{...}"
+        },
+        {
+          "pergunta": "Use switch para exibir o nome do mês para $mes=3",
+          "resposta": "<?php\n$mes = 3;\nswitch ($mes) {\n case 1: echo 'Janeiro'; break;\n case 2: echo 'Fevereiro'; break;\n case 3: echo 'Março'; break;\n default: echo 'Outro';\n}\n?>",
+          "dica": "switch com case e break, igual ao Java/C",
+          "erro_comum": "Esquecer o break causando execução dos casos seguintes",
+          "explicacao": "switch em PHP funciona igual ao Java e C. break é essencial para parar no case correto",
+          "logica": "switch($var){\n case 1: ...; break;\n default: ...;\n}"
+        }
+      ]
+    },
+    {
+      "titulo": "Loops em PHP",
+      "explicacao": "PHP tem for, while, do-while e foreach. O foreach é especialmente útil para arrays.",
+      "exemplo": "<?php\n// for\nfor ($i = 1; $i <= 5; $i++) {\n    echo $i . \"<br>\";\n}\n\n// foreach\n$frutas = ['maçã', 'banana', 'uva'];\nforeach ($frutas as $fruta) {\n    echo $fruta . \"<br>\";\n}\n?>",
+      "desafios": [
+        {
+          "pergunta": "Use for para exibir a tabuada do 5 (5x1 até 5x10)",
+          "resposta": "<?php\nfor ($i = 1; $i <= 10; $i++) {\n echo \"5 x $i = \" . (5*$i) . \"<br>\";\n}\n?>",
+          "dica": "Use $i com $ e concatene com . em PHP",
+          "erro_comum": "Usar + para concatenar em vez de .",
+          "explicacao": "Em PHP concatenação de strings usa . (ponto), não + como em JavaScript",
+          "logica": "for($i=1;$i<=10;$i++){\n echo \"5 x $i = \".(5*$i).\"<br>\";\n}"
+        },
+        {
+          "pergunta": "Use foreach para exibir cada elemento de $cores=['azul','verde','vermelho']",
+          "resposta": "<?php\n$cores = ['azul', 'verde', 'vermelho'];\nforeach ($cores as $cor) {\n echo $cor . \"<br>\";\n}\n?>",
+          "dica": "foreach ($array as $item) itera sobre cada elemento",
+          "erro_comum": "Usar for com índice quando foreach é mais adequado para arrays",
+          "explicacao": "foreach é a forma mais idiomática de percorrer arrays em PHP",
+          "logica": "foreach($arr as $item){\n echo $item;\n}"
+        },
+        {
+          "pergunta": "Use foreach com chave e valor no array ['nome'=>'Ana','idade'=>25]",
+          "resposta": "<?php\n$pessoa = ['nome' => 'Ana', 'idade' => 25];\nforeach ($pessoa as $chave => $valor) {\n echo \"$chave: $valor<br>\";\n}\n?>",
+          "dica": "foreach ($array as $chave => $valor) acessa chave e valor",
+          "erro_comum": "Esquecer o => para capturar a chave",
+          "explicacao": "Arrays associativos em PHP usam =>. foreach com => acessa tanto chave quanto valor",
+          "logica": "foreach($arr as $k => $v){\n echo \"$k: $v\";\n}"
+        },
+        {
+          "pergunta": "Use while para somar números de 1 a 50 e exibir o total",
+          "resposta": "<?php\n$i = 1;\n$total = 0;\nwhile ($i <= 50) {\n $total += $i;\n $i++;\n}\necho $total;\n?>",
+          "dica": "Lembre de incrementar $i dentro do while",
+          "erro_comum": "Esquecer de incrementar causando loop infinito",
+          "explicacao": "while sem incremento é loop infinito. $i++ garante que o loop termine",
+          "logica": "$i=1;$total=0;\nwhile($i<=50){\n $total+=$i;\n $i++;\n}\necho $total;"
+        }
+      ]
+    },
+    {
+      "titulo": "Funções em PHP",
+      "explicacao": "Funções em PHP são definidas com function. PHP suporta parâmetros com valores padrão e type hints.",
+      "exemplo": "<?php\nfunction saudacao($nome, $msg = 'Olá') {\n    return \"$msg, $nome!\";\n}\n\necho saudacao('Ana');\necho saudacao('João', 'Oi');\n?>",
+      "desafios": [
+        {
+          "pergunta": "Crie função somar($a, $b) que retorna a soma e exiba somar(3,7)",
+          "resposta": "<?php\nfunction somar($a, $b) {\n return $a + $b;\n}\necho somar(3, 7);\n?>",
+          "dica": "Use function para definir. Parâmetros levam $ em PHP",
+          "erro_comum": "Esquecer o $ nos parâmetros da função",
+          "explicacao": "Em PHP parâmetros de função também são variáveis e levam $",
+          "logica": "function nome($param1, $param2){\n return valor;\n}"
+        },
+        {
+          "pergunta": "Crie função com parâmetro padrão: cumprimentar($nome, $hora='dia')",
+          "resposta": "<?php\nfunction cumprimentar($nome, $hora = 'dia') {\n return \"Bom $hora, $nome!\";\n}\necho cumprimentar('Ana');\necho '<br>';\necho cumprimentar('João', 'tarde');\n?>",
+          "dica": "Parâmetros com valor padrão usam = na definição",
+          "erro_comum": "Colocar parâmetro padrão antes do obrigatório",
+          "explicacao": "Parâmetros com padrão sempre vêm depois dos obrigatórios na definição",
+          "logica": "function f($obrig, $opc='padrão'){\n return ...;\n}"
+        },
+        {
+          "pergunta": "Crie função que recebe array e retorna a soma dos elementos",
+          "resposta": "<?php\nfunction somarArray($numeros) {\n return array_sum($numeros);\n}\necho somarArray([1, 2, 3, 4, 5]);\n?>",
+          "dica": "PHP tem array_sum() que soma todos os elementos",
+          "erro_comum": "Fazer loop manual quando array_sum() já existe",
+          "explicacao": "array_sum() é uma função nativa PHP que soma todos os valores de um array",
+          "logica": "function somarArray($arr){\n return array_sum($arr);\n}"
+        }
+      ]
+    },
+    {
+      "titulo": "Arrays em PHP",
+      "explicacao": "PHP tem dois tipos de arrays: indexados (como listas) e associativos (como dicionários). Ambos são muito flexíveis.",
+      "exemplo": "<?php\n// Indexado\n$frutas = ['maçã', 'banana', 'uva'];\n\n// Associativo\n$pessoa = [\n    'nome' => 'Ana',\n    'idade' => 25\n];\n\necho $frutas[0];        // maçã\necho $pessoa['nome'];   // Ana\n?>",
+      "desafios": [
+        {
+          "pergunta": "Crie array $notas=[8,7,9,6,10] e exiba a maior nota com max()",
+          "resposta": "<?php\n$notas = [8, 7, 9, 6, 10];\necho max($notas);\n?>",
+          "dica": "max() retorna o maior valor de um array",
+          "erro_comum": "Fazer loop para encontrar o maior quando max() já existe",
+          "explicacao": "PHP tem funções nativas max() e min() para encontrar maior e menor valor",
+          "logica": "echo max($array);"
+        },
+        {
+          "pergunta": "Adicione 'laranja' ao final de $frutas=['maçã','banana'] usando array_push",
+          "resposta": "<?php\n$frutas = ['maçã', 'banana'];\narray_push($frutas, 'laranja');\nprint_r($frutas);\n?>",
+          "dica": "array_push($array, $valor) adiciona ao final",
+          "erro_comum": "Usar .push() como JavaScript ou .append() como Python",
+          "explicacao": "PHP usa array_push() para adicionar ao final. Também pode usar $arr[] = $valor",
+          "logica": "array_push($arr, $valor);\n// ou: $arr[] = $valor;"
+        },
+        {
+          "pergunta": "Ordene $nums=[5,2,8,1,9] com sort() e exiba com print_r",
+          "resposta": "<?php\n$nums = [5, 2, 8, 1, 9];\nsort($nums);\nprint_r($nums);\n?>",
+          "dica": "sort() ordena o array in-place em ordem crescente",
+          "erro_comum": "Usar sorted() que é Python",
+          "explicacao": "sort() modifica o array original. Para array associativo use asort() que mantém as chaves",
+          "logica": "sort($array);\nprint_r($array);"
+        },
+        {
+          "pergunta": "Filtre apenas números pares de $nums=[1,2,3,4,5,6] usando array_filter",
+          "resposta": "<?php\n$nums = [1, 2, 3, 4, 5, 6];\n$pares = array_filter($nums, function($n) {\n return $n % 2 == 0;\n});\nprint_r($pares);\n?>",
+          "dica": "array_filter recebe o array e uma função anônima que retorna true/false",
+          "erro_comum": "Fazer loop manual quando array_filter é mais elegante",
+          "explicacao": "array_filter() aplica uma função a cada elemento e mantém os que retornam true",
+          "logica": "$filtrado = array_filter($arr, function($x){\n return condicao;\n});"
+        }
+      ]
+    },
+    {
+      "titulo": "Formulários e Superglobais",
+      "explicacao": "PHP é ideal para processar formulários HTML. $_GET e $_POST são superglobais que recebem dados de formulários.",
+      "exemplo": "<?php\n// Receber dado do formulário\n$nome = $_POST['nome'] ?? 'visitante';\necho \"Olá, $nome!\";\n\n// Verificar se foi enviado\nif ($_SERVER['REQUEST_METHOD'] === 'POST') {\n    // processar formulário\n}\n?>",
+      "desafios": [
+        {
+          "pergunta": "Receba $_GET['nome'] com valor padrão 'visitante' usando ?? e exiba",
+          "resposta": "<?php\n$nome = $_GET['nome'] ?? 'visitante';\necho \"Olá, $nome!\";\n?>",
+          "dica": "?? é o operador null coalescing — retorna o lado esquerdo se não for null",
+          "erro_comum": "Usar isset() em uma linha separada quando ?? é mais elegante",
+          "explicacao": "?? retorna o valor da esquerda se existir e não for null, senão retorna o da direita",
+          "logica": "$var = $_GET['chave'] ?? 'padrão';"
+        },
+        {
+          "pergunta": "Verifique se $_POST['email'] está definido com isset() e exiba ou erro",
+          "resposta": "<?php\nif (isset($_POST['email'])) {\n echo 'Email: ' . $_POST['email'];\n} else {\n echo 'Email não enviado';\n}\n?>",
+          "dica": "isset() verifica se uma variável existe e não é null",
+          "erro_comum": "Acessar $_POST diretamente sem verificar — gera Notice de índice indefinido",
+          "explicacao": "Sempre verifique com isset() antes de acessar dados de formulário para evitar erros",
+          "logica": "if(isset($_POST['campo'])){\n echo $_POST['campo'];\n}"
+        }
+      ]
+    }
+  ]
+}
