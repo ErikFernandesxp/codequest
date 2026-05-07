@@ -56,7 +56,7 @@ with st.sidebar:
     xp_mod = st.session_state["xp"] % 50
     st.progress(xp_mod / 50, text=f"XP para próx. nível: {xp_mod}/50")
     st.metric("❤️ Vidas", st.session_state["vidas"])
-    st.metric("🔥 Streak", f"{st.session_state.get('streak', 0)} dias")
+    st.metric("🔥 Dias seguidos", f"{st.session_state.get('streak', 0)} dias")
     st.divider()
     lang_icons = {"python": "🐍", "c": "⚙️", "java": "☕", "php": "🌐"}
     total = len(fases[ling])
