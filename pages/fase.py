@@ -124,11 +124,19 @@ enviar = col_btn1.button("🚀 Enviar", type="primary", use_container_width=True
 pular = col_btn2.button("⏭️ Pular", use_container_width=True)
 
 if pular:
-    st.session_state["desafio_atual"] += 1
-    if st.session_state["desafio_atual"] >= len(desafios):
-        st.session_state["fase"] += 1
-        st.session_state["desafio_atual"] = 0
-    st.rerun()
+    st.session_state["vidas"] -= 1
+    vidas_rest = st.session_state["vidas"]
+
+    if vidas_rest <= 0:
+        st.error("💀 Sem vidas! Game Over ao pular.")
+        st.rerun()
+    else:
+        st.warning(f"⏭️ Fase pulada! Você perdeu uma vida. Restam {vidas_rest} ❤️")
+        st.session_state["desafio_atual"] += 1
+        if st.session_state["desafio_atual"] >= len(desafios):
+            st.session_state["fase"] += 1
+            st.session_state["desafio_atual"] = 0
+        st.rerun()
 
 if enviar:
     if not resposta.strip():
