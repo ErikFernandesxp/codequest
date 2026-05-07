@@ -79,7 +79,7 @@ with st.sidebar:
     st.metric("🏆 Nível", nivel)
     st.progress(min((xp % 50) / 50, 1.0), text=f"XP para nível {nivel+1}: {xp % 50}/50")
     st.metric("❤️ Vidas", vidas)
-    st.metric("🔥 Streak", f"{streak} dias")
+    st.metric("🔥 Sequência de dias", f"{streak} dias seguidos")
     st.divider()
     if st.button("🏆 Ranking", use_container_width=True):
         st.switch_page("pages/ranking.py")
@@ -94,9 +94,11 @@ st.markdown(f"## Olá, **{usuario}**! Pronto para aprender? 🚀")
 
 # Streak banner
 if streak >= 3:
-    st.success(f"🔥 Você está em uma sequência de **{streak} dias**! Continue assim!")
+    st.success(f"🔥 Incrível! Você está jogando há **{streak} dias seguidos**! Não pare agora!")
+elif streak == 2:
+    st.info("🌱 Você jogou 2 dias seguidos! Volte amanhã para continuar a sequência!")
 elif streak == 1:
-    st.info("🌱 Primeiro dia! Volte amanhã para começar sua sequência!")
+    st.info("🌱 Primeiro dia! Volte amanhã para começar sua sequência de dias!")
 
 st.divider()
 st.subheader("📊 Seu Progresso")
