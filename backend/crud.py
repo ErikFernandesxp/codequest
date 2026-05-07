@@ -1,4 +1,125 @@
+from datetime import datetime, date, timezone, timedelta
 from backend.supabase_client import supabase
+import json, os
+
+
+# ─── BADGES ──────────────────────────────────────────────────────────────────
+
+def carregar_badges_config():
+    caminho = os.path.join(os.getcwd(), "data", "badges.json")
+    with open(caminho, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def verificar_e_conceder_badges(user_id: str, usuario: dict, total_fases: int, linguagem: str = None, fases_por_lang: dict = {}):
+    """Verifica quais badges o usuário ganhou e atualiza no banco."""
+    badges_atuais = set(usuario.get("badges") or [])
+    novas_badges = []
+    config = carregar_badges_config()
+
+    streak = usuario.get("streak", 0)
+    nivel = usuario.get("nivel", 1)
+
+    # Badges de fases
+    if total_fases >= 1 and "primeira_fase" not in badges_atuais:
+        novas_badges.append("primeira_fase")
+    if total_fases >= 5 and "cinco_fases" not in badges_atuais:
+        novas_badges.append("cinco_fases")
+    if total_fases >= 10 and "dez_fases" not in badges_atuais:
+        novas_badges.append("dez_fases")
+
+    # Badges de streak
+    if streak >= 3 and "streak_3" not in badges_atuais:
+        novas_badges.append("streak_3")
+    if streak >= 7 and "streak_7" not in badges_atuais:
+        novas_badges.append("streak_7")
+    if streak >= 30 and "streak_30" not in badges_atuais:
+        novas_badges.append("streak_30")
+
+    # Badges de nível
+    if nivel >= 5 and "nivel_5" not in badges_atuais:
+        novas_badges.append("nivel_5")
+    if nivel >= 10 and "nivel_10" not in badges_atuais:
+        novas_badges.append("nivel_10")
+    if nivel >= 20 and "nivel_20" not in badges_atuais:
+        novas_badges.append("nivel_20")
+
+    # Badges de linguagem completa
+    for lang, total in fases_por_lang.items():
+        concluidas = len([p for p in fases_por_lang.get(lang, []) if p])
+        badge_key = f"{lang}_completo"
+        if total > 0 and concluidas >= total and badge_key not in badges_atuais:
+            novas_badges.append(badge_key)
+
+    # Badge todas linguagens
+    langs_completas = sum(
+        1 for lang in ["python", "c", "java", "php"]
+        if f"{lang}_completo" in badges_atuais or f"{lang}_completo" in novas_badges
+    )
+    if langs_completas == 4 and "todas_linguagens" not in badges_atuais:
+        novas_badges.append("todas_linguagens")
+
+    if novas_badges:
+        todas = list(badges_atuais) + novas_badges
+        supabase.table("users").update({"badges": todas}).eq("id", user_id).execute()
+
+    return novas_badges, config
+
+
+# ─── STREAK E VIDAS ──────────────────────────────────────────────────────────
+
+def atualizar_streak(user_id: str, usuario: dict) -> int:
+    """Atualiza o streak de dias. Retorna o streak atual."""
+    hoje = date.today()
+    ultimo = usuario.get("ultimo_acesso")
+
+    if isinstance(ultimo, str):
+        try:
+            ultimo = date.fromisoformat(ultimo)
+        except Exception:
+            ultimo = None
+
+    streak_atual = usuario.get("streak", 0)
+
+    if ultimo is None or ultimo < hoje:
+        if ultimo and (hoje - ultimo).days == 1:
+            # Acessou ontem — mantém sequência
+            novo_streak = streak_atual + 1
+        elif ultimo and ultimo == hoje:
+            # Já acessou hoje — não muda
+            return streak_atual
+        else:
+            # Quebrou a sequência
+            novo_streak = 1
+
+        supabase.table("users").update({
+            "streak": novo_streak,
+            "ultimo_acesso": hoje.isoformat()
+        }).eq("id", user_id).execute()
+        return novo_streak
+
+    return streak_atual
+
+
+def calcular_vidas_regeneradas(ultima_vida_str: str, vidas_atuais: int) -> int:
+    """Regenera 1 vida a cada 30 minutos. Máximo 3."""
+    if vidas_atuais >= 3:
+        return 3
+    try:
+        ultima = datetime.fromisoformat(str(ultima_vida_str).replace("Z", "+00:00"))
+        agora = datetime.now(timezone.utc)
+        minutos = (agora - ultima).total_seconds() / 60
+        regeneradas = int(minutos // 30)
+        return min(3, vidas_atuais + regeneradas)
+    except Exception:
+        return vidas_atuais
+
+
+def atualizar_vidas(user_id: str, vidas: int):
+    supabase.table("users").update({
+        "vidas": vidas,
+        "ultima_vida": datetime.now(timezone.utc).isoformat()
+    }).eq("id", user_id).execute()
 
 
 # ─── AUTH ────────────────────────────────────────────────────────────────────
@@ -16,7 +137,10 @@ def registrar_usuario(nome: str, email: str, senha: str):
                 "email": email,
                 "nome": nome,
                 "xp": 0,
-                "nivel": 1
+                "nivel": 1,
+                "vidas": 3,
+                "streak": 0,
+                "badges": []
             }).execute()
             return res.user, None
         return None, "Erro ao criar conta."
@@ -28,14 +152,11 @@ def registrar_usuario(nome: str, email: str, senha: str):
 
 
 def email_existe(email: str) -> bool:
-    """Verifica se o email existe na tabela users."""
     res = supabase.table("users").select("id").eq("email", email).execute()
     return len(res.data) > 0
 
 
 def login_usuario(email: str, senha: str):
-    """Autentica via Supabase Auth. Retorna (user, session, erro)."""
-    # Primeiro verifica se o email existe
     if not email_existe(email):
         return None, None, "email_nao_encontrado"
     try:
