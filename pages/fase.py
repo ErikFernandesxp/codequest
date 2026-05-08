@@ -56,7 +56,7 @@ with st.sidebar:
     xp_mod = st.session_state["xp"] % 50
     st.progress(xp_mod / 50, text=f"XP para próx. nível: {xp_mod}/50")
     st.metric("❤️ Vidas", st.session_state["vidas"])
-    st.metric("🔥 Dias seguidos", f"{st.session_state.get('streak', 0)} dias")
+    st.metric("🔥 Streak", f"{st.session_state.get('streak', 0)} dias")
     st.divider()
     lang_icons = {"python": "🐍", "c": "⚙️", "java": "☕", "php": "🌐"}
     total = len(fases[ling])
@@ -150,7 +150,8 @@ if voltar:
 
 if pular:
     st.session_state["vidas"] -= 1
-    atualizar_vidas(st.session_state["user_id"], st.session_state["vidas"])
+    if not st.session_state.get("is_admin"):
+        atualizar_vidas(st.session_state["user_id"], st.session_state["vidas"])
     vidas_rest = st.session_state["vidas"]
     if vidas_rest <= 0:
         st.error("💀 Sem vidas! Game Over ao pular.")
@@ -212,7 +213,8 @@ if enviar:
 
         else:
             st.session_state["vidas"] -= 1
-            atualizar_vidas(st.session_state["user_id"], st.session_state["vidas"])
+            if not st.session_state.get("is_admin"):
+        atualizar_vidas(st.session_state["user_id"], st.session_state["vidas"])
             vidas_rest = st.session_state["vidas"]
 
             st.error(f"❌ Resposta incorreta! ({vidas_rest} {'vida' if vidas_rest == 1 else 'vidas'} restante{'s' if vidas_rest != 1 else ''})")
