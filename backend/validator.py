@@ -7,10 +7,28 @@ def clean(text):
         .lower()
     )
 
-def validar_codigo(user, correct):
-    if clean(user) == clean(correct):
+
+def validar_codigo(user, correct, respostas_aceitas=None, keywords=None):
+    user_clean = clean(user)
+
+    # 1. Verifica contra a resposta principal
+    if clean(correct) and user_clean == clean(correct):
         return True, "Perfeito!"
 
+    # 2. Verifica contra respostas alternativas aceitas
+    if respostas_aceitas:
+        for alternativa in respostas_aceitas:
+            if user_clean == clean(alternativa):
+                return True, "Perfeito!"
+
+    # 3. Verifica keywords obrigatórias (se definidas, todas precisam estar presentes)
+    if keywords:
+        user_lower = user.lower()
+        keywords_faltando = [kw for kw in keywords if kw.lower() not in user_lower]
+        if not keywords_faltando:
+            return True, "Perfeito!"
+
+    # 4. Feedback específico por padrão de erro
     feedback = []
 
     if "print" in correct and "print" not in user:
