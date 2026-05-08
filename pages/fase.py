@@ -6,15 +6,22 @@ import json
 import os
 from backend.session import init_session, calcular_nivel
 from backend.validator import validar_codigo
-from backend.crud import salvar_progresso, atualizar_xp_nivel, calcular_vidas_regeneradas, atualizar_vidas, buscar_perfil, verificar_e_conceder_badges
+from backend.crud import (
+    salvar_progresso, atualizar_xp_nivel,
+    calcular_vidas_regeneradas, atualizar_vidas,
+    buscar_perfil, verificar_e_conceder_badges,
+    buscar_progresso
+)
 
 init_session(st)
 
 if not st.session_state.get("logado"):
     st.switch_page("pages/login.py")
 
-# Sincroniza vidas com banco ao entrar na fase
-if not st.session_state.get("vidas_sincronizadas"):
+is_admin = st.session_state.get("is_admin", False)
+
+# Sincroniza vidas com banco ao entrar na fase (só para não-admin)
+if not st.session_state.get("vidas_sincronizadas") and not is_admin:
     perfil = buscar_perfil(st.session_state["user_id"])
     if perfil:
         vidas_novas = calcular_vidas_regeneradas(
@@ -24,17 +31,20 @@ if not st.session_state.get("vidas_sincronizadas"):
         st.session_state["vidas"] = vidas_novas
         st.session_state["vidas_sincronizadas"] = True
 
+
 @st.cache_data
 def carregar_fases():
     caminho = os.path.join(os.getcwd(), "data", "fases.json")
     with open(caminho, encoding="utf-8") as f:
         return json.load(f)
 
+
 @st.cache_data
 def carregar_badges_config():
     caminho = os.path.join(os.getcwd(), "data", "badges.json")
     with open(caminho, encoding="utf-8") as f:
         return json.load(f)
+
 
 fases = carregar_fases()
 badges_config = carregar_badges_config()
@@ -51,24 +61,33 @@ if not ling or ling not in fases:
 # ─── Sidebar HUD ─────────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown(f"### 👤 {st.session_state['usuario']}")
+    if is_admin:
+        st.markdown("👑 **Admin**")
     st.metric("⚡ XP", st.session_state["xp"])
     st.metric("🏆 Nível", st.session_state["nivel"])
     xp_mod = st.session_state["xp"] % 50
     st.progress(xp_mod / 50, text=f"XP para próx. nível: {xp_mod}/50")
-    st.metric("❤️ Vidas", st.session_state["vidas"])
-    st.metric("🔥 Streak", f"{st.session_state.get('streak', 0)} dias")
+
+    if is_admin:
+        st.metric("❤️ Vidas", "∞")
+    else:
+        st.metric("❤️ Vidas", st.session_state["vidas"])
+
+    st.metric("🔥 Dias seguidos", f"{st.session_state.get('streak', 0)} dias")
     st.divider()
+
     lang_icons = {"python": "🐍", "c": "⚙️", "java": "☕", "php": "🌐"}
     total = len(fases[ling])
     st.progress(fase_idx / total if total else 0,
-                text=f"{lang_icons.get(ling,'')} {ling.upper()}: fase {fase_idx+1}/{total}")
+                text=f"{lang_icons.get(ling, '')} {ling.upper()}: fase {fase_idx + 1}/{total}")
     st.divider()
+
     if st.button("🏠 Dashboard", use_container_width=True):
         st.session_state["vidas_sincronizadas"] = False
         st.switch_page("pages/dashboard.py")
 
-# ─── Game Over ────────────────────────────────────────────────────────────────
-if st.session_state["vidas"] <= 0:
+# ─── Game Over (só para não-admin) ───────────────────────────────────────────
+if not is_admin and st.session_state["vidas"] <= 0:
     st.error("💀 Game Over! Você ficou sem vidas.")
     st.info("❤️ Suas vidas regeneram 1 a cada 30 minutos. Volte mais tarde!")
     if st.button("🏠 Voltar ao Menu"):
@@ -136,12 +155,16 @@ with col2:
 st.divider()
 st.markdown(f"### 🧩 {desafio.get('pergunta', '')}")
 
-resposta = st.text_area("💻 Digite seu código:", height=120, key=f"input_{fase_idx}_{idx}",
-                         placeholder="Escreva sua resposta aqui...")
+resposta = st.text_area(
+    "💻 Digite seu código:",
+    height=120,
+    key=f"input_{fase_idx}_{idx}",
+    placeholder="Escreva sua resposta aqui..."
+)
 
 col_btn1, col_btn2, col_btn3, _ = st.columns([1, 1, 1, 2])
 enviar = col_btn1.button("🚀 Enviar", type="primary", use_container_width=True)
-pular = col_btn2.button("⏭️ Pular (-1 ❤️)", use_container_width=True)
+pular = col_btn2.button("⏭️ Pular (-1 ❤️)" if not is_admin else "⏭️ Pular", use_container_width=True)
 voltar = col_btn3.button("🏠 Menu", use_container_width=True)
 
 if voltar:
@@ -149,15 +172,21 @@ if voltar:
     st.switch_page("pages/dashboard.py")
 
 if pular:
-    st.session_state["vidas"] -= 1
-    if not st.session_state.get("is_admin"):
+    if not is_admin:
+        st.session_state["vidas"] -= 1
         atualizar_vidas(st.session_state["user_id"], st.session_state["vidas"])
+
     vidas_rest = st.session_state["vidas"]
-    if vidas_rest <= 0:
+
+    if not is_admin and vidas_rest <= 0:
         st.error("💀 Sem vidas! Game Over ao pular.")
         st.rerun()
     else:
-        st.warning(f"⏭️ Desafio pulado! Você perdeu uma vida. Restam {vidas_rest} ❤️")
+        if is_admin:
+            st.warning("⏭️ Desafio pulado!")
+        else:
+            st.warning(f"⏭️ Desafio pulado! Você perdeu uma vida. Restam {vidas_rest} ❤️")
+
         st.session_state["desafio_atual"] += 1
         if st.session_state["desafio_atual"] >= len(desafios):
             st.session_state["fase"] += 1
@@ -168,7 +197,14 @@ if enviar:
     if not resposta.strip():
         st.warning("Digite algo antes de enviar!")
     else:
-        ok, feedback = validar_codigo(resposta, desafio.get("resposta", ""))
+        respostas_aceitas = desafio.get("respostas_aceitas", [])
+        keywords = desafio.get("keywords", [])
+        ok, feedback = validar_codigo(
+            resposta,
+            desafio.get("resposta", ""),
+            respostas_aceitas=respostas_aceitas,
+            keywords=keywords
+        )
 
         if ok:
             st.success("✅ Correto! Muito bem!")
@@ -192,7 +228,6 @@ if enviar:
                 st.session_state["desafio_atual"] = 0
 
                 # Verifica badges ao concluir fase
-                from backend.crud import buscar_progresso
                 progresso = buscar_progresso(st.session_state["user_id"])
                 total_fases = len(progresso)
                 perfil_atual = buscar_perfil(st.session_state["user_id"])
@@ -203,7 +238,7 @@ if enviar:
                 )
                 for b in novas_badges:
                     info = cfg.get(b, {})
-                    st.toast(f"🏅 Badge: {info.get('emoji','')} {info.get('nome','')}", icon="🎉")
+                    st.toast(f"🏅 Badge: {info.get('emoji', '')} {info.get('nome', '')}", icon="🎉")
 
             if subiu_nivel:
                 st.balloons()
@@ -212,12 +247,20 @@ if enviar:
             st.rerun()
 
         else:
-            st.session_state["vidas"] -= 1
-            if not st.session_state.get("is_admin"):
-        atualizar_vidas(st.session_state["user_id"], st.session_state["vidas"])
+            if not is_admin:
+                st.session_state["vidas"] -= 1
+                atualizar_vidas(st.session_state["user_id"], st.session_state["vidas"])
+
             vidas_rest = st.session_state["vidas"]
 
-            st.error(f"❌ Resposta incorreta! ({vidas_rest} {'vida' if vidas_rest == 1 else 'vidas'} restante{'s' if vidas_rest != 1 else ''})")
+            if is_admin:
+                st.error("❌ Resposta incorreta! Tente novamente.")
+            else:
+                st.error(
+                    f"❌ Resposta incorreta! "
+                    f"({vidas_rest} {'vida' if vidas_rest == 1 else 'vidas'} "
+                    f"restante{'s' if vidas_rest != 1 else ''})"
+                )
 
             with st.expander("🧑‍🏫 Ver dica do professor", expanded=True):
                 st.warning(f"💡 **Dica:** {desafio.get('dica', '')}")
