@@ -1,5 +1,5 @@
 # Email do dono do sistema — vida infinita!
-ADMIN_EMAIL = "SEU_EMAIL_AQUI@gmail.com"
+ADMIN_EMAIL = "erikfernandescamisa8@gmail.com"
 
 def init_session(st):
     defaults = {
