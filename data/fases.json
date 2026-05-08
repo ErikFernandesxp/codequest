@@ -3,7 +3,7 @@
     {
       "titulo": "Saída com print()",
       "explicacao": "A função print() exibe mensagens na tela. É o primeiro comando que todo programador aprende em Python.",
-      "exemplo": "print('Olá, mundo!')\nprint('Python é incrível!')\nprint(10 + 5)",
+      "exemplo": "# print() exibe qualquer coisa na tela\n# Textos (strings) ficam entre aspas simples ou duplas\nprint('Olá, mundo!')\nprint(\"Também funciona com aspas duplas!\")\n\n# Números não precisam de aspas\nprint(42)\nprint(3.14)\n\n# Contas matemáticas são calculadas antes de exibir\nprint(10 + 5)   # exibe 15, não \"10 + 5\"\nprint(2 * 8)    # exibe 16\n\n# Cada print() cria uma nova linha automaticamente",
       "desafios": [
         {
           "pergunta": "Digite um comando para exibir a mensagem: Olá, mundo!",
@@ -94,7 +94,7 @@
     {
       "titulo": "Variáveis",
       "explicacao": "Variáveis são espaços na memória que guardam valores. Em Python basta escrever nome = valor para criar uma variável.",
-      "exemplo": "nome = 'Ana'\nidade = 25\naltura = 1.70\nprint(nome)\nprint(idade)",
+      "exemplo": "# Variável = espaço na memória com um nome\n# Crie com: nome = valor (sem precisar declarar tipo!)\n\nnome = 'Ana'        # str  → texto (string)\nidade = 25          # int  → número inteiro\naltura = 1.70       # float → número decimal\nativo = True        # bool → verdadeiro ou falso\n\n# Exibindo variáveis\nprint(nome)    # Ana\nprint(idade)   # 25\n\n# Operações com variáveis numéricas\nx = 10\ny = 3\nprint(x + y)   # 13 (soma)\nprint(x - y)   # 7  (subtração)\nprint(x * y)   # 30 (multiplicação)\nprint(x / y)   # 3.33... (divisão)\nprint(x % y)   # 1  (resto da divisão)",
       "desafios": [
         {
           "pergunta": "Crie uma variável chamada 'nome' com o valor 'João' e exiba ela com print().",
@@ -186,7 +186,7 @@
     {
       "titulo": "Strings e Formatação",
       "explicacao": "Strings são textos. Com f-strings você insere variáveis diretamente dentro do texto usando chaves {}.",
-      "exemplo": "nome = 'Ana'\nidade = 25\nprint(f'Meu nome é {nome} e tenho {idade} anos')\nprint('Python'.upper())\nprint(len('Python'))",
+      "exemplo": "nome = 'Ana'\nidade = 25\n\n# f-string: coloque f antes das aspas e {} ao redor das variáveis\nprint(f'Meu nome é {nome} e tenho {idade} anos')\n# Exibe: Meu nome é Ana e tenho 25 anos\n\n# Métodos de string (funções que pertencem à string)\ntexto = 'python'\nprint(texto.upper())       # PYTHON (maiúsculas)\nprint(texto.capitalize())  # Python (primeira maiúscula)\nprint(len(texto))          # 6 (quantidade de caracteres)\n\n# Concatenação com +\nprint('Olá, ' + nome + '!')  # Olá, Ana!\n\n# Verificações\nprint('py' in texto)    # True (contém 'py'?)\nprint(texto.startswith('py'))  # True",
       "desafios": [
         {
           "pergunta": "Crie a variável nome='Maria' e use uma f-string para exibir exatamente: Olá, Maria!",
@@ -288,7 +288,7 @@
     {
       "titulo": "Entrada do Usuário",
       "explicacao": "A função input() pausa o programa e aguarda o usuário digitar algo. O valor digitado é sempre retornado como texto (string).",
-      "exemplo": "nome = input('Digite seu nome: ')\nprint(f'Olá, {nome}!')\n\nidade = int(input('Sua idade: '))\nprint(f'Você tem {idade} anos')",
+      "exemplo": "# input() pausa o programa e aguarda o usuário digitar\n# IMPORTANTE: input() SEMPRE retorna texto (string)!\n\nnome = input('Digite seu nome: ')\nprint(f'Olá, {nome}!')\n\n# Para usar como número, converta com int() ou float()\n# Sem converter: '5' + '3' = '53' (junta textos!)\n# Com converter:  5  +  3  = 8   (soma números!)\n\nidade = int(input('Sua idade: '))    # converte para inteiro\naltura = float(input('Sua altura: ')) # converte para decimal\n\nprint(f'Daqui a 10 anos você terá {idade + 10} anos')",
       "desafios": [
         {
           "pergunta": "Escreva um programa que pede o nome do usuário com a mensagem 'Digite seu nome: ' e exibe: Olá, [nome]!",
@@ -352,7 +352,7 @@
     {
       "titulo": "Condicional IF",
       "explicacao": "O if executa um bloco de código apenas se uma condição for verdadeira. Use else para o caso contrário e elif para condições extras.",
-      "exemplo": "nota = 7\nif nota >= 7:\n    print('Aprovado')\nelif nota >= 5:\n    print('Recuperação')\nelse:\n    print('Reprovado')",
+      "exemplo": "# if executa um bloco SE a condição for verdadeira\n# Operadores: == igual | != diferente | > | < | >= | <=\n\nnota = 7\n\nif nota >= 9:\n    print('Excelente!')     # executa se nota >= 9\nelif nota >= 6:\n    print('Aprovado!')      # executa se nota >= 6 e < 9\nelif nota >= 5:\n    print('Recuperação')    # executa se nota >= 5 e < 6\nelse:\n    print('Reprovado')      # executa em todos os outros casos\n\n# ATENÇÃO: indentação (espaços) é obrigatória em Python!\n# Use 4 espaços ou 1 tab antes de cada bloco",
       "desafios": [
         {
           "pergunta": "Crie a variável x=10. Se x for maior que zero, exiba 'positivo'. Se não, exiba 'negativo'.",
@@ -458,7 +458,7 @@
     {
       "titulo": "Loop FOR",
       "explicacao": "O loop for repete um bloco de código para cada item de uma sequência. Use range() para gerar sequências de números.",
-      "exemplo": "# Números de 0 a 4\nfor i in range(5):\n    print(i)\n\n# Percorrer lista\nfrutas = ['maçã', 'banana', 'uva']\nfor fruta in frutas:\n    print(fruta)",
+      "exemplo": "# FOR: repete para cada item de uma sequência\n# Ideal quando você SABE quantas vezes vai repetir\n\n# range(n) gera números de 0 até n-1\nfor i in range(5):\n    print(i)  # 0, 1, 2, 3, 4\n\n# range(inicio, fim) — fim é EXCLUSIVO\nfor i in range(1, 6):\n    print(i)  # 1, 2, 3, 4, 5\n\n# range(inicio, fim, passo)\nfor i in range(0, 11, 2):\n    print(i)  # 0, 2, 4, 6, 8, 10\n\n# Percorrer lista diretamente (sem índice!)\nfrutas = ['maçã', 'banana', 'uva']\nfor fruta in frutas:\n    print(fruta)",
       "desafios": [
         {
           "pergunta": "Use for com range() para exibir os números de 0 a 4, um por linha.",
@@ -564,7 +564,7 @@
     {
       "titulo": "Loop WHILE",
       "explicacao": "O while repete um bloco enquanto uma condição for verdadeira. Use quando não sabe exatamente quantas vezes vai repetir.",
-      "exemplo": "contador = 1\nwhile contador <= 5:\n    print(contador)\n    contador += 1\nprint('Fim!')",
+      "exemplo": "# WHILE: repete ENQUANTO a condição for verdadeira\n# Use quando NÃO SABE exatamente quantas vezes vai repetir\n\ni = 1\nwhile i <= 5:\n    print(i)\n    i += 1  # ESSENCIAL! Sem isso = loop infinito!\n# Exibe: 1, 2, 3, 4, 5\n\n# while True + break: loop infinito controlado\ncontador = 0\nwhile True:\n    contador += 1\n    if contador >= 3:\n        break  # SAI do loop imediatamente\n    print(f'Contando: {contador}')\n# Exibe: Contando: 1, Contando: 2\n\n# continue: pula para a próxima iteração\nfor i in range(5):\n    if i == 2:\n        continue  # pula o 2\n    print(i)  # exibe: 0, 1, 3, 4",
       "desafios": [
         {
           "pergunta": "Use while para exibir os números de 1 a 5. Comece com i=1 e incremente a cada volta.",
@@ -624,7 +624,7 @@
     {
       "titulo": "Funções",
       "explicacao": "Funções são blocos de código com nome que podem ser reutilizados. Defina com def, receba dados pelos parâmetros e devolva resultado com return.",
-      "exemplo": "def saudacao(nome):\n    return f'Olá, {nome}!'\n\nresultado = saudacao('Ana')\nprint(resultado)\nprint(saudacao('João'))",
+      "exemplo": "# Funções evitam repetição e organizam o código\n# def nome(parâmetros): → define a função\n# return → devolve um valor para quem chamou\n\ndef somar(a, b):\n    return a + b  # devolve a soma\n\nresultado = somar(3, 5)  # chama a função\nprint(resultado)          # 8\n\n# Parâmetro com valor padrão (opcional na chamada)\ndef saudar(nome, mensagem='Olá'):\n    return f'{mensagem}, {nome}!'\n\nprint(saudar('Ana'))          # Olá, Ana!\nprint(saudar('João', 'Oi'))   # Oi, João!\n\n# Função sem return (só executa uma ação)\ndef linha_separadora():\n    print('-' * 30)\n\nlinha_separadora()  # ----------...",
       "desafios": [
         {
           "pergunta": "Crie uma função chamada somar(a, b) que retorna a soma dos dois parâmetros. Chame com somar(3, 5) e exiba o resultado.",
@@ -727,7 +727,7 @@
     {
       "titulo": "Listas",
       "explicacao": "Listas guardam vários valores em ordem. Acesse por índice (começa em 0), adicione com append(), remova com remove() e ordene com sort().",
-      "exemplo": "frutas = ['maçã', 'banana', 'uva']\nprint(frutas[0])       # maçã\nprint(len(frutas))     # 3\nfrutas.append('kiwi')\nfrutas.sort()\nprint(frutas)",
+      "exemplo": "# Listas guardam múltiplos valores em ordem\n# Índices começam em 0. Use -1 para o último.\n\nfrutas = ['maçã', 'banana', 'uva', 'kiwi']\nprint(frutas[0])   # maçã  (primeiro)\nprint(frutas[-1])  # kiwi  (último)\nprint(len(frutas)) # 4     (quantidade)\n\n# Modificar listas\nfrutas.append('laranja')  # adiciona no final\nfrutas.remove('banana')   # remove por valor\nfrutas.sort()             # ordena\n\n# Percorrer\nfor fruta in frutas:\n    print(fruta)\n\n# Funções úteis\nnumeros = [5, 2, 8, 1, 9]\nprint(sum(numeros))  # 25 (soma)\nprint(max(numeros))  # 9  (maior)\nprint(min(numeros))  # 1  (menor)",
       "desafios": [
         {
           "pergunta": "Crie a lista numeros=[1,2,3,4,5] e exiba o primeiro elemento (índice 0) e o último (índice -1).",
@@ -821,7 +821,7 @@
     {
       "titulo": "Dicionários",
       "explicacao": "Dicionários guardam pares chave:valor. São perfeitos para representar objetos com múltiplas propriedades.",
-      "exemplo": "pessoa = {\n    'nome': 'Ana',\n    'idade': 25,\n    'cidade': 'São Paulo'\n}\nprint(pessoa['nome'])\npessoa['email'] = 'ana@email.com'\nprint(pessoa)",
+      "exemplo": "# Dicionários: pares chave → valor\n# Chave pode ser string, número. Valor pode ser qualquer coisa.\n\npessoa = {\n    'nome': 'Ana',\n    'idade': 25,\n    'cidade': 'Salvador'\n}\n\n# Acesso por chave\nprint(pessoa['nome'])    # Ana\nprint(pessoa['idade'])   # 25\n\n# Adicionar e modificar\npessoa['email'] = 'ana@email.com'  # nova chave\npessoa['idade'] = 26               # modifica existente\n\n# .get() é seguro (não dá erro se chave não existir)\nprint(pessoa.get('telefone', 'não informado'))\n\n# Percorrer chaves e valores\nfor chave, valor in pessoa.items():\n    print(f'{chave}: {valor}')",
       "desafios": [
         {
           "pergunta": "Crie um dicionário 'pessoa' com nome='João' e idade=30. Exiba apenas o nome.",
@@ -964,8 +964,8 @@
   "c": [
     {
       "titulo": "Hello World em C",
-      "explicacao": "Em C todo programa precisa de #include para importar bibliotecas e da função main() como ponto de entrada. printf() exibe texto e \\n pula linha.",
-      "exemplo": "#include <stdio.h>\nint main() {\n    printf(\"Olá, mundo!\\n\");\n    return 0;\n}",
+      "explicacao": "Em C todo programa tem uma estrutura obrigatória. Você precisa:\n1. Importar bibliotecas com #include\n2. Ter a função main() que é onde o programa começa\n3. Usar printf() para exibir texto\n4. Terminar com return 0",
+      "exemplo": "// 1. Importamos a biblioteca de entrada/saída\n#include <stdio.h>\n\n// 2. Todo programa C começa aqui\nint main() {\n\n    // 3. printf() exibe texto na tela\n    // \\n = pular linha (Enter)\n    printf(\"Olá, mundo!\\n\");\n    \n    printf(\"Linha 1\\n\");\n    printf(\"Linha 2\\n\");\n    \n    // 4. Sempre termine com return 0\n    return 0;\n}",
       "desafios": [
         {
           "pergunta": "Escreva o programa completo em C que exibe: Hello, World! (inclua o #include, main e return 0)",
@@ -1044,8 +1044,8 @@
     },
     {
       "titulo": "Variáveis e Tipos em C",
-      "explicacao": "Em C você deve declarar o tipo de cada variável antes de usar. Principais tipos: int (inteiro), float/double (decimal), char (caractere).",
-      "exemplo": "int idade = 25;\nfloat altura = 1.75;\nchar inicial = 'A';\nprintf(\"%d %.2f %c\\n\", idade, altura, inicial);",
+      "explicacao": "Em C você DEVE declarar o tipo da variável antes de usá-la. O tipo diz ao computador quanto espaço reservar na memória:\n- int → número inteiro (ex: 10, -5, 0)\n- float → número decimal (ex: 3.14, 9.99)\n- double → decimal com mais precisão\n- char → um único caractere (ex: 'A', 'z')",
+      "exemplo": "#include <stdio.h>\nint main() {\n    // Declaração: TIPO nome = valor;\n    int idade = 25;          // inteiro\n    float altura = 1.75;     // decimal simples\n    double pi = 3.14159;     // decimal preciso\n    char inicial = 'A';      // um caractere (aspas simples!)\n    \n    // Especificadores de formato no printf:\n    // %d → int (inteiro)\n    // %f → float/double (decimal)\n    // %c → char (caractere)\n    // %s → string (texto)\n    printf(\"%d anos\\n\", idade);\n    printf(\"%.2f metros\\n\", altura);  // .2 = 2 casas decimais\n    printf(\"%c\\n\", inicial);\n    \n    return 0;\n}",
       "desafios": [
         {
           "pergunta": "Declare uma variável int x=10 e exiba seu valor usando printf com %d.",
@@ -1143,8 +1143,8 @@
     },
     {
       "titulo": "Condicionais em C",
-      "explicacao": "O if em C exige condições entre parênteses () e blocos entre chaves {}. Use else if para condições extras.",
-      "exemplo": "int nota = 7;\nif (nota >= 6) {\n    printf(\"Aprovado\\n\");\n} else {\n    printf(\"Reprovado\\n\");\n}",
+      "explicacao": "O if em C toma decisões. A condição DEVE estar entre parênteses () e o bloco de código entre chaves {}.\nOperadores de comparação:\n== igual a | != diferente | > maior | < menor | >= maior ou igual | <= menor ou igual",
+      "exemplo": "#include <stdio.h>\nint main() {\n    int nota = 7;\n    \n    // if (condição) { bloco se verdadeiro }\n    if (nota >= 7) {\n        printf(\"Aprovado!\\n\");\n    } else if (nota >= 5) {\n        printf(\"Recuperação\\n\");\n    } else {\n        printf(\"Reprovado\\n\");\n    }\n    \n    // Operador ternário: condição ? se_sim : se_não\n    printf(\"%s\\n\", nota >= 7 ? \"passou\" : \"não passou\");\n    \n    return 0;\n}",
       "desafios": [
         {
           "pergunta": "Declare x=15. Se x for maior que 10 exiba 'maior que 10', senão exiba 'menor ou igual a 10'.",
@@ -1227,8 +1227,8 @@
     },
     {
       "titulo": "Loops em C",
-      "explicacao": "C tem três tipos de loop: for (quantidade definida), while (enquanto condição) e do-while (executa ao menos uma vez).",
-      "exemplo": "// for: exibe 0 a 4\nfor (int i = 0; i < 5; i++) {\n    printf(\"%d\\n\", i);\n}\n\n// while\nint j = 1;\nwhile (j <= 3) {\n    printf(\"%d\\n\", j++);\n}",
+      "explicacao": "C tem 3 tipos de loop:\n- for → quando SABE quantas vezes repetir\n- while → quando NÃO SABE, repete enquanto condição for true\n- do-while → igual ao while mas executa pelo menos uma vez",
+      "exemplo": "#include <stdio.h>\nint main() {\n    // FOR: for(inicio; condição; incremento)\n    for (int i = 1; i <= 5; i++) {\n        printf(\"%d \", i);  // exibe: 1 2 3 4 5\n    }\n    printf(\"\\n\");\n    \n    // WHILE: repete enquanto condição for verdadeira\n    int n = 1;\n    while (n <= 3) {\n        printf(\"while: %d\\n\", n);\n        n++;  // n++ é igual a n = n + 1\n    }\n    \n    // DO-WHILE: executa ao menos uma vez\n    int x = 1;\n    do {\n        printf(\"do: %d\\n\", x);\n        x++;\n    } while (x <= 3);\n    \n    return 0;\n}",
       "desafios": [
         {
           "pergunta": "Use for para exibir os números de 1 a 10, um por linha.",
@@ -1306,8 +1306,8 @@
     },
     {
       "titulo": "Funções em C",
-      "explicacao": "Funções em C precisam ter o tipo de retorno declarado antes do nome. void significa que não retorna nada.",
-      "exemplo": "int somar(int a, int b) {\n    return a + b;\n}\n\nvoid saudar(char nome[]) {\n    printf(\"Olá, %s!\\n\", nome);\n}\n\nint main() {\n    printf(\"%d\\n\", somar(3, 5));\n    saudar(\"Ana\");\n    return 0;\n}",
+      "explicacao": "Funções em C evitam repetição de código. Estrutura:\ntipo_retorno nome_funcao(tipo param1, tipo param2) { ... }\n- int → retorna número inteiro\n- void → não retorna nada\n- float → retorna decimal\nA função DEVE ser declarada ANTES do main() ou ter um protótipo.",
+      "exemplo": "#include <stdio.h>\n\n// Função que retorna int (inteiro)\nint somar(int a, int b) {\n    return a + b;  // devolve o resultado\n}\n\n// Função void (não retorna nada, só executa)\nvoid saudar(char nome[]) {\n    printf(\"Olá, %s!\\n\", nome);\n}\n\n// Função com lógica interna\nint maior(int a, int b) {\n    if (a > b) return a;\n    return b;\n}\n\nint main() {\n    printf(\"%d\\n\", somar(3, 5));    // 8\n    saudar(\"Ana\");                    // Olá, Ana!\n    printf(\"%d\\n\", maior(10, 7));   // 10\n    return 0;\n}",
       "desafios": [
         {
           "pergunta": "Crie a função int dobro(int n) que retorna o dobro de n. Chame com dobro(7) e exiba o resultado.",
@@ -1369,8 +1369,8 @@
     },
     {
       "titulo": "Arrays em C",
-      "explicacao": "Arrays em C têm tamanho fixo declarado na criação. Os índices começam em 0 e o tamanho máximo é declarado com colchetes.",
-      "exemplo": "int numeros[5] = {10, 20, 30, 40, 50};\nprintf(\"%d\\n\", numeros[0]);  // 10\nprintf(\"%d\\n\", numeros[4]);  // 50\n\nfor(int i=0; i<5; i++){\n    printf(\"%d\\n\", numeros[i]);\n}",
+      "explicacao": "Arrays em C guardam vários valores do MESMO tipo em sequência na memória. Regras:\n- Tamanho fixo (definido na criação)\n- Índices começam em 0\n- Nunca acesse além do tamanho-1 (causa erro grave)\n- Tipo e tamanho declarados juntos: int nums[5]",
+      "exemplo": "#include <stdio.h>\nint main() {\n    // Declaração: tipo nome[tamanho] = {valores};\n    int nums[5] = {10, 20, 30, 40, 50};\n    \n    // Acesso por índice (começa em 0!)\n    printf(\"%d\\n\", nums[0]);  // 10 (primeiro)\n    printf(\"%d\\n\", nums[4]);  // 50 (último)\n    // nums[5] seria ERRO! Índice fora do limite\n    \n    // Percorrer com for\n    for (int i = 0; i < 5; i++) {\n        printf(\"nums[%d] = %d\\n\", i, nums[i]);\n    }\n    \n    // Somar todos\n    int soma = 0;\n    for (int i = 0; i < 5; i++) {\n        soma += nums[i];  // soma += x é igual a soma = soma + x\n    }\n    printf(\"Soma: %d\\n\", soma);\n    \n    return 0;\n}",
       "desafios": [
         {
           "pergunta": "Declare int nums[5]={1,2,3,4,5} e exiba o primeiro elemento (índice 0) e o último (índice 4).",
@@ -1413,8 +1413,8 @@
     },
     {
       "titulo": "Ponteiros em C",
-      "explicacao": "Ponteiros guardam endereços de memória. Use & para obter o endereço de uma variável e * para acessar o valor no endereço.",
-      "exemplo": "int x = 10;\nint *ptr = &x;     // ptr guarda o endereço de x\nprintf(\"%d\\n\", *ptr);  // acessa o valor em ptr = 10\n*ptr = 20;           // muda x através do ponteiro\nprintf(\"%d\\n\", x);    // x agora é 20",
+      "explicacao": "Ponteiros são variáveis que guardam ENDEREÇOS de memória (não valores diretamente).\n& → obtém o endereço de uma variável\n* → acessa o valor no endereço (desreferenciação)\nPor que usar? Para modificar variáveis de dentro de funções, arrays, alocação dinâmica.",
+      "exemplo": "#include <stdio.h>\nint main() {\n    int x = 42;\n    \n    // int *ptr = ponteiro para int\n    // &x = endereço de memória de x\n    int *ptr = &x;\n    \n    printf(\"Valor de x: %d\\n\", x);       // 42\n    printf(\"Endereço de x: %p\\n\", &x);   // ex: 0x7fff...\n    printf(\"ptr aponta para: %p\\n\", ptr); // mesmo endereço\n    printf(\"Valor via ptr: %d\\n\", *ptr);  // 42 (vai até o endereço)\n    \n    // Modificar x através do ponteiro\n    *ptr = 100;\n    printf(\"x agora vale: %d\\n\", x);  // 100!\n    \n    return 0;\n}",
       "desafios": [
         {
           "pergunta": "Declare int x=42. Crie um ponteiro int *ptr que aponta para x. Exiba o valor de x usando o ponteiro (*ptr).",
@@ -1462,7 +1462,7 @@
     {
       "titulo": "Hello World em Java",
       "explicacao": "Java é orientado a objetos. Todo código fica dentro de uma classe. System.out.println() exibe texto e pula linha. System.out.print() exibe sem pular.",
-      "exemplo": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Olá, mundo!\");\n        System.out.println(\"Java é poderoso!\");\n    }\n}",
+      "exemplo": "// Java: todo código fica dentro de uma CLASSE\n// O programa começa pelo método main()\n\npublic class Main {\n    public static void main(String[] args) {\n        \n        // println = \"print line\" → exibe e pula linha\n        System.out.println(\"Olá, mundo!\");\n        System.out.println(\"Java é poderoso!\");\n        \n        // print (sem ln) → exibe SEM pular linha\n        System.out.print(\"Olá, \");\n        System.out.print(\"mundo!\");\n        // resultado: Olá, mundo! (tudo na mesma linha)\n        \n        // Exibindo números e cálculos\n        System.out.println(10 + 5);   // 15\n        System.out.println(2 * 8);    // 16\n    }\n}",
       "desafios": [
         {
           "pergunta": "Exiba: Hello, World! usando System.out.println(). Não esqueça o ponto e vírgula no final.",
@@ -1533,7 +1533,7 @@
     {
       "titulo": "Variáveis em Java",
       "explicacao": "Java é fortemente tipado: você deve declarar o tipo de cada variável. Tipos principais: int, double, boolean, char e String.",
-      "exemplo": "int idade = 25;\ndouble altura = 1.75;\nboolean ativo = true;\nchar inicial = 'A';\nString nome = \"Ana\";\nSystem.out.println(nome + \" tem \" + idade + \" anos\");",
+      "exemplo": "// Java é FORTEMENTE tipado: declare o tipo sempre!\n// Tipos primitivos (minúsculos):\n// int    → inteiro        (-2bi a 2bi)\n// double → decimal preciso\n// boolean → true ou false\n// char   → um caractere (aspas simples)\n// String → texto (com S maiúsculo! não é primitivo)\n\nint idade = 25;\ndouble altura = 1.75;\nboolean aprovado = true;\nchar inicial = 'A';       // aspas simples para char\nString nome = \"Ana\";      // aspas duplas para String\n\n// Concatenação com +\nSystem.out.println(\"Nome: \" + nome);\nSystem.out.println(\"Idade: \" + idade);\nSystem.out.println(\"Altura: \" + altura);\n\n// Em Java: int + int = int, mas int + double = double\nint a = 5;\ndouble b = 2.0;\nSystem.out.println(a + b);  // 7.0",
       "desafios": [
         {
           "pergunta": "Declare a variável int idade=20 e exiba seu valor com System.out.println().",
@@ -1612,7 +1612,7 @@
     {
       "titulo": "Condicionais em Java",
       "explicacao": "if, else if e else em Java: condições entre parênteses () obrigatórios, blocos entre chaves {}.",
-      "exemplo": "int nota = 8;\nif (nota >= 9) {\n    System.out.println(\"Excelente\");\n} else if (nota >= 6) {\n    System.out.println(\"Aprovado\");\n} else {\n    System.out.println(\"Reprovado\");\n}",
+      "exemplo": "// if em Java: condição OBRIGATORIAMENTE entre ()\n// Blocos entre {}\n\nint nota = 8;\n\nif (nota >= 9) {\n    System.out.println(\"Excelente!\");\n} else if (nota >= 6) {\n    System.out.println(\"Aprovado!\");\n} else if (nota >= 5) {\n    System.out.println(\"Recuperação\");\n} else {\n    System.out.println(\"Reprovado\");\n}\n\n// switch: melhor que vários if quando testa um valor fixo\nint dia = 3;\nswitch (dia) {\n    case 1: System.out.println(\"Segunda\"); break;\n    case 2: System.out.println(\"Terça\"); break;\n    case 3: System.out.println(\"Quarta\"); break;\n    default: System.out.println(\"Outro dia\");\n}\n// IMPORTANTE: sem break, executa todos os cases abaixo!\n\n// Operador ternário: condição ? se_sim : se_não\nString status = (nota >= 6) ? \"aprovado\" : \"reprovado\";\nSystem.out.println(status);",
       "desafios": [
         {
           "pergunta": "Declare int x=7. Se x > 0 exiba 'positivo', se x < 0 exiba 'negativo', senão exiba 'zero'.",
@@ -1675,7 +1675,7 @@
     {
       "titulo": "Loops em Java",
       "explicacao": "Java tem for (clássico e for-each), while e do-while. O for-each é ideal para percorrer arrays e coleções.",
-      "exemplo": "// for clássico\nfor (int i = 1; i <= 5; i++) {\n    System.out.println(i);\n}\n\n// for-each\nint[] nums = {1, 2, 3, 4, 5};\nfor (int n : nums) {\n    System.out.println(n);\n}",
+      "exemplo": "// FOR clássico: for(início; condição; incremento)\nfor (int i = 1; i <= 5; i++) {\n    System.out.println(i);  // 1, 2, 3, 4, 5\n}\n\n// FOR-EACH: para percorrer arrays e coleções\n// Mais simples e legível que o for clássico\nint[] numeros = {10, 20, 30, 40, 50};\nfor (int n : numeros) {\n    System.out.println(n);\n}\n\n// WHILE: repete enquanto condição for verdadeira\nint i = 1;\nwhile (i <= 3) {\n    System.out.println(\"while: \" + i);\n    i++;  // ESSENCIAL! Evita loop infinito\n}\n\n// i++ é igual a i = i + 1\n// i-- é igual a i = i - 1\n// i += 2 é igual a i = i + 2",
       "desafios": [
         {
           "pergunta": "Use for para exibir a tabuada do 7: 7 x 1 = 7, 7 x 2 = 14, ... até 7 x 10 = 70.",
@@ -1738,7 +1738,7 @@
     {
       "titulo": "Métodos em Java",
       "explicacao": "Métodos são funções dentro de classes. Precisam de: modificador (public/private), tipo de retorno, nome e parâmetros. Use static para chamar sem instanciar.",
-      "exemplo": "public static int somar(int a, int b) {\n    return a + b;\n}\n\npublic static void main(String[] args) {\n    System.out.println(somar(3, 5));  // 8\n}",
+      "exemplo": "// Métodos em Java: tipo_retorno nome(parâmetros)\n// public  → acessível de qualquer lugar\n// static  → pode ser chamado sem criar objeto\n// int     → tipo do valor retornado\n// void    → não retorna nada\n\n// Método que retorna um int\npublic static int somar(int a, int b) {\n    return a + b;\n}\n\n// Método que retorna boolean\npublic static boolean ehPar(int n) {\n    return n % 2 == 0;  // retorna true ou false diretamente\n}\n\n// Método void (só executa, não retorna)\npublic static void saudar(String nome) {\n    System.out.println(\"Olá, \" + nome + \"!\");\n}\n\n// Chamando os métodos:\nSystem.out.println(somar(3, 5));   // 8\nSystem.out.println(ehPar(4));      // true\nsaudar(\"Ana\");                      // Olá, Ana!",
       "desafios": [
         {
           "pergunta": "Crie o método public static int quadrado(int n) que retorna n ao quadrado. Chame com quadrado(4).",
@@ -1804,7 +1804,7 @@
     {
       "titulo": "Arrays e ArrayList",
       "explicacao": "Arrays têm tamanho fixo. ArrayList é dinâmico e faz parte das Collections. Use .length para arrays e .size() para ArrayList.",
-      "exemplo": "// Array fixo\nint[] notas = {8, 7, 9, 6, 10};\nSystem.out.println(notas.length);  // 5\n\n// ArrayList dinâmico\nArrayList<String> lista = new ArrayList<>();\nlista.add(\"Java\");\nSystem.out.println(lista.size());  // 1",
+      "exemplo": "// Array: tamanho FIXO, tipo único\n// tipo[] nome = {valores};\nint[] notas = {8, 7, 9, 6, 10};\nSystem.out.println(notas[0]);      // 8 (primeiro)\nSystem.out.println(notas.length);  // 5 (tamanho)\n\n// ArrayList: tamanho DINÂMICO (cresce e diminui)\n// Precisa importar: import java.util.ArrayList;\nArrayList<String> lista = new ArrayList<>();\nlista.add(\"Java\");      // adiciona no final\nlista.add(\"Python\");\nlista.remove(\"Java\");   // remove por valor\nSystem.out.println(lista.size());  // tamanho\n\n// Arrays usam .length (propriedade)\n// ArrayList usa .size() (método)\n// Percorrendo com for-each:\nfor (String item : lista) {\n    System.out.println(item);\n}",
       "desafios": [
         {
           "pergunta": "Declare int[] notas={8,7,9,6,10}. Use for-each para calcular e exibir a média.",
@@ -1848,7 +1848,7 @@
     {
       "titulo": "Orientação a Objetos",
       "explicacao": "Java é orientado a objetos. Classes definem atributos (dados) e métodos (comportamentos). Objetos são instâncias criadas com new.",
-      "exemplo": "class Pessoa {\n    String nome;\n    int idade;\n    \n    Pessoa(String nome, int idade) {\n        this.nome = nome;\n        this.idade = idade;\n    }\n    \n    void apresentar() {\n        System.out.println(\"Olá, sou \" + nome);\n    }\n}\n\nPessoa p = new Pessoa(\"Ana\", 25);\np.apresentar();",
+      "exemplo": "// CLASSE define atributos (dados) e métodos (comportamentos)\n// OBJETO é uma instância da classe (criado com new)\n\nclass Carro {\n    // Atributos (variáveis da classe)\n    String marca;\n    int ano;\n    \n    // CONSTRUTOR: mesmo nome da classe, sem tipo de retorno\n    // this.atributo = distingue atributo do parâmetro\n    Carro(String marca, int ano) {\n        this.marca = marca;  // this = este objeto\n        this.ano = ano;\n    }\n    \n    // Método da classe\n    void descricao() {\n        System.out.println(marca + \" (\" + ano + \")\");\n    }\n}\n\n// Criando objetos com new:\nCarro c1 = new Carro(\"Toyota\", 2023);\nCarro c2 = new Carro(\"Honda\", 2020);\n\nc1.descricao();  // Toyota (2023)\nc2.descricao();  // Honda (2020)",
       "desafios": [
         {
           "pergunta": "Crie a classe Carro com os atributos String marca e int ano. Crie um objeto com new, defina os valores e exiba.",
@@ -1896,7 +1896,7 @@
     {
       "titulo": "Hello World em PHP",
       "explicacao": "PHP é uma linguagem para web. Todo código PHP fica entre <?php e ?>. echo exibe conteúdo na página. Use <br> para quebrar linha no HTML.",
-      "exemplo": "<?php\necho \"Olá, mundo!\";\necho \"<br>\";\necho \"PHP é ótimo para web!\";\n?>",
+      "exemplo": "<?php\n// PHP: código fica entre <?php e ?>\n// echo exibe conteúdo na página web\n// Cada instrução termina com ; (ponto e vírgula)\n\necho \"Olá, mundo!\";\necho \"<br>\";            // <br> = quebra de linha em HTML\necho \"PHP para web!\";\necho \"<br>\";\n\n// Exibindo números e cálculos\necho 10 + 5;            // 15\necho \"<br>\";\necho 100 / 4;           // 25\n\n// print_r() exibe arrays e objetos (echo não consegue)\nprint_r([1, 2, 3]);\n?>",
       "desafios": [
         {
           "pergunta": "Escreva o código PHP completo (com <?php e ?>) para exibir: Hello, World!",
@@ -1976,7 +1976,7 @@
     {
       "titulo": "Variáveis em PHP",
       "explicacao": "Variáveis em PHP sempre começam com $. Não precisam de declaração de tipo — PHP é dinamicamente tipado.",
-      "exemplo": "<?php\n$nome = \"Ana\";\n$idade = 25;\n$preco = 9.99;\n$ativo = true;\necho $nome;\necho \"<br>\";\necho \"Ela tem $idade anos\";\n?>",
+      "exemplo": "<?php\n// Variáveis PHP SEMPRE começam com $\n// Não precisa declarar tipo (tipagem dinâmica)\n\n$nome = \"Ana\";          // string (texto)\n$idade = 25;            // integer (inteiro)\n$altura = 1.70;         // float (decimal)\n$ativo = true;          // boolean\n\n// Exibindo variáveis\necho $nome . \"<br>\";    // . (ponto) concatena em PHP\necho $idade . \"<br>\";\n\n// Aspas DUPLAS interpolam variáveis automaticamente\necho \"Olá, $nome!<br>\";         // Olá, Ana!\necho \"Ela tem $idade anos<br>\"; // Ela tem 25 anos\n\n// Aspas SIMPLES NÃO interpolam (texto literal)\necho 'Olá, $nome!<br>';  // Olá, $nome! (literal!)\n\n// Concatenação com . (ponto) - diferente do + do JS!\necho \"Nome: \" . $nome . \"<br>\";\n?>",
       "desafios": [
         {
           "pergunta": "Crie a variável $nome='João' e exiba: Olá, João! (use aspas duplas para interpolação da variável)",
@@ -2038,7 +2038,7 @@
     {
       "titulo": "Strings em PHP",
       "explicacao": "PHP tem funções poderosas para strings: strlen() conta caracteres, strtoupper() maiúsculas, str_replace() substitui texto, explode() divide em array.",
-      "exemplo": "<?php\n$texto = \"Hello, World!\";\necho strlen($texto) . \"<br>\";       // 13\necho strtoupper($texto) . \"<br>\";   // HELLO, WORLD!\necho str_replace(\"World\", \"PHP\", $texto);\n?>",
+      "exemplo": "<?php\n$texto = \"Olá, Mundo!\";\n\n// strlen() → conta caracteres\necho strlen($texto) . \"<br>\";          // 12\n\n// strtoupper() → tudo maiúsculo\necho strtoupper($texto) . \"<br>\";      // OLÁ, MUNDO!\n\n// strtolower() → tudo minúsculo\necho strtolower($texto) . \"<br>\";      // olá, mundo!\n\n// str_replace(busca, substituto, onde)\necho str_replace(\"Mundo\", \"PHP\", $texto) . \"<br>\"; // Olá, PHP!\n\n// explode(delimitador, string) → divide em array\n$frutas = explode(\",\", \"maçã,banana,uva\");\nprint_r($frutas);  // Array([0]=>maçã [1]=>banana [2]=>uva)\n\n// implode(delimitador, array) → junta array em string\necho implode(\" | \", $frutas);  // maçã | banana | uva\n\n// number_format(num, casas, sep_decimal, sep_milhar)\necho number_format(1234.5, 2, ',', '.');  // 1.234,50\n?>",
       "desafios": [
         {
           "pergunta": "Crie $texto='Programação em PHP'. Use strlen() para exibir quantos caracteres ela tem.",
@@ -2117,7 +2117,7 @@
     {
       "titulo": "Condicionais em PHP",
       "explicacao": "if, elseif e else em PHP: condições entre parênteses (), blocos entre chaves {}. PHP aceita tanto elseif quanto else if.",
-      "exemplo": "<?php\n$nota = 7;\nif ($nota >= 9) {\n    echo \"Excelente\";\n} elseif ($nota >= 6) {\n    echo \"Aprovado\";\n} else {\n    echo \"Reprovado\";\n}\n?>",
+      "exemplo": "<?php\n$nota = 7;\n\n// if em PHP: condição entre () e bloco entre {}\nif ($nota >= 9) {\n    echo \"Excelente!\";\n} elseif ($nota >= 6) {  // elseif (uma palavra) é o padrão PHP\n    echo \"Aprovado!\";\n} else {\n    echo \"Reprovado\";\n}\necho \"<br>\";\n\n// switch: para testar um valor contra opções fixas\n$mes = 3;\nswitch ($mes) {\n    case 1: echo \"Janeiro\"; break;\n    case 2: echo \"Fevereiro\"; break;\n    case 3: echo \"Março\"; break;  // executa este\n    default: echo \"Outro\";\n}\n// LEMBRE: sem break, executa todos abaixo!\n\n// Operador ternário: condição ? se_sim : se_não\n$status = ($nota >= 6) ? \"aprovado\" : \"reprovado\";\necho $status;\n\n// Operador null coalescing ?? (PHP 7+)\n$valor = $_GET['nome'] ?? 'padrão';  // se não existir, usa 'padrão'\n?>",
       "desafios": [
         {
           "pergunta": "Declare $idade=20. Se >= 18 exiba 'Maior de idade', senão exiba 'Menor de idade'.",
@@ -2184,7 +2184,7 @@
     {
       "titulo": "Loops em PHP",
       "explicacao": "PHP tem for, while, do-while e foreach. O foreach é ideal para arrays — mais simples e legível que o for com índice.",
-      "exemplo": "<?php\n// for\nfor ($i = 1; $i <= 3; $i++) {\n    echo $i . \"<br>\";\n}\n\n// foreach em array\n$frutas = ['maçã', 'banana', 'uva'];\nforeach ($frutas as $fruta) {\n    echo $fruta . \"<br>\";\n}\n?>",
+      "exemplo": "<?php\n// FOR: for($início; condição; incremento)\nfor ($i = 1; $i <= 5; $i++) {\n    echo $i . \" \";  // 1 2 3 4 5\n}\necho \"<br>\";\n\n// FOREACH: ideal para arrays\n$frutas = ['maçã', 'banana', 'uva'];\n\n// Percorrer valores apenas\nforeach ($frutas as $fruta) {\n    echo $fruta . \"<br>\";\n}\n\n// Percorrer chave E valor (arrays associativos)\n$pessoa = ['nome' => 'Ana', 'idade' => 25];\nforeach ($pessoa as $chave => $valor) {\n    echo \"$chave: $valor<br>\";\n}\n\n// WHILE: repete enquanto condição for true\n$n = 1;\nwhile ($n <= 3) {\n    echo \"while: $n<br>\";\n    $n++;  // ESSENCIAL! Sem isso = loop infinito!\n}\n?>",
       "desafios": [
         {
           "pergunta": "Use for para exibir a tabuada do 5: 5 x 1 = 5, 5 x 2 = 10, ... até 5 x 10 = 50.",
@@ -2265,7 +2265,7 @@
     {
       "titulo": "Funções em PHP",
       "explicacao": "Funções em PHP usam a palavra function. Parâmetros e variáveis sempre levam $. Suportam valores padrão nos parâmetros.",
-      "exemplo": "<?php\nfunction calcularDesconto($preco, $desconto = 10) {\n    return $preco - ($preco * $desconto / 100);\n}\n\necho calcularDesconto(100) . \"<br>\";      // 90\necho calcularDesconto(200, 20) . \"<br>\";  // 160\n?>",
+      "exemplo": "<?php\n// Funções: reutilizam código, organizam o programa\n// function nome($param1, $param2) { ... }\n\nfunction somar($a, $b) {\n    return $a + $b;  // devolve o resultado\n}\n\n// Parâmetro com valor PADRÃO (opcional na chamada)\nfunction saudar($nome, $msg = 'Olá') {\n    return \"$msg, $nome!\";\n}\n\necho somar(3, 7) . \"<br>\";           // 10\necho saudar('Ana') . \"<br>\";         // Olá, Ana!\necho saudar('João', 'Oi') . \"<br>\"; // Oi, João!\n\n// Funções nativas úteis do PHP para arrays:\n$nums = [3, 1, 4, 1, 5, 9, 2, 6];\necho array_sum($nums) . \"<br>\";    // 31 (soma)\necho count($nums) . \"<br>\";        // 8 (quantidade)\necho max($nums) . \"<br>\";          // 9 (maior)\necho min($nums) . \"<br>\";          // 1 (menor)\n?>",
       "desafios": [
         {
           "pergunta": "Crie a função somar($a, $b) que retorna a soma dos dois valores. Chame com somar(3, 7) e exiba o resultado.",
@@ -2331,7 +2331,7 @@
     {
       "titulo": "Arrays em PHP",
       "explicacao": "PHP tem arrays indexados (como listas) e associativos (chave=>valor). São muito flexíveis e têm muitas funções nativas.",
-      "exemplo": "<?php\n// Indexado\n$frutas = ['maçã', 'banana', 'uva'];\necho $frutas[0] . \"<br>\";\n\n// Associativo\n$pessoa = ['nome' => 'Ana', 'idade' => 25];\necho $pessoa['nome'];\n\n// Funções úteis\necho max([3,1,4,1,5,9]) . \"<br>\";  // 9\necho count([1,2,3]) . \"<br>\";       // 3\n?>",
+      "exemplo": "<?php\n// Arrays INDEXADOS: índices numéricos (0, 1, 2...)\n$frutas = ['maçã', 'banana', 'uva'];\necho $frutas[0] . \"<br>\";  // maçã (primeiro)\necho $frutas[2] . \"<br>\";  // uva  (último)\necho count($frutas) . \"<br>\"; // 3 (quantidade)\n\n// Arrays ASSOCIATIVOS: chaves personalizadas\n$pessoa = [\n    'nome'   => 'Ana',\n    'idade'  => 25,\n    'cidade' => 'Salvador'\n];\necho $pessoa['nome'] . \"<br>\";  // Ana\n\n// Manipulando arrays\narray_push($frutas, 'kiwi');     // adiciona no final\n// ou: $frutas[] = 'kiwi';\n\nsort($frutas);                    // ordena crescente\nrsort($frutas);                   // ordena decrescente\n\n// Filtrar com array_filter\n$pares = array_filter([1,2,3,4,5,6], function($n) {\n    return $n % 2 == 0;\n});\nprint_r($pares);  // [2, 4, 6]\n?>",
       "desafios": [
         {
           "pergunta": "Crie $notas=[8,7,9,6,10]. Use max() para exibir a maior nota e min() para exibir a menor.",
