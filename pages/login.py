@@ -2,7 +2,7 @@ import streamlit as st
 
 st.set_page_config(page_title="CodeQuest - Login", page_icon="🔐", layout="centered")
 
-from backend.session import init_session
+from backend.session import init_session, verificar_admin
 from backend.crud import login_usuario, buscar_perfil
 
 init_session(st)
@@ -34,19 +34,27 @@ if entrar:
         elif erro:
             st.error(f"❌ {erro}")
         else:
+            is_admin = verificar_admin(email)
             st.session_state["logado"] = True
             st.session_state["user_id"] = user.id
             st.session_state["usuario_email"] = email
+            st.session_state["is_admin"] = is_admin
             nome = (user.user_metadata or {}).get("nome", email.split("@")[0])
             st.session_state["usuario"] = nome
             st.session_state["xp"] = 0
             st.session_state["nivel"] = 1
+            st.session_state["vidas"] = 999 if is_admin else 3
             perfil = buscar_perfil(user.id)
             if perfil:
                 st.session_state["xp"] = perfil.get("xp", 0)
                 st.session_state["nivel"] = perfil.get("nivel", 1)
                 st.session_state["usuario"] = perfil.get("nome", nome)
-            st.success(f"Bem-vindo, {st.session_state['usuario']}! 🚀")
+                if not is_admin:
+                    st.session_state["vidas"] = perfil.get("vidas", 3)
+            if is_admin:
+                st.success(f"Bem-vindo, Admin {st.session_state['usuario']}! 👑")
+            else:
+                st.success(f"Bem-vindo, {st.session_state['usuario']}! 🚀")
             st.switch_page("pages/dashboard.py")
 
 if criar:
