@@ -3,11 +3,36 @@ import streamlit as st
 st.set_page_config(page_title="CodeQuest — Ranking", page_icon="🏆", layout="wide",
                    initial_sidebar_state="collapsed")
 
-from backend.session import init_session
+from backend.session import init_session, verificar_admin
+from backend.crud import buscar_perfil
 from backend.supabase_client import supabase
 from backend.theme import CSS
 
 init_session(st)
+
+# ── Restaura sessão dos query_params se necessário ────────────────────────────
+if not st.session_state.get("logado"):
+    params = st.query_params
+    if "uid" in params:
+        try:
+            uid   = params["uid"]
+            email = params.get("em", "")
+            perfil_r = buscar_perfil(uid)
+            if perfil_r:
+                is_admin_r = verificar_admin(email)
+                st.session_state.update({
+                    "logado":        True,
+                    "user_id":       uid,
+                    "usuario_email": email,
+                    "is_admin":      is_admin_r,
+                    "usuario":       perfil_r.get("nome", email.split("@")[0]),
+                    "xp":            perfil_r.get("xp", 0),
+                    "nivel":         perfil_r.get("nivel", 1),
+                    "vidas":         999 if is_admin_r else perfil_r.get("vidas", 3),
+                })
+        except Exception:
+            pass
+
 if not st.session_state.get("logado"):
     st.switch_page("pages/login.py")
 
@@ -49,6 +74,12 @@ st.markdown("""
     padding:2px 8px; border-radius:20px;
     font-size:0.68rem; font-weight:700; margin-left:8px;
 }
+
+@media (max-width: 768px) {
+    .navbar { padding:10px 16px; }
+    .rank-row { padding:10px 14px; }
+    .rank-nv { display:none; }
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -61,31 +92,32 @@ if st.button("← Voltar ao Menu"):
 st.markdown("<h2 style='font-size:1.7rem;font-weight:800;margin:16px 0 4px;color:#f4f3ee;'>🏆 Ranking Global</h2>", unsafe_allow_html=True)
 st.markdown("<p style='color:#b0b3c1;margin-bottom:24px;font-size:0.88rem;'>Os maiores conquistadores do CodeQuest</p>", unsafe_allow_html=True)
 
-res       = supabase.table("users").select("nome,xp,nivel").order("xp",desc=True).limit(50).execute()
+res       = supabase.table("users").select("nome,xp,nivel").order("xp", desc=True).limit(50).execute()
 jogadores = res.data or []
 usuario   = st.session_state["usuario"]
-medalhas  = {1:"🥇",2:"🥈",3:"🥉"}
+medalhas  = {1:"🥇", 2:"🥈", 3:"🥉"}
 
 if not jogadores:
     st.info("Nenhum jogador ainda. Seja o primeiro! 🚀")
     st.stop()
 
-# Pódio top 3
+# ── Pódio top 3 ───────────────────────────────────────────────────────────────
 if len(jogadores) >= 3:
     c2, c1, c3 = st.columns(3)
     def pod_card(j, cls, medal):
         return f'<div class="podium {cls}"><div class="pod-medal">{medal}</div><div class="pod-name">{j["nome"]}</div><div class="pod-xp">{j["xp"]} XP</div><div class="pod-nivel">Nível {j["nivel"]}</div></div>'
-    with c1: st.markdown(pod_card(jogadores[0],"pod-1","🥇"), unsafe_allow_html=True)
-    with c2: st.markdown(pod_card(jogadores[1],"pod-2","🥈"), unsafe_allow_html=True)
-    with c3: st.markdown(pod_card(jogadores[2],"pod-3","🥉"), unsafe_allow_html=True)
+    with c1: st.markdown(pod_card(jogadores[0], "pod-1", "🥇"), unsafe_allow_html=True)
+    with c2: st.markdown(pod_card(jogadores[1], "pod-2", "🥈"), unsafe_allow_html=True)
+    with c3: st.markdown(pod_card(jogadores[2], "pod-3", "🥉"), unsafe_allow_html=True)
     st.markdown("<div style='height:20px'></div>", unsafe_allow_html=True)
 
 st.markdown("<div style='font-size:0.72rem;color:#7a7d8e;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;'>Classificação completa</div>", unsafe_allow_html=True)
 
+# ── Lista completa ────────────────────────────────────────────────────────────
 sua_pos = None
 for i, j in enumerate(jogadores):
-    pos    = i + 1
-    eh_vc  = j["nome"] == usuario
+    pos   = i + 1
+    eh_vc = j["nome"] == usuario
     if eh_vc:
         sua_pos = pos
     medal  = medalhas.get(pos, f"#{pos:02d}")
