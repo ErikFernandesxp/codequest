@@ -9,29 +9,28 @@
 
 CORES = {
     # Fundos
-    "bg":           "#111318",   # Fundo principal da página
-    "surface":      "#1c1f27",   # Cards e painéis
-    "surface2":     "#252833",   # Inputs e elementos secundários
+    "bg":           "#0f1117",   # Fundo principal
+    "surface":      "#1a1d26",   # Cards
+    "surface2":     "#232734",   # Elementos secundários
 
     # Bordas
-    "border":       "#2e3240",   # Borda padrão
-    "border2":      "#3a3f52",   # Borda de foco
+    "border":       "#2f3545",
+    "border2":      "#facc15",
 
     # Textos
-    "text":         "#f4f3ee",   # Texto principal
-    "text2":        "#b0b3c1",   # Texto secundário
-    "text3":        "#7a7d8e",   # Texto apagado/hint
+    "text":         "#f8fafc",
+    "text2":        "#cbd5e1",
+    "text3":        "#94a3b8",
 
-    # Cores de destaque
-    "accent":       "#7c6af7",   # Roxo principal (botões, links)
-    "accent2":      "#a78bfa",   # Roxo claro (hover, gradientes)
+    # Destaque (AMARELO/DOURADO)
+    "accent":       "#facc15",   # Amarelo principal
+    "accent2":      "#f59e0b",   # Dourado/laranja
 
-    # Cores de feedback
-    "green":        "#3ddc84",   # Resposta correta
-    "red":          "#f4645f",   # Resposta incorreta / erro
-    "yellow":       "#fbbf24",   # Streak / avisos
+    # Feedback
+    "green":        "#22c55e",
+    "red":          "#ef4444",
+    "yellow":       "#facc15",
 }
-
 # ── EXEMPLO: TEMA CLARO ──────────────────────────────────────────
 # Para ativar tema claro, descomente e substitua o CORES acima:
 #
