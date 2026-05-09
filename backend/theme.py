@@ -2,7 +2,6 @@
 CSS = """
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap');
-
 :root {
     --bg:        #111318;
     --surface:   #1c1f27;
@@ -18,13 +17,11 @@ CSS = """
     --red:       #f4645f;
     --yellow:    #fbbf24;
 }
-
 html, body, [class*="css"] {
     font-family: 'Syne', sans-serif !important;
     background-color: var(--bg) !important;
     color: var(--text) !important;
 }
-
 .stApp { background: var(--bg) !important; }
 
 /* Esconde sidebar e nav lateral do Streamlit */
@@ -34,7 +31,7 @@ html, body, [class*="css"] {
 footer                           { display: none !important; }
 header                           { display: none !important; }
 
-/* Inputs */
+/* ── Inputs — placeholder visível no mobile ── */
 div[data-testid="stTextInput"] input,
 div[data-testid="stTextArea"]  textarea {
     background: var(--surface2) !important;
@@ -44,11 +41,19 @@ div[data-testid="stTextArea"]  textarea {
     font-family: 'DM Mono', monospace !important;
     font-size: 0.9rem !important;
     caret-color: var(--accent) !important;
+    -webkit-text-fill-color: var(--text) !important;
+}
+div[data-testid="stTextInput"] input::placeholder,
+div[data-testid="stTextArea"]  textarea::placeholder {
+    color: var(--text3) !important;
+    opacity: 1 !important;
+    -webkit-text-fill-color: var(--text3) !important;
 }
 div[data-testid="stTextInput"] input:focus,
 div[data-testid="stTextArea"]  textarea:focus {
     border-color: var(--accent) !important;
     box-shadow: 0 0 0 3px rgba(124,106,247,0.18) !important;
+    outline: none !important;
 }
 div[data-testid="stTextInput"] label,
 div[data-testid="stTextArea"]  label {
@@ -58,7 +63,23 @@ div[data-testid="stTextArea"]  label {
     letter-spacing: 0.3px !important;
 }
 
-/* Botões */
+/* ── Fix mobile — inputs não ficam brancos no iOS/Android ── */
+input, textarea, select {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    background-color: var(--surface2) !important;
+    color: var(--text) !important;
+    -webkit-text-fill-color: var(--text) !important;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px var(--surface2) inset !important;
+    -webkit-text-fill-color: var(--text) !important;
+    caret-color: var(--text) !important;
+}
+
+/* ── Botões ── */
 .stButton button {
     border-radius: 10px !important;
     font-family: 'Syne', sans-serif !important;
@@ -86,7 +107,7 @@ div[data-testid="stTextArea"]  label {
     color: var(--text) !important;
 }
 
-/* Expander */
+/* ── Expander ── */
 details {
     background: var(--surface) !important;
     border: 1.5px solid var(--border) !important;
@@ -94,13 +115,13 @@ details {
 }
 details summary { color: var(--text2) !important; font-weight: 600 !important; }
 
-/* Alertas */
+/* ── Alertas ── */
 div[data-testid="stAlert"] {
     border-radius: 10px !important;
     font-weight: 500 !important;
 }
 
-/* Code blocks */
+/* ── Code blocks ── */
 pre, code {
     font-family: 'DM Mono', monospace !important;
     background: var(--surface2) !important;
@@ -108,6 +129,18 @@ pre, code {
     border-radius: 8px !important;
     color: var(--text) !important;
     font-size: 0.85rem !important;
+}
+
+/* ── Mobile responsivo ── */
+@media (max-width: 768px) {
+    .stButton button {
+        font-size: 0.85rem !important;
+        padding: 10px 14px !important;
+    }
+    div[data-testid="stTextInput"] input,
+    div[data-testid="stTextArea"]  textarea {
+        font-size: 1rem !important;
+    }
 }
 </style>
 """
