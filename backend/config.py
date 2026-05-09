@@ -9,7 +9,7 @@
 
 CORES = {
     # Fundos
-    "bg":           "#FFFFFF",   # Fundo principal da página
+    "bg":           "#111318",   # Fundo principal da página
     "surface":      "#1c1f27",   # Cards e painéis
     "surface2":     "#252833",   # Inputs e elementos secundários
 
