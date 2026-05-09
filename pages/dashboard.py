@@ -4,13 +4,37 @@ st.set_page_config(page_title="CodeQuest", page_icon="🎮", layout="wide",
                    initial_sidebar_state="collapsed")
 
 import json, os
-from backend.session import init_session
+from backend.session import init_session, verificar_admin
 from backend.crud import (buscar_progresso, logout_usuario, atualizar_streak,
                            calcular_vidas_regeneradas, atualizar_vidas,
                            buscar_perfil, verificar_e_conceder_badges)
 from backend.theme import CSS
 
 init_session(st)
+
+# ── Restaura sessão dos query_params se necessário ────────────────────────────
+if not st.session_state.get("logado"):
+    params = st.query_params
+    if "uid" in params:
+        try:
+            uid   = params["uid"]
+            email = params.get("em", "")
+            perfil_r = buscar_perfil(uid)
+            if perfil_r:
+                is_admin_r = verificar_admin(email)
+                st.session_state.update({
+                    "logado":        True,
+                    "user_id":       uid,
+                    "usuario_email": email,
+                    "is_admin":      is_admin_r,
+                    "usuario":       perfil_r.get("nome", email.split("@")[0]),
+                    "xp":            perfil_r.get("xp", 0),
+                    "nivel":         perfil_r.get("nivel", 1),
+                    "vidas":         999 if is_admin_r else perfil_r.get("vidas", 3),
+                })
+        except Exception:
+            pass
+
 if not st.session_state.get("logado"):
     st.switch_page("pages/login.py")
 
@@ -26,7 +50,7 @@ st.markdown("""
 }
 .nav-logo { font-size:1.35rem; font-weight:800; color:#f4f3ee; }
 .nav-logo span { color:#7c6af7; }
-.nav-right { display:flex; align-items:center; gap:10px; }
+.nav-right { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
 .nav-chip {
     background:#252833; border:1px solid #2e3240;
     padding:5px 14px; border-radius:20px;
@@ -44,15 +68,14 @@ st.markdown("""
     display:flex; align-items:center; justify-content:center;
     font-weight:800; font-size:0.85rem; color:#fff;
 }
-
 /* ── Hero card ── */
 .hero {
     background:#1c1f27; border:1.5px solid #2e3240;
     border-radius:18px; padding:28px 32px;
     display:flex; align-items:center; justify-content:space-between;
-    margin-bottom:24px; gap:24px;
+    margin-bottom:24px; gap:24px; flex-wrap:wrap;
 }
-.hero-left { flex:1; }
+.hero-left { flex:1; min-width:200px; }
 .hero-label {
     font-size:0.72rem; color:#7c6af7; font-weight:700;
     text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;
@@ -66,7 +89,7 @@ st.markdown("""
     background:linear-gradient(90deg,#7c6af7,#a78bfa);
     height:8px; border-radius:6px; transition:width 0.5s;
 }
-.hero-stats { display:flex; gap:14px; }
+.hero-stats { display:flex; gap:14px; flex-wrap:wrap; }
 .stat-box {
     background:#111318; border:1.5px solid #2e3240;
     border-radius:14px; padding:14px 22px; text-align:center; min-width:78px;
@@ -74,19 +97,18 @@ st.markdown("""
 .stat-val { font-size:1.5rem; font-weight:800; color:#f4f3ee; }
 .stat-lbl { font-size:0.68rem; color:#7a7d8e; text-transform:uppercase;
             letter-spacing:0.5px; margin-top:2px; }
-
 /* ── Section titles ── */
 .sec-title {
     font-size:0.72rem; color:#7a7d8e; font-weight:700;
     text-transform:uppercase; letter-spacing:1.5px;
     margin:28px 0 12px;
 }
-
 /* ── Language cards ── */
 .lang-card {
     background:#1c1f27; border:1.5px solid #2e3240;
     border-radius:16px; padding:22px 18px;
     transition:border-color 0.2s, transform 0.2s;
+    height:100%;
 }
 .lang-card:hover { border-color:#7c6af7; transform:translateY(-2px); }
 .lang-icon { font-size:2.4rem; margin-bottom:10px; }
@@ -97,7 +119,6 @@ st.markdown("""
     background:linear-gradient(90deg,#7c6af7,#a78bfa);
     height:5px; border-radius:4px;
 }
-
 /* ── Badge chips ── */
 .badge-chip {
     display:inline-flex; align-items:center; gap:6px;
@@ -106,6 +127,15 @@ st.markdown("""
     font-size:0.82rem; color:#f4f3ee; font-weight:500;
 }
 .empty-state { color:#7a7d8e; font-size:0.88rem; }
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+    .navbar { padding:10px 16px; }
+    .hero { padding:18px 16px; }
+    .hero-name { font-size:1.4rem; }
+    .stat-box { padding:10px 14px; min-width:60px; }
+    .stat-val { font-size:1.1rem; }
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -148,7 +178,8 @@ badges_config = badges_json()
 progresso     = buscar_progresso(user_id)
 concluidas    = {}
 for p in progresso:
-    concluidas[p["linguagem"]] = concluidas.get(p["linguagem"],0) + 1
+    if p.get("concluido", False):
+        concluidas[p["linguagem"]] = concluidas.get(p["linguagem"],0) + 1
 
 total_c = sum(concluidas.values())
 novas, _ = verificar_e_conceder_badges(user_id, perfil or {}, total_c, fases_por_lang=concluidas)
@@ -157,11 +188,12 @@ for b in novas:
     st.toast(f"🏅 {cfg.get('emoji','')} {cfg.get('nome','')}", icon="🎉")
 
 # ── Navbar ────────────────────────────────────────────────────────────────────
+admin_chip = '<div class="admin-chip">👑 Admin</div>' if is_admin else ''
 st.markdown(f"""
 <div class="navbar">
   <div class="nav-logo">Code<span>Quest</span></div>
   <div class="nav-right">
-    {'<div class="admin-chip">👑 Admin</div>' if is_admin else ''}
+    {admin_chip}
     <div class="nav-chip">⚡ {xp} XP</div>
     <div class="nav-chip">🏆 Nv.{nivel}</div>
     <div class="nav-avatar">{inicial}</div>
@@ -171,12 +203,14 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # ── Hero ──────────────────────────────────────────────────────────────────────
+streak_html = f'<div class="hero-streak">🔥 {streak} dias seguidos — continue assim!</div>' if streak >= 2 else ''
+modo_label  = '👑 Modo Admin' if is_admin else 'Bem-vindo de volta'
 st.markdown(f"""
 <div class="hero">
   <div class="hero-left">
-    <div class="hero-label">{'👑 Modo Admin' if is_admin else 'Bem-vindo de volta'}</div>
+    <div class="hero-label">{modo_label}</div>
     <div class="hero-name">{usuario} 👋</div>
-    {'<div class="hero-streak">🔥 '+str(streak)+' dias seguidos — continue assim!</div>' if streak >= 2 else ''}
+    {streak_html}
     <div class="xp-wrap">
       <div class="xp-label">Nível {nivel} → {nivel+1} &nbsp;·&nbsp; {xp_mod} / 50 XP</div>
       <div class="xp-bg"><div class="xp-fill" style="width:{min(xp_mod/50*100,100):.0f}%"></div></div>
@@ -202,6 +236,7 @@ with c2:
 with c3:
     if st.button("🚪  Sair", use_container_width=True):
         logout_usuario()
+        st.query_params.clear()
         for k in list(st.session_state.keys()):
             del st.session_state[k]
         st.switch_page("pages/login.py")
