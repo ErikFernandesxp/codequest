@@ -1,57 +1,48 @@
 import streamlit as st
+
+st.set_page_config(page_title="CodeQuest — Cadastro", page_icon="🎮",
+                   layout="centered", initial_sidebar_state="collapsed")
+
 import re
-
-st.set_page_config(page_title="CodeQuest", page_icon="🎮", layout="centered", initial_sidebar_state="collapsed")
-
 from backend.session import init_session
 from backend.crud import registrar_usuario
+from backend.theme import CSS
 
 init_session(st)
 
 if st.session_state.get("logado"):
     st.switch_page("pages/dashboard.py")
 
+st.markdown(CSS, unsafe_allow_html=True)
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&display=swap');
-html, body, [class*="css"] { font-family: 'Syne', sans-serif; }
-.stApp { background: #0f0f13; color: #f0efe8; }
-[data-testid="stSidebar"] { display: none !important; }
-[data-testid="collapsedControl"] { display: none !important; }
-div[data-testid="stTextInput"] input {
-    background: #0f0f13 !important; color: #f0efe8 !important;
-    border: 1px solid #2a2a35 !important; border-radius: 10px !important;
-    font-family: 'Syne', sans-serif !important;
-}
-div[data-testid="stTextInput"] input:focus { border-color: #7c6af7 !important; }
-div[data-testid="stTextInput"] label { color: #9b9ba8 !important; font-size: 0.8rem !important; }
-.stButton button {
-    border-radius: 12px !important; font-family: 'Syne', sans-serif !important;
-    font-weight: 700 !important;
-}
+.cq-logo { font-size:2rem; font-weight:800; letter-spacing:-1px;
+           text-align:center; color:#f4f3ee; }
+.cq-logo span { color:#7c6af7; }
+.cq-tagline { text-align:center; color:#b0b3c1; font-size:0.9rem;
+              margin:6px 0 28px; }
 </style>
 """, unsafe_allow_html=True)
 
-def email_valido(email):
-    return re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', email)
+st.markdown("""
+<div style="margin:48px 0 24px;">
+  <div class="cq-logo">Code<span>Quest</span></div>
+  <div class="cq-tagline">Crie sua conta gratuita</div>
+</div>
+""", unsafe_allow_html=True)
 
-col_c, col_m, col_c2 = st.columns([1, 2, 1])
-with col_m:
-    st.markdown("""
-    <div style='text-align:center;margin:40px 0 32px;'>
-        <div style='font-size:2rem;font-weight:800;letter-spacing:-1px;'>Code<span style="color:#7c6af7;">Quest</span></div>
-        <div style='color:#9b9ba8;font-size:0.9rem;margin-top:6px;'>Crie sua conta grátis</div>
-    </div>
-    """, unsafe_allow_html=True)
-
+_, col, _ = st.columns([1, 10, 1])
+with col:
     nome     = st.text_input("Nome completo", placeholder="Seu nome")
     email    = st.text_input("Email", placeholder="seu@email.com")
     senha    = st.text_input("Senha", type="password", placeholder="Mínimo 6 caracteres")
     confirma = st.text_input("Confirmar senha", type="password", placeholder="Repita a senha")
-
-    st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
+    st.markdown("<div style='height:4px'></div>", unsafe_allow_html=True)
     cadastrar = st.button("Criar conta →", use_container_width=True, type="primary")
     voltar    = st.button("← Já tenho conta", use_container_width=True)
+
+def email_valido(e):
+    return re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', e)
 
 if cadastrar:
     if not all([nome, email, senha, confirma]):
