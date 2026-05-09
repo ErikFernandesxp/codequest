@@ -4,7 +4,7 @@ st.set_page_config(page_title="CodeQuest", page_icon="🎯", layout="wide",
                    initial_sidebar_state="collapsed")
 
 import json, os, time
-from backend.session import init_session, calcular_nivel
+from backend.session import init_session, calcular_nivel, verificar_admin
 from backend.gemini_validator import validar_resposta
 from backend.crud import (salvar_progresso, atualizar_xp_nivel,
                            calcular_vidas_regeneradas, atualizar_vidas,
@@ -13,6 +13,30 @@ from backend.crud import (salvar_progresso, atualizar_xp_nivel,
 from backend.theme import CSS
 
 init_session(st)
+
+# ── Restaura sessão dos query_params se necessário ────────────────────────────
+if not st.session_state.get("logado"):
+    params = st.query_params
+    if "uid" in params:
+        try:
+            uid   = params["uid"]
+            email = params.get("em", "")
+            perfil_r = buscar_perfil(uid)
+            if perfil_r:
+                is_admin_r = verificar_admin(email)
+                st.session_state.update({
+                    "logado":        True,
+                    "user_id":       uid,
+                    "usuario_email": email,
+                    "is_admin":      is_admin_r,
+                    "usuario":       perfil_r.get("nome", email.split("@")[0]),
+                    "xp":            perfil_r.get("xp", 0),
+                    "nivel":         perfil_r.get("nivel", 1),
+                    "vidas":         999 if is_admin_r else perfil_r.get("vidas", 3),
+                })
+        except Exception:
+            pass
+
 if not st.session_state.get("logado"):
     st.switch_page("pages/login.py")
 
@@ -25,6 +49,7 @@ st.markdown("""
     padding:12px 24px; background:#1c1f27;
     border-bottom:1.5px solid #2e3240;
     margin-bottom:20px; border-radius:0 0 14px 14px;
+    flex-wrap:wrap; gap:8px;
 }
 .tb-logo { font-size:1.1rem; font-weight:800; color:#f4f3ee; }
 .tb-logo span { color:#7c6af7; }
@@ -34,7 +59,7 @@ st.markdown("""
     font-size:0.78rem; color:#b0b3c1;
     font-family:'DM Mono',monospace;
 }
-.tb-stats { display:flex; gap:10px; }
+.tb-stats { display:flex; gap:8px; flex-wrap:wrap; }
 .tb-pill {
     background:#252833; border:1px solid #2e3240;
     padding:5px 13px; border-radius:20px;
@@ -102,6 +127,15 @@ st.markdown("""
     font-size:0.7rem; color:#60a5fa; font-weight:700;
     margin-bottom:8px;
 }
+
+/* Mobile */
+@media (max-width: 768px) {
+    .topbar { padding:10px 14px; }
+    .tb-pill { font-size:0.72rem; padding:4px 10px; }
+    .fase-card { padding:14px 16px; }
+    .pergunta-card { padding:16px; }
+    .fase-titulo { font-size:1rem; }
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -145,7 +179,7 @@ total_fases = len(fases[ling])
 # ── Topbar ────────────────────────────────────────────────────────────────────
 st.markdown(f"""
 <div class="topbar">
-  <div style="display:flex;align-items:center;gap:14px;">
+  <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
     <div class="tb-logo">Code<span>Quest</span></div>
     <div class="tb-lang">{lang_icons.get(ling,'')} {ling.upper()} · Fase {fase_idx+1}/{total_fases}</div>
   </div>
@@ -291,7 +325,7 @@ if enviar:
                 keywords=desafio.get("keywords",[])
             )
 
-        ai_badge = '<div class="ai-badge">✨ Avaliado por IA</div>' if fonte=="gemini" else ""
+        ai_badge = '<div class="ai-badge">✨ Avaliado por IA</div>' if fonte == "gemini" else ""
 
         if correto:
             fb_txt = feedback if (feedback and feedback not in ["Correto!",""]) else "Solução perfeita! Continue assim."
@@ -305,7 +339,7 @@ if enviar:
             novo_xp    = xp + 10
             novo_nivel = calcular_nivel(novo_xp)
             subiu      = novo_nivel > nivel
-            st.session_state.update({"xp":novo_xp,"nivel":novo_nivel})
+            st.session_state.update({"xp": novo_xp, "nivel": novo_nivel})
             atualizar_xp_nivel(st.session_state["user_id"], novo_xp, novo_nivel)
             st.toast("🚀 +10 XP!")
 
@@ -335,8 +369,8 @@ if enviar:
                 st.session_state["vidas"] -= 1
                 atualizar_vidas(st.session_state["user_id"], st.session_state["vidas"])
 
-            vr = st.session_state["vidas"]
-            fb_txt = feedback if (feedback and fonte=="gemini") else ""
+            vr     = st.session_state["vidas"]
+            fb_txt = feedback if (feedback and fonte == "gemini") else ""
             vidas_info = f'<div style="color:#b0b3c1;font-size:0.8rem;margin-top:8px;">❤️ {vr} vidas restantes</div>' if not is_admin else ""
 
             st.markdown(f"""
