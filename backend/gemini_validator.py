@@ -5,7 +5,7 @@ import re
 
 GEMINI_API_URL = (
     "https://generativelanguage.googleapis.com/v1beta/models/"
-    "gemini-2.0-flash:generateContent"
+    "gemini-2.0-flash:generateContent
 )
 
 def _get_key() -> str:
