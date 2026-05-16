@@ -8,15 +8,12 @@ GEMINI_API_URL = (
     "gemini-2.0-flash:generateContent"
 )
 
+
 def _get_key() -> str:
     return os.getenv("GEMINI_KEY", "")
 
 
 def _validacao_rapida(resposta: str, linguagem: str) -> tuple[bool, str]:
-    """
-    Validação rápida de erros óbvios ANTES de chamar o Gemini.
-    Retorna (tem_erro: bool, mensagem: str)
-    """
     linhas = resposta.strip().split("\n")
 
     if linguagem == "python":
@@ -25,59 +22,87 @@ def _validacao_rapida(resposta: str, linguagem: str) -> tuple[bool, str]:
             if not linha or linha.startswith("#"):
                 continue
 
-            # Verifica atribuição de string sem aspas
-            # ex: nome = João (sem aspas em volta de João)
-            match = re.match(r'^(\w+)\s*=\s*([^"\'\d\[\{(True|False|None].+)$', linha)
+            match = re.match(r'^(\w+)\s*=\s*([^"\'\d\[\{(].+)$', linha)
             if match:
                 valor = match.group(2).strip()
-                # Se não começa com aspas, número, colchete, parêntese ou palavra reservada
-                if not re.match(r'^[\"\'\d\[\{\(]|^(True|False|None|int|float|str|list|dict)', valor):
-                    return True, "Atenção! Strings precisam estar entre aspas. Ex: nome = 'João' e não nome = João"
+                if not re.match(
+                    r'^(True|False|None|int|float|str|list|dict|\[|\{|\()',
+                    valor
+                ):
+                    return True, (
+                        "Strings precisam estar entre aspas. "
+                        "Ex: nome = 'João' e não nome = João"
+                    )
 
-            # Verifica print('variavel') quando deveria ser print(variavel)
-            # Detecta print com string que bate com nome de variável declarada
             match_print = re.match(r"^print\(['\"](\w+)['\"]\)$", linha)
             if match_print:
                 var_dentro = match_print.group(1)
-                # Verifica se essa palavra é uma variável declarada no código
                 if re.search(r'\b' + var_dentro + r'\s*=', resposta):
                     return True, (
-                        "Atenção! print('" + var_dentro + "') imprime a palavra '" + var_dentro + "' e não o valor da variável. "
-                        "Use print(" + var_dentro + ") sem aspas para exibir o valor da variável."
+                        f"print('{var_dentro}') imprime a palavra '{var_dentro}', "
+                        f"não o valor da variável. "
+                        f"Use print({var_dentro}) sem aspas."
                     )
 
     return False, ""
 
 
-def validar_com_gemini(pergunta: str, resposta_aluno: str, linguagem: str) -> tuple[bool, str]:
+def _fallback_restrito(resposta_aluno, gabarito, respostas_aceitas, keywords):
+    from backend.validator import validar_codigo
+
+    correto, feedback = validar_codigo(
+        resposta_aluno, gabarito,
+        respostas_aceitas=respostas_aceitas,
+        keywords=None  # sem keywords no fallback — mais seguro
+    )
+    if correto:
+        return True, feedback
+
+    if keywords:
+        tem_estrutura = (
+            ("(" in resposta_aluno and ")" in resposta_aluno)
+            or "=" in resposta_aluno
+        )
+        if tem_estrutura:
+            correto, feedback = validar_codigo(
+                resposta_aluno, gabarito,
+                respostas_aceitas=respostas_aceitas,
+                keywords=keywords
+            )
+            if correto:
+                return True, feedback
+
+    return False, "Verifique a sintaxe e tente novamente."
+
+
+def validar_com_gemini(pergunta, resposta_aluno, linguagem):
     key = _get_key()
     if not key:
         return None, "sem_key"
 
     prompt = (
-        "Você é um professor rigoroso de programação avaliando a resposta de um aluno iniciante.\n\n"
-        "Linguagem: " + linguagem.upper() + "\n"
-        "Pergunta do exercício: " + pergunta + "\n"
-        "Resposta do aluno:\n" + resposta_aluno + "\n\n"
-        "REGRAS DE AVALIAÇÃO:\n\n"
+        "Você é um professor rigoroso de programação avaliando um aluno iniciante.\n\n"
+        f"Linguagem: {linguagem.upper()}\n"
+        f"Pergunta: {pergunta}\n"
+        f"Resposta do aluno:\n{resposta_aluno}\n\n"
         "CONSIDERE CORRETO apenas se:\n"
-        "- O código funcionaria sem erros se executado agora\n"
-        "- A lógica resolve exatamente o que foi pedido\n"
-        "- A sintaxe da linguagem está 100% correta\n"
-        "- Strings estão entre aspas (simples ou duplas)\n"
-        "- Variáveis são usadas corretamente (sem aspas ao imprimir)\n\n"
+        "- Código executaria sem erros\n"
+        "- Lógica resolve exatamente o pedido\n"
+        "- Sintaxe 100% correta\n"
+        "- Strings entre aspas\n"
+        "- Variáveis usadas corretamente\n\n"
         "CONSIDERE INCORRETO se:\n"
-        "- Strings sem aspas: nome = João em vez de nome = 'Joao'\n"
-        "- Variável impressa como string: print('nome') quando deveria ser print(nome)\n"
-        "- Qualquer erro de sintaxe que causaria falha na execução\n"
-        "- O código não resolve exatamente o que foi pedido\n"
-        "- Typos que mudam o comportamento: 'BBem-vindo' tem dois B, está errado\n"
-        "- O aluno escreveu só o resultado esperado sem código (ex: 'Ola' em vez de print('Ola'))\n\n"
-        "Simule mentalmente a execução do código. Se causaria erro ou resultado errado, é INCORRETO.\n\n"
-        'Responda APENAS neste formato JSON sem markdown:\n'
-        '{"correto": true, "feedback": "Frase curta sobre o que o aluno fez certo."}\n'
+        "- Strings sem aspas: nome = João → ERRADO\n"
+        "- print('nome') quando deveria ser print(nome) → ERRADO\n"
+        "- Qualquer erro de sintaxe\n"
+        "- Não resolve o que foi pedido\n"
+        "- Só o resultado sem código: ex: escrever 'Ola' em vez de print('Ola')\n"
+        "- Código incompleto\n\n"
+        "Simule a execução. Se causaria erro, é INCORRETO.\n\n"
+        'Responda APENAS em JSON sem markdown:\n'
+        '{"correto": true, "feedback": "Frase curta do que está certo."}\n'
         'ou\n'
-        '{"correto": false, "feedback": "Frase curta sobre o erro especifico e como corrigir."}'
+        '{"correto": false, "feedback": "Frase curta do erro e como corrigir."}'
     )
 
     payload = json.dumps({
@@ -104,30 +129,23 @@ def validar_com_gemini(pergunta: str, resposta_aluno: str, linguagem: str) -> tu
 
 
 def validar_resposta(
-    pergunta: str,
-    resposta_aluno: str,
-    linguagem: str,
-    gabarito: str,
-    respostas_aceitas: list = None,
-    keywords: list = None
-) -> tuple[bool, str, str]:
-    from backend.validator import validar_codigo
-
-    # 1. Validação rápida local — pega erros óbvios antes do Gemini
+    pergunta, resposta_aluno, linguagem, gabarito,
+    respostas_aceitas=None, keywords=None
+):
+    # 1. Erros óbvios de sintaxe
     tem_erro, msg_erro = _validacao_rapida(resposta_aluno, linguagem)
     if tem_erro:
         return False, msg_erro, "local"
 
-    # 2. Tenta Gemini
+    # 2. Gemini
     if _get_key():
         correto, feedback = validar_com_gemini(pergunta, resposta_aluno, linguagem)
         if correto is not None:
             return correto, feedback, "gemini"
 
-    # 3. Fallback: validador local
-    correto, feedback = validar_codigo(
+    # 3. Fallback restrito só quando Gemini falhou
+    correto, feedback = _fallback_restrito(
         resposta_aluno, gabarito,
-        respostas_aceitas=respostas_aceitas,
-        keywords=keywords
+        respostas_aceitas or [], keywords or []
     )
     return correto, feedback, "local"
