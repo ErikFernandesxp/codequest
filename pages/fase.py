@@ -11,7 +11,7 @@ from backend.crud import (salvar_progresso, atualizar_xp_nivel,
                            buscar_perfil, verificar_e_conceder_badges,
                            buscar_progresso, fases_concluidas)
 from backend.theme import CSS
-from backend.config import JOGO
+from backend.config import JOGO, TEXTOS, CORES
 
 init_session(st)
 
@@ -484,7 +484,7 @@ if tipo == "multipla_escolha":
 
     # Botão pular
     st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
-    if st.button("Pular" + ("" if is_admin else " -1 vida"), key="pular_mc"):
+    if st.button(TEXTOS["btn_pular"] + ("" if is_admin else " -1 vida"), key="pular_mc"):
         _descontar_vida() if not is_admin else None
         _avancar_desafio(False, 0)
 
@@ -520,7 +520,7 @@ elif tipo == "verdadeiro_falso":
                 st.markdown('<div class="fb-err"><div class="fb-title-err">❌ Verdadeiro!</div><div class="fb-body" style="color:#fca5a5;">' + desafio.get("explicacao","") + '</div></div>', unsafe_allow_html=True)
                 _avancar_desafio(False, 0)
 
-    if st.button("Pular" + ("" if is_admin else " -1 vida"), key="pular_vf"):
+    if st.button(TEXTOS["btn_pular"] + ("" if is_admin else " -1 vida"), key="pular_vf"):
         _descontar_vida() if not is_admin else None
         _avancar_desafio(False, 0)
 
@@ -562,7 +562,7 @@ elif tipo == "preencher_lacuna":
                         st.markdown('<div class="fb-err"><div class="fb-title-err">❌ Incorreto!</div><div class="fb-body" style="color:#fca5a5;">A resposta correta é: <strong>' + correta + '</strong><br>' + desafio.get("explicacao","") + '</div></div>', unsafe_allow_html=True)
                         _avancar_desafio(False, 0)
 
-    if st.button("Pular" + ("" if is_admin else " -1 vida"), key="pular_lac"):
+    if st.button(TEXTOS["btn_pular"] + ("" if is_admin else " -1 vida"), key="pular_lac"):
         _descontar_vida() if not is_admin else None
         _avancar_desafio(False, 0)
 
@@ -574,9 +574,9 @@ else:
                              placeholder="Digite sua resposta aqui...")
 
     cb1, cb2, cb3, _ = st.columns([1,1,1,3])
-    enviar = cb1.button("Enviar", type="primary", use_container_width=True)
-    pular  = cb2.button("Pular" + ("" if is_admin else " -1 vida"), use_container_width=True)
-    voltar = cb3.button("Menu", use_container_width=True)
+    enviar = cb1.button(TEXTOS["btn_enviar"], type="primary", use_container_width=True)
+    pular  = cb2.button(TEXTOS["btn_pular"] + ("" if is_admin else " -1 vida"), use_container_width=True)
+    voltar = cb3.button(TEXTOS["btn_menu"], use_container_width=True)
 
     if voltar:
         st.session_state["vidas_sincronizadas"] = False
