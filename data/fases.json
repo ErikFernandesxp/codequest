@@ -88,6 +88,43 @@
           "erro_comum": "Tentar colocar tudo em um único print()",
           "explicacao": "Cada print() cria uma nova linha automaticamente",
           "logica": "print('mensagem 1')\nprint('mensagem 2')"
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "Este código está correto: print('Olá, mundo!')",
+          "resposta": "verdadeiro",
+          "explicacao": "Sim! Textos entre aspas dentro de print() é a forma correta de exibir mensagens."
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Qual destes comandos exibe o número 42 na tela (sem aspas)?",
+          "opcoes": [
+            "print('42')",
+            "print[42]",
+            "print(42)",
+            "display(42)"
+          ],
+          "resposta": "print(42)",
+          "explicacao": "Números não precisam de aspas. print(42) exibe o valor numérico 42."
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete o comando para exibir 'Boa tarde!' na tela:",
+          "template": "___('Boa tarde!')",
+          "palavras": [
+            "show",
+            "display",
+            "print",
+            "write"
+          ],
+          "resposta": "print",
+          "explicacao": "print() é a função nativa do Python para exibir conteúdo na tela."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "print('10 + 5') exibe o número 15 na tela.",
+          "resposta": "falso",
+          "explicacao": "Errado! Com aspas, Python trata como texto e exibe literalmente '10 + 5'. Use print(10 + 5) para calcular."
         }
       ]
     },
@@ -180,6 +217,49 @@
           "erro_comum": "Colocar tudo em um único print separado por vírgula",
           "explicacao": "Cada print() em uma linha separada exibe uma variável por vez",
           "logica": "nome = 'Maria'\nidade = 28\nprint(nome)\nprint(idade)"
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Como se cria uma variável chamada 'nome' com o valor 'Ana' em Python?",
+          "opcoes": [
+            "var nome = 'Ana'",
+            "nome == 'Ana'",
+            "nome = 'Ana'",
+            "string nome = 'Ana'"
+          ],
+          "resposta": "nome = 'Ana'",
+          "explicacao": "Em Python não precisa de palavra-chave. Apenas nome = valor cria a variável."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "Em Python, idade = '25' e idade = 25 guardam o mesmo tipo de dado.",
+          "resposta": "falso",
+          "explicacao": "Com aspas é texto (string), sem aspas é número inteiro. Faz diferença ao calcular!"
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete para criar a variável preco com valor decimal:",
+          "template": "preco ___ 9.99",
+          "palavras": [
+            "==",
+            "=>",
+            "=",
+            "+="
+          ],
+          "resposta": "=",
+          "explicacao": "= é o operador de atribuição em Python. == é para comparar valores."
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Qual é o tipo da variável: ativo = True",
+          "opcoes": [
+            "string",
+            "inteiro",
+            "booleano",
+            "decimal"
+          ],
+          "resposta": "booleano",
+          "explicacao": "True e False são valores booleanos (bool) — representam verdadeiro ou falso."
         }
       ]
     },
@@ -282,6 +362,37 @@
           "erro_comum": "Esquecer o espaço no final de 'Bom '",
           "explicacao": "O + concatena (une) strings em Python. Atenção aos espaços!",
           "logica": "print('texto1' + 'texto2')"
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete a f-string para exibir o nome da variável:",
+          "template": "print(f'Olá, {___}!')",
+          "palavras": [
+            "'nome'",
+            "\"nome\"",
+            "nome",
+            "(nome)"
+          ],
+          "resposta": "nome",
+          "explicacao": "Dentro das chaves {} de uma f-string, coloque a variável sem aspas."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "f'Olá, {nome}!' é uma forma válida de inserir variável em uma string.",
+          "resposta": "verdadeiro",
+          "explicacao": "Sim! f-strings (format strings) permitem inserir variáveis diretamente com {}."
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Qual método transforma 'python' em 'PYTHON'?",
+          "opcoes": [
+            "'python'.lower()",
+            "'python'.upper()",
+            "'python'.title()",
+            "'python'.caps()"
+          ],
+          "resposta": "'python'.upper()",
+          "explicacao": "upper() converte todos os caracteres para maiúsculas."
         }
       ]
     },
@@ -346,6 +457,37 @@
           "erro_comum": "Esquecer de guardar o resultado de cada input()",
           "explicacao": "Cada input() aguarda uma resposta do usuário separadamente",
           "logica": "nome = input('nome: ')\nidade = input('idade: ')\nprint(f'{nome} tem {idade} anos')"
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "input() sempre retorna um número inteiro.",
+          "resposta": "falso",
+          "explicacao": "input() sempre retorna texto (string). Use int() ou float() para converter para número."
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Como converter o texto '42' retornado pelo input() para número inteiro?",
+          "opcoes": [
+            "str('42')",
+            "float('42')",
+            "int('42')",
+            "num('42')"
+          ],
+          "resposta": "int('42')",
+          "explicacao": "int() converte texto para número inteiro. Sem isso, '5' + '3' resultaria em '53', não 8."
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete para ler um número inteiro do usuário:",
+          "template": "idade = ___(input('Sua idade: '))",
+          "palavras": [
+            "str",
+            "float",
+            "int",
+            "num"
+          ],
+          "resposta": "int",
+          "explicacao": "int() converte o texto digitado pelo usuário em número inteiro."
         }
       ]
     },
@@ -452,6 +594,43 @@
           "erro_comum": "Usar == em vez de in para buscar dentro de listas",
           "explicacao": "'in' verifica se o item existe na lista. Muito mais simples que fazer um loop",
           "logica": "if 'item' in lista:\n    print('encontrado')"
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Qual palavra-chave Python usa para condição alternativa entre if e else?",
+          "opcoes": [
+            "else if",
+            "elsif",
+            "elif",
+            "elseif"
+          ],
+          "resposta": "elif",
+          "explicacao": "Python usa elif (abreviação de else if) para condições intermediárias."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "Em Python, os dois pontos ':' são obrigatórios após o if.",
+          "resposta": "verdadeiro",
+          "explicacao": "Sim! O ':' é obrigatório e indica o início do bloco de código que será executado."
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete para verificar se x é par:",
+          "template": "if x ___ 2 == 0:",
+          "palavras": [
+            "+",
+            "/",
+            "*",
+            "%"
+          ],
+          "resposta": "%",
+          "explicacao": "% é o operador módulo (resto da divisão). x % 2 == 0 significa que x é divisível por 2."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "O operador == é usado para atribuição em Python.",
+          "resposta": "falso",
+          "explicacao": "== é operador de comparação (verifica igualdade). = é o operador de atribuição."
         }
       ]
     },
@@ -558,6 +737,49 @@
           "erro_comum": "Usar if n%2==0 dentro do loop quando o passo do range já resolve",
           "explicacao": "range(0, 21, 2) gera: 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20",
           "logica": "for i in range(0, 21, 2):\n    print(i)"
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "O que range(5) gera em Python?",
+          "opcoes": [
+            "1, 2, 3, 4, 5",
+            "0, 1, 2, 3, 4, 5",
+            "0, 1, 2, 3, 4",
+            "1, 2, 3, 4"
+          ],
+          "resposta": "0, 1, 2, 3, 4",
+          "explicacao": "range(5) começa em 0 e vai até 4 (n-1). Para 1 a 5 use range(1, 6)."
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete para exibir números de 1 a 10:",
+          "template": "for i in range(___, 11):",
+          "palavras": [
+            "0",
+            "1",
+            "2",
+            "10"
+          ],
+          "resposta": "1",
+          "explicacao": "range(1, 11) começa em 1 e vai até 10. O número final (11) é exclusivo."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "for fruta in frutas: percorre cada elemento da lista frutas.",
+          "resposta": "verdadeiro",
+          "explicacao": "Sim! O for percorre cada elemento da lista automaticamente, sem precisar de índice."
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Qual operador acumula soma? total ___ i",
+          "opcoes": [
+            "=+",
+            "+=",
+            "+",
+            "++"
+          ],
+          "resposta": "+=",
+          "explicacao": "+= soma e atribui ao mesmo tempo. total += i é igual a total = total + i."
         }
       ]
     },
@@ -618,6 +840,37 @@
           "erro_comum": "Esquecer o break — o loop roda para sempre",
           "explicacao": "break interrompe o loop imediatamente. while True + break é padrão comum em Python",
           "logica": "while True:\n    if condicao:\n        break\n    print(i)\n    i += 1"
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "Esquecer de incrementar o contador dentro do while causa loop infinito.",
+          "resposta": "verdadeiro",
+          "explicacao": "Sem incremento, a condição nunca muda e o loop roda para sempre!"
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Qual comando sai imediatamente de um loop while?",
+          "opcoes": [
+            "exit",
+            "stop",
+            "return",
+            "break"
+          ],
+          "resposta": "break",
+          "explicacao": "break interrompe o loop imediatamente quando executado."
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete para criar um loop que roda enquanto i <= 5:",
+          "template": "___ i <= 5:",
+          "palavras": [
+            "if",
+            "for",
+            "while",
+            "do"
+          ],
+          "resposta": "while",
+          "explicacao": "while condição: repete o bloco enquanto a condição for verdadeira."
         }
       ]
     },
@@ -721,6 +974,43 @@
           "erro_comum": "Esquecer o caso base (n<=1 retorna 1) causando loop infinito",
           "explicacao": "fatorial(5) = 5 * fatorial(4) = 5*4*3*2*1 = 120",
           "logica": "def fatorial(n):\n    if n <= 1:\n        return 1\n    return n * fatorial(n-1)"
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete para definir uma função chamada somar:",
+          "template": "___ somar(a, b):",
+          "palavras": [
+            "function",
+            "func",
+            "def",
+            "fun"
+          ],
+          "resposta": "def",
+          "explicacao": "def é a palavra-chave para definir funções em Python."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "Uma função sem return retorna None automaticamente.",
+          "resposta": "verdadeiro",
+          "explicacao": "Sim! Funções sem return implicitamente retornam None em Python."
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "O que faz o comando return dentro de uma função?",
+          "opcoes": [
+            "Termina o programa",
+            "Imprime um valor",
+            "Devolve um valor para quem chamou",
+            "Cria uma variável"
+          ],
+          "resposta": "Devolve um valor para quem chamou",
+          "explicacao": "return envia o resultado da função de volta para onde ela foi chamada."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "Parâmetros com valor padrão devem vir ANTES dos obrigatórios na definição.",
+          "resposta": "falso",
+          "explicacao": "Errado! Parâmetros obrigatórios vêm primeiro. Ex: def f(obrigatorio, opcional='padrão')"
         }
       ]
     },
@@ -815,6 +1105,49 @@
           "erro_comum": "Usar [1:3] que pega apenas índices 1 e 2, não o 3",
           "explicacao": "Slicing [1:4] pega os índices 1, 2 e 3. O índice final (4) não é incluído",
           "logica": "lista[1:4]  # índices 1, 2 e 3"
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Qual índice acessa o ÚLTIMO elemento de uma lista em Python?",
+          "opcoes": [
+            "lista[last]",
+            "lista[-1]",
+            "lista[end]",
+            "lista[0]"
+          ],
+          "resposta": "lista[-1]",
+          "explicacao": "Índice -1 acessa o último elemento. -2 acessa o penúltimo, e assim por diante."
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete para adicionar 'uva' ao final da lista:",
+          "template": "frutas.___('uva')",
+          "palavras": [
+            "add",
+            "insert",
+            "push",
+            "append"
+          ],
+          "resposta": "append",
+          "explicacao": "append() adiciona um elemento ao final da lista."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "lista.sort() modifica a lista original e retorna None.",
+          "resposta": "verdadeiro",
+          "explicacao": "sort() ordena in-place (modifica a original). sorted() retorna uma nova lista ordenada."
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Como somar todos os elementos de uma lista em Python?",
+          "opcoes": [
+            "total(lista)",
+            "add(lista)",
+            "sum(lista)",
+            "plus(lista)"
+          ],
+          "resposta": "sum(lista)",
+          "explicacao": "sum() é uma função nativa do Python que soma todos os elementos de uma lista."
         }
       ]
     },
@@ -892,6 +1225,37 @@
           "erro_comum": "Acessar com ['telefone'] direto — gera KeyError se não existir",
           "explicacao": ".get() é seguro: nunca gera KeyError. Ideal para chaves que podem não existir",
           "logica": "d.get('chave', 'valor padrão')"
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete para acessar o valor da chave 'nome':",
+          "template": "print(pessoa[___])",
+          "palavras": [
+            "nome",
+            "'nome'",
+            "(nome)",
+            ".nome"
+          ],
+          "resposta": "'nome'",
+          "explicacao": "Chaves string em dicionários são acessadas entre aspas: dicio['chave']."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "dicio.get('chave') gera erro se a chave não existir.",
+          "resposta": "falso",
+          "explicacao": ".get() retorna None (ou valor padrão) se a chave não existir — nunca gera KeyError."
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Como percorrer chave E valor de um dicionário?",
+          "opcoes": [
+            "for k in dicio",
+            "for k, v in dicio.items()",
+            "for k, v in dicio",
+            "for k in dicio.keys()"
+          ],
+          "resposta": "for k, v in dicio.items()",
+          "explicacao": ".items() retorna pares (chave, valor) que podem ser desempacotados no for."
         }
       ]
     },
@@ -957,6 +1321,24 @@
           "erro_comum": "Tentar acessar a nota sem usar .items()",
           "explicacao": "for nome, nota in alunos.items() desempacota chave e valor a cada iteração",
           "logica": "for nome, nota in alunos.items():\n    if nota >= 6:\n        print(f'{nome} aprovado')"
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "sum(notas) / len(notas) calcula a média de uma lista de notas.",
+          "resposta": "verdadeiro",
+          "explicacao": "sum() soma todos os elementos e len() retorna a quantidade. Dividindo obtemos a média."
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Como filtrar apenas aprovados (nota >= 6) de um dicionário de alunos?",
+          "opcoes": [
+            "for nome in alunos if nota >= 6",
+            "for nome, nota in alunos.items(): if nota >= 6",
+            "alunos.filter(nota >= 6)",
+            "alunos[nota >= 6]"
+          ],
+          "resposta": "for nome, nota in alunos.items(): if nota >= 6",
+          "explicacao": "Combinando for + .items() + if filtramos os aprovados de forma elegante."
         }
       ]
     }
@@ -1039,6 +1421,37 @@
           "erro_comum": "Usar aspas simples — em C strings sempre usam aspas duplas",
           "explicacao": "Em C strings usam aspas duplas. Aspas simples são para um único caractere (char)",
           "logica": "printf(\"frase\\n\");"
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete o include necessário para usar printf em C:",
+          "template": "#include <___.h>",
+          "palavras": [
+            "math",
+            "string",
+            "stdio",
+            "stdlib"
+          ],
+          "resposta": "stdio",
+          "explicacao": "stdio.h (Standard Input/Output) contém as funções printf e scanf."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "Em C, toda instrução deve terminar com ponto e vírgula (;).",
+          "resposta": "verdadeiro",
+          "explicacao": "Sim! O ; é obrigatório no final de cada instrução em C."
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "O que \\n faz dentro de printf() em C?",
+          "opcoes": [
+            "Exibe a letra n",
+            "Pula uma linha",
+            "Cria um espaço",
+            "Termina o programa"
+          ],
+          "resposta": "Pula uma linha",
+          "explicacao": "\\n é o caractere de nova linha (newline). Sem ele, o próximo printf continua na mesma linha."
         }
       ]
     },
@@ -1138,6 +1551,49 @@
           "erro_comum": "Esquecer o & no scanf — causa comportamento indefinido",
           "explicacao": "& passa o endereço de memória da variável para scanf gravar o valor lá",
           "logica": "int n;\nscanf(\"%d\", &n);\nprintf(\"%d\\n\", n);"
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Qual tipo em C armazena números decimais como 3.14?",
+          "opcoes": [
+            "int",
+            "char",
+            "double",
+            "string"
+          ],
+          "resposta": "double",
+          "explicacao": "float e double armazenam decimais. double tem mais precisão que float."
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete o especificador para exibir um inteiro com printf:",
+          "template": "printf(\"___\\n\", idade);",
+          "palavras": [
+            "%s",
+            "%c",
+            "%f",
+            "%d"
+          ],
+          "resposta": "%d",
+          "explicacao": "%d é o especificador de formato para inteiros (int) no printf."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "Em C, char letra = 'A' usa aspas simples para um caractere.",
+          "resposta": "verdadeiro",
+          "explicacao": "Correto! Aspas simples para char (um caractere). Aspas duplas para strings."
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "O que o & faz no scanf: scanf(\"%d\", &n)?",
+          "opcoes": [
+            "Multiplica n por algo",
+            "Passa o endereço de memória de n",
+            "Cria uma nova variável",
+            "É opcional"
+          ],
+          "resposta": "Passa o endereço de memória de n",
+          "explicacao": "& passa o endereço onde scanf deve gravar o valor lido. Sem & o programa tem comportamento indefinido."
         }
       ]
     },
@@ -1222,6 +1678,37 @@
           "erro_comum": "Confundir a sintaxe do ternário com o if normal",
           "explicacao": "%s exibe strings. x>0?\"positivo\":\"negativo\" escolhe qual string exibir",
           "logica": "printf(\"%s\\n\", x>0 ? \"sim\" : \"não\");"
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete a condição para verificar se n é par em C:",
+          "template": "if (n ___ 2 == 0)",
+          "palavras": [
+            "+",
+            "/",
+            "*",
+            "%"
+          ],
+          "resposta": "%",
+          "explicacao": "% retorna o resto da divisão. n % 2 == 0 significa que n é divisível por 2."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "Em C, else if é escrito como uma única palavra: elseif.",
+          "resposta": "falso",
+          "explicacao": "Em C usa-se else if (duas palavras separadas). elseif não existe em C (isso é PHP)."
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Qual é a sintaxe do operador ternário em C?",
+          "opcoes": [
+            "condição ? sim : não",
+            "condição if sim else não",
+            "condição -> sim : não",
+            "se(condição) sim : não"
+          ],
+          "resposta": "condição ? sim : não",
+          "explicacao": "O ternário é: condição ? valor_se_verdadeiro : valor_se_falso."
         }
       ]
     },
@@ -1301,6 +1788,37 @@
           "erro_comum": "Esquecer o ; após o while no do-while",
           "explicacao": "do-while executa o bloco primeiro, depois verifica a condição. Garante ao menos uma execução",
           "logica": "int i=1;\ndo{\n    printf(\"%d\\n\",i);\n    i++;\n}while(i<=5);"
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Qual loop em C executa o bloco pelo menos UMA vez?",
+          "opcoes": [
+            "for",
+            "while",
+            "do-while",
+            "loop"
+          ],
+          "resposta": "do-while",
+          "explicacao": "do-while executa o bloco primeiro e verifica a condição depois, garantindo ao menos uma execução."
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete o incremento do for:",
+          "template": "for (int i = 0; i < 10; ___)",
+          "palavras": [
+            "i--",
+            "i = i",
+            "i++",
+            "++i+"
+          ],
+          "resposta": "i++",
+          "explicacao": "i++ incrementa i em 1 a cada iteração. É equivalente a i = i + 1."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "fat *= i é equivalente a fat = fat * i em C.",
+          "resposta": "verdadeiro",
+          "explicacao": "Sim! *= é o operador de multiplicação e atribuição combinados."
         }
       ]
     },
@@ -1364,6 +1882,37 @@
           "erro_comum": "Esquecer de declarar o tipo int para cada parâmetro separadamente",
           "explicacao": "int maior(int a, int b) — cada parâmetro precisa de seu tipo declarado",
           "logica": "int maior(int a, int b){\n    if(a>b) return a;\n    return b;\n}"
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete o tipo de retorno para função que não retorna nada:",
+          "template": "___ saudar(char nome[])",
+          "palavras": [
+            "int",
+            "null",
+            "void",
+            "empty"
+          ],
+          "resposta": "void",
+          "explicacao": "void indica que a função não retorna nenhum valor."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "Em C, funções devem ser declaradas ANTES de serem chamadas no main.",
+          "resposta": "verdadeiro",
+          "explicacao": "Correto! Em C a função precisa estar declarada antes de ser usada, ou use um protótipo."
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Qual especificador exibe uma string completa com printf em C?",
+          "opcoes": [
+            "%c",
+            "%d",
+            "%s",
+            "%str"
+          ],
+          "resposta": "%s",
+          "explicacao": "%s exibe uma string (array de char). %c exibe apenas um único caractere."
         }
       ]
     },
@@ -1408,6 +1957,37 @@
           "erro_comum": "Usar i<=4 no for, acessando índice 4 que não existe no array de tamanho 4",
           "explicacao": "for de 0 a tamanho-1 percorre todos elementos sem sair dos limites",
           "logica": "int soma=0;\nfor(int i=0;i<4;i++){\n    soma+=arr[i];\n}"
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "Um array int nums[5] tem índices de 0 a 5.",
+          "resposta": "falso",
+          "explicacao": "Array de 5 elementos tem índices 0, 1, 2, 3, 4. Acessar índice 5 é comportamento indefinido!"
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete para percorrer array de 4 elementos:",
+          "template": "for (int i = 0; i ___ 4; i++)",
+          "palavras": [
+            "<=",
+            "==",
+            ">=",
+            "<"
+          ],
+          "resposta": "<",
+          "explicacao": "Use < 4 (não <=) para não ultrapassar o último índice (3) de um array de tamanho 4."
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Como somar elementos acumulando em C: soma ___ arr[i]",
+          "opcoes": [
+            "=+",
+            "+=",
+            "+",
+            "= soma +"
+          ],
+          "resposta": "+=",
+          "explicacao": "+= soma e atribui. soma += arr[i] é igual a soma = soma + arr[i]."
         }
       ]
     },
@@ -1454,6 +2034,37 @@
           "erro_comum": "Passar x e y sem & — sem ponteiros a função não altera as originais",
           "explicacao": "Sem ponteiros a função receberia cópias. Com ponteiros, altera as originais",
           "logica": "void trocar(int *a, int *b){\n    int tmp=*a;\n    *a=*b;\n    *b=tmp;\n}"
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "O que & faz quando aplicado a uma variável em C?",
+          "opcoes": [
+            "Duplica o valor",
+            "Retorna o endereço de memória",
+            "Cria um ponteiro",
+            "Acessa o valor no ponteiro"
+          ],
+          "resposta": "Retorna o endereço de memória",
+          "explicacao": "& é o operador de endereço. &x retorna o endereço de memória onde x está armazenado."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "*ptr acessa o valor armazenado no endereço apontado por ptr.",
+          "resposta": "verdadeiro",
+          "explicacao": "* é o operador de desreferência. *ptr 'vai até' o endereço e acessa o valor lá guardado."
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete para criar ponteiro para a variável x:",
+          "template": "int ___ptr = &x;",
+          "palavras": [
+            "&",
+            "->",
+            "*",
+            "@"
+          ],
+          "resposta": "*",
+          "explicacao": "int *ptr declara um ponteiro para int. &x fornece o endereço de x."
         }
       ]
     }
@@ -1527,6 +2138,37 @@
           "erro_comum": "Usar println que pularia a linha entre os dois textos",
           "explicacao": "print mantém na mesma linha. println pula para a próxima",
           "logica": "System.out.print(\"sem pular\");\nSystem.out.print(\"mesma linha\");"
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete para exibir texto e pular linha em Java:",
+          "template": "System.out.___(\"Olá!\");",
+          "palavras": [
+            "print",
+            "write",
+            "println",
+            "display"
+          ],
+          "resposta": "println",
+          "explicacao": "println (print line) exibe o texto e move o cursor para a próxima linha."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "Em Java, toda instrução deve terminar com ponto e vírgula (;).",
+          "resposta": "verdadeiro",
+          "explicacao": "Sim! O ; é obrigatório ao final de cada instrução em Java."
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Qual a diferença entre print e println em Java?",
+          "opcoes": [
+            "Não há diferença",
+            "println pula linha, print não",
+            "print pula linha, println não",
+            "println é mais rápido"
+          ],
+          "resposta": "println pula linha, print não",
+          "explicacao": "System.out.println() pula linha após exibir. System.out.print() mantém na mesma linha."
         }
       ]
     },
@@ -1606,6 +2248,49 @@
           "erro_comum": "Escrever Boolean com B maiúsculo — tipos primitivos são minúsculos",
           "explicacao": "boolean é tipo primitivo (minúsculo). if (aprovado) é mais limpo que if (aprovado == true)",
           "logica": "boolean b = true;\nif (b) {\n    System.out.println(\"sim\");\n}"
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Qual tipo Java armazena texto como 'Olá'?",
+          "opcoes": [
+            "char",
+            "str",
+            "text",
+            "String"
+          ],
+          "resposta": "String",
+          "explicacao": "String (com S maiúsculo) é o tipo para texto em Java. Char guarda apenas um caractere."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "Em Java, boolean aprovado = true usa T maiúsculo em True.",
+          "resposta": "falso",
+          "explicacao": "Em Java true e false são minúsculos (tipos primitivos). True com maiúscula não existe."
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete a declaração de variável decimal:",
+          "template": "___ altura = 1.75;",
+          "palavras": [
+            "int",
+            "String",
+            "double",
+            "bool"
+          ],
+          "resposta": "double",
+          "explicacao": "double armazena números decimais com precisão. int só armazena inteiros."
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Como concatenar String e variável em Java?",
+          "opcoes": [
+            "'texto' . variavel",
+            "'texto' + variavel",
+            "\"texto\" + variavel",
+            "f\"texto {variavel}\""
+          ],
+          "resposta": "\"texto\" + variavel",
+          "explicacao": "Java usa + para concatenar strings. Aspas duplas são obrigatórias para String."
         }
       ]
     },
@@ -1669,6 +2354,37 @@
           "erro_comum": "Esquecer os parênteses ao redor da condição",
           "explicacao": "O ternário retorna um valor que pode ser atribuído a uma variável",
           "logica": "String s = (cond) ? \"sim\" : \"não\";"
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete a condição alternativa em Java (não elif):",
+          "template": "} ___ if (nota >= 6) {",
+          "palavras": [
+            "elif",
+            "else",
+            "or",
+            "and"
+          ],
+          "resposta": "else",
+          "explicacao": "Java usa else if (duas palavras). elif não existe em Java — isso é Python!"
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "Em Java, o break é obrigatório em cada case do switch para evitar fall-through.",
+          "resposta": "verdadeiro",
+          "explicacao": "Sem break, a execução 'cai' para o próximo case. Sempre use break (ou return) em cada case."
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Como é o operador ternário em Java?",
+          "opcoes": [
+            "cond ? sim : não",
+            "if cond then sim else não",
+            "cond -> sim : não",
+            "cond ?? sim : não"
+          ],
+          "resposta": "cond ? sim : não",
+          "explicacao": "O ternário em Java: condição ? valor_verdadeiro : valor_falso. Pode ser atribuído a variável."
         }
       ]
     },
@@ -1732,6 +2448,37 @@
           "erro_comum": "Usar .length ao invés de simplesmente iterar com for-each",
           "explicacao": "for-each (for aprimorado) é a forma mais elegante de percorrer arrays",
           "logica": "int soma=0;\nfor(int n : array){\n    soma += n;\n}"
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete o for-each para percorrer array nums:",
+          "template": "for (int n ___ nums)",
+          "palavras": [
+            "in",
+            "of",
+            ":",
+            ":"
+          ],
+          "resposta": ":",
+          "explicacao": "for (tipo variavel : array) é o for-each em Java. O : separa a variável do array."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "Em Java, i++ e ++i têm exatamente o mesmo efeito em todos os contextos.",
+          "resposta": "falso",
+          "explicacao": "i++ retorna o valor ANTES de incrementar. ++i retorna DEPOIS. Em loops simples são equivalentes."
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Qual loop garante execução mínima de uma vez em Java?",
+          "opcoes": [
+            "for",
+            "while",
+            "for-each",
+            "do-while"
+          ],
+          "resposta": "do-while",
+          "explicacao": "do-while executa o bloco primeiro e verifica a condição depois."
         }
       ]
     },
@@ -1798,6 +2545,37 @@
           "erro_comum": "Tentar retornar algo de um método void",
           "explicacao": "void indica que o método executa uma ação sem devolver valor",
           "logica": "public static void metodo(String s, int n){\n    for(int i=0;i<n;i++){\n        System.out.println(s);\n    }\n}"
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete o tipo de retorno para método que não retorna nada:",
+          "template": "public static ___ saudar(String nome)",
+          "palavras": [
+            "null",
+            "int",
+            "void",
+            "empty"
+          ],
+          "resposta": "void",
+          "explicacao": "void indica que o método não retorna nenhum valor."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "public static permite chamar o método sem criar um objeto da classe.",
+          "resposta": "verdadeiro",
+          "explicacao": "static significa que o método pertence à classe, não a um objeto. Pode ser chamado diretamente."
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Como calcular o quadrado de n em Java sem usar **?",
+          "opcoes": [
+            "n^2",
+            "n**2",
+            "n*n",
+            "Math.square(n)"
+          ],
+          "resposta": "n*n",
+          "explicacao": "Java não tem operador **. Use n*n ou Math.pow(n, 2) para potência."
         }
       ]
     },
@@ -1842,6 +2620,37 @@
           "erro_comum": "Usar .length em vez de .size() para ArrayList",
           "explicacao": "Arrays usam .length (propriedade). ArrayList usa .size() (método)",
           "logica": "ArrayList<String> lista = new ArrayList<>();\nlista.add(\"item\");\nlista.size();"
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Como obter o tamanho de um array em Java?",
+          "opcoes": [
+            "array.size()",
+            "array.length()",
+            "array.length",
+            "len(array)"
+          ],
+          "resposta": "array.length",
+          "explicacao": "Arrays usam .length (sem parênteses). ArrayList usa .size() (com parênteses)."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "ArrayList em Java tem tamanho fixo definido na criação.",
+          "resposta": "falso",
+          "explicacao": "ArrayList é dinâmico — cresce e diminui. Array[] tem tamanho fixo."
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete para adicionar item ao ArrayList:",
+          "template": "lista.___('Java');",
+          "palavras": [
+            "push",
+            "append",
+            "add",
+            "insert"
+          ],
+          "resposta": "add",
+          "explicacao": "ArrayList usa .add() para adicionar elementos. .append() é de Python."
         }
       ]
     },
@@ -1888,6 +2697,37 @@
           "erro_comum": "Esquecer this. causando o parâmetro sobrescrever a si mesmo",
           "explicacao": "this diferencia o atributo da classe do parâmetro do construtor com mesmo nome",
           "logica": "Classe(tipo param){\n    this.atrib = param;\n}"
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete para criar objeto da classe Carro:",
+          "template": "Carro c = ___ Carro();",
+          "palavras": [
+            "create",
+            "make",
+            "new",
+            "build"
+          ],
+          "resposta": "new",
+          "explicacao": "new aloca memória e cria uma instância da classe. Sem new, c seria null."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "this.nome refere-se ao atributo da classe, não ao parâmetro do construtor.",
+          "resposta": "verdadeiro",
+          "explicacao": "this diferencia o atributo (this.nome) do parâmetro (nome) com o mesmo nome."
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "O que é um construtor em Java?",
+          "opcoes": [
+            "Método que destrói objetos",
+            "Método com mesmo nome da classe, sem tipo de retorno",
+            "Método estático obrigatório",
+            "Método que retorna void"
+          ],
+          "resposta": "Método com mesmo nome da classe, sem tipo de retorno",
+          "explicacao": "Construtor inicializa o objeto. Tem o mesmo nome da classe e não declara tipo de retorno."
         }
       ]
     }
@@ -1970,6 +2810,37 @@
           "erro_comum": "Usar echo com array diretamente — gera erro 'Array to string conversion'",
           "explicacao": "print_r() formata e exibe qualquer tipo de dado, incluindo arrays",
           "logica": "print_r(array);"
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete a tag de abertura do PHP:",
+          "template": "___\necho 'Olá!';",
+          "palavras": [
+            "<html>",
+            "<?php",
+            "<php>",
+            "<?"
+          ],
+          "resposta": "<?php",
+          "explicacao": "<?php abre o bloco de código PHP. Todo código PHP fica dentro dessa tag."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "Em PHP, o ponto (.) é usado para concatenar strings, não o +.",
+          "resposta": "verdadeiro",
+          "explicacao": "PHP usa . para concatenar strings. + é para soma numérica. JavaScript usa +, PHP usa ."
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Como exibir um array completo em PHP para debug?",
+          "opcoes": [
+            "echo array",
+            "print array",
+            "print_r(array)",
+            "display(array)"
+          ],
+          "resposta": "print_r(array)",
+          "explicacao": "print_r() formata e exibe arrays de forma legível. echo não consegue exibir arrays diretamente."
         }
       ]
     },
@@ -2032,6 +2903,37 @@
           "erro_comum": "Usar printf como em C em vez de number_format",
           "explicacao": "number_format() formata números com separadores personalizados para o padrão BR",
           "logica": "echo number_format($num, 2, ',', '.');"
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete a declaração de variável em PHP:",
+          "template": "___nome = 'Ana';",
+          "palavras": [
+            "var ",
+            "let ",
+            "$",
+            "@"
+          ],
+          "resposta": "$",
+          "explicacao": "Variáveis PHP SEMPRE começam com $. Não precisa declarar tipo."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "Em PHP, $x = 'texto' dentro de aspas duplas interpola a variável.",
+          "resposta": "verdadeiro",
+          "explicacao": "Dentro de aspas duplas, PHP substitui $variavel pelo seu valor automaticamente."
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Qual função formata número com 2 casas decimais no padrão BR?",
+          "opcoes": [
+            "format(num, 2)",
+            "sprintf('%.2f', num)",
+            "number_format(num, 2, ',', '.')",
+            "decimal(num, 2)"
+          ],
+          "resposta": "number_format(num, 2, ',', '.')",
+          "explicacao": "number_format(valor, casas, sep_decimal, sep_milhar) formata números com separadores personalizados."
         }
       ]
     },
@@ -2111,6 +3013,37 @@
           "erro_comum": "Usar split() que não é função padrão em PHP moderno",
           "explicacao": "explode() divide string em array. implode() faz o inverso (array para string)",
           "logica": "$array = explode(',', $string);"
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete para contar caracteres da string em PHP:",
+          "template": "echo ___(texto);",
+          "palavras": [
+            "length",
+            "count",
+            "strlen",
+            "size"
+          ],
+          "resposta": "strlen",
+          "explicacao": "strlen() conta os caracteres de uma string em PHP. JavaScript usa .length."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "str_replace('a', 'b', $texto) substitui todas as ocorrências de 'a' por 'b'.",
+          "resposta": "verdadeiro",
+          "explicacao": "str_replace() substitui todas as ocorrências. A ordem é: busca, substituto, string original."
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Qual função divide uma string por vírgula em PHP?",
+          "opcoes": [
+            "split(',', $str)",
+            "str_split(',', $str)",
+            "explode(',', $str)",
+            "divide(',', $str)"
+          ],
+          "resposta": "explode(',', $str)",
+          "explicacao": "explode(delimitador, string) divide a string em array. implode() faz o inverso."
         }
       ]
     },
@@ -2178,6 +3111,37 @@
           "erro_comum": "Esquecer o break — sem ele todos os cases abaixo também executam",
           "explicacao": "switch em PHP funciona igual ao Java e C. break é essencial",
           "logica": "switch($var){\n    case 5: echo 'Maio'; break;\n    default: echo 'Outro';\n}"
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete a condição alternativa em PHP:",
+          "template": "} ___ ($nota >= 6) {",
+          "palavras": [
+            "elif",
+            "else if",
+            "elseif",
+            "or if"
+          ],
+          "resposta": "elseif",
+          "explicacao": "PHP aceita elseif (uma palavra) ou else if (duas). elseif é o mais comum em PHP."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "Em PHP, o break é necessário em cada case do switch.",
+          "resposta": "verdadeiro",
+          "explicacao": "Sem break, a execução continua no próximo case (fall-through). Sempre use break."
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "O que ?? faz em PHP: $nome = $_GET['nome'] ?? 'visitante'?",
+          "opcoes": [
+            "Compara dois valores",
+            "Retorna o lado direito se o esquerdo for null/inexistente",
+            "Divide por zero",
+            "É um comentário"
+          ],
+          "resposta": "Retorna o lado direito se o esquerdo for null/inexistente",
+          "explicacao": "?? é o operador null coalescing — retorna o valor da direita se a esquerda for null."
         }
       ]
     },
@@ -2259,6 +3223,37 @@
           "erro_comum": "Esquecer $i++ causando loop infinito",
           "explicacao": "Sem $i++ a condição $i<=50 nunca muda e o loop trava o servidor",
           "logica": "$i=1;$total=0;\nwhile($i<=50){\n    $total+=$i;\n    $i++;\n}\necho $total;"
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete para percorrer array com chave e valor:",
+          "template": "foreach ($arr as $k ___ $v)",
+          "palavras": [
+            "->",
+            "in",
+            "=>",
+            ":"
+          ],
+          "resposta": "=>",
+          "explicacao": "foreach ($array as $chave => $valor) acessa chave e valor em arrays associativos."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "Em PHP, $i++ dentro do while incrementa após usar o valor atual.",
+          "resposta": "verdadeiro",
+          "explicacao": "$i++ (pós-incremento) usa o valor atual e depois incrementa. ++$i incrementa primeiro."
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Como exibir com quebra de linha em PHP para HTML?",
+          "opcoes": [
+            "echo $x . '\\n'",
+            "echo $x . '<br>'",
+            "echo $x . '<br/>'",
+            "Ambos <br> e <br/> são válidos"
+          ],
+          "resposta": "Ambos <br> e <br/> são válidos",
+          "explicacao": "PHP gera HTML, então <br> ou <br/> criam quebra de linha visível. \\n só funciona em texto puro."
         }
       ]
     },
@@ -2325,6 +3320,37 @@
           "erro_comum": "Fazer loop manual quando array_sum() já existe",
           "explicacao": "Usar funções nativas do PHP é mais eficiente e legível que fazer manualmente",
           "logica": "function somarArray($arr){\n    return array_sum($arr);\n}"
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete para definir uma função em PHP:",
+          "template": "___ somar($a, $b) {",
+          "palavras": [
+            "def",
+            "func",
+            "function",
+            "fn"
+          ],
+          "resposta": "function",
+          "explicacao": "PHP usa a palavra-chave function para definir funções, diferente do def do Python."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "Em PHP, parâmetros de funções também precisam do símbolo $.",
+          "resposta": "verdadeiro",
+          "explicacao": "Sim! Em PHP todas as variáveis levam $, incluindo parâmetros de funções."
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Qual função PHP soma todos os elementos de um array?",
+          "opcoes": [
+            "sum($arr)",
+            "total($arr)",
+            "array_sum($arr)",
+            "add_all($arr)"
+          ],
+          "resposta": "array_sum($arr)",
+          "explicacao": "array_sum() é a função nativa PHP para somar todos os valores de um array."
         }
       ]
     },
@@ -2404,6 +3430,49 @@
           "erro_comum": "Fazer loop manual quando array_filter() já resolve",
           "explicacao": "array_filter() mantém apenas os elementos onde a função retorna true",
           "logica": "$filtrado = array_filter($arr, function($x){\n    return condicao;\n});"
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Como contar elementos de um array em PHP?",
+          "opcoes": [
+            "array.length",
+            "len($arr)",
+            "count($arr)",
+            "size($arr)"
+          ],
+          "resposta": "count($arr)",
+          "explicacao": "count() retorna o número de elementos do array em PHP. Python usa len()."
+        },
+        {
+          "tipo": "preencher_lacuna",
+          "pergunta": "Complete para adicionar elemento ao final do array:",
+          "template": "array_push($frutas, ___);",
+          "palavras": [
+            "'kiwi'",
+            "\"kiwi\"",
+            "kiwi",
+            "'kiwi'"
+          ],
+          "resposta": "'kiwi'",
+          "explicacao": "array_push() adiciona ao final. Também pode usar $arr[] = 'kiwi'."
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "sort($array) ordena o array original e retorna true em caso de sucesso.",
+          "resposta": "verdadeiro",
+          "explicacao": "sort() modifica o array original (in-place) e retorna true. Diferente de sorted() do Python que cria novo array."
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Como filtrar elementos de array em PHP?",
+          "opcoes": [
+            "array_map()",
+            "array_search()",
+            "array_filter()",
+            "array_find()"
+          ],
+          "resposta": "array_filter()",
+          "explicacao": "array_filter() mantém apenas os elementos onde a função callback retorna true."
         }
       ]
     },
@@ -2450,6 +3519,24 @@
           "erro_comum": "Tentar acessar a nota sem usar => no foreach",
           "explicacao": "foreach ($array as $chave => $valor) é essencial para arrays associativos",
           "logica": "foreach($alunos as $nome=>$nota){\n    if($nota>=6){\n        echo \"$nome aprovado!<br>\";\n    }\n}"
+        },
+        {
+          "tipo": "verdadeiro_falso",
+          "pergunta": "array_sum($notas) / count($notas) calcula a média de um array PHP.",
+          "resposta": "verdadeiro",
+          "explicacao": "array_sum() soma todos os elementos e count() retorna a quantidade. A divisão resulta na média."
+        },
+        {
+          "tipo": "multipla_escolha",
+          "pergunta": "Como percorrer array associativo ['Ana'=>8, 'João'=>5] e acessar nome e nota?",
+          "opcoes": [
+            "foreach ($alunos as $item)",
+            "for ($alunos as $nome => $nota)",
+            "foreach ($alunos as $nome => $nota)",
+            "foreach $alunos ($nome, $nota)"
+          ],
+          "resposta": "foreach ($alunos as $nome => $nota)",
+          "explicacao": "foreach com => permite acessar chave e valor simultaneamente em arrays associativos."
         }
       ]
     }
