@@ -424,19 +424,37 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+
+# ── FEEDBACK + BOTÃO CONTINUAR (todos os tipos) ──────────────────────────────
+if st.session_state.get("aguardando_continuar"):
+    fb = st.session_state.get("fb_html", "")
+    if fb:
+        st.markdown(fb, unsafe_allow_html=True)
+    st.markdown("<div style='height:12px'></div>", unsafe_allow_html=True)
+    if st.button("▶️  Continuar", type="primary", use_container_width=True, key="btn_continuar"):
+        _executar_avanco()
+    st.stop()
+
+
 # ════════════════════════════════════════════════════════════════════════════
 # TIPOS DE QUESTÃO
 # ════════════════════════════════════════════════════════════════════════════
 
 def _avancar_desafio(correto: bool, xp_ganho: int = 0):
-    """Avança para o próximo desafio e atualiza contadores."""
+    """Registra resultado e sinaliza para avançar após o aluno clicar em Continuar."""
     if correto:
         st.session_state["fase_acertos"] = st.session_state.get("fase_acertos", 0) + 1
     else:
         st.session_state["fase_erros"] = st.session_state.get("fase_erros", 0) + 1
     st.session_state["fase_xp_ganho"] = st.session_state.get("fase_xp_ganho", 0) + xp_ganho
+    st.session_state["aguardando_continuar"] = True
+    st.session_state["ultimo_correto"]       = correto
+
+def _executar_avanco():
+    """Chamado quando o aluno clica em Continuar."""
+    st.session_state["aguardando_continuar"] = False
+    st.session_state["fb_html"] = ""
     st.session_state["desafio_atual"] += 1
-    time.sleep(1.0)
     st.rerun()
 
 
@@ -463,66 +481,78 @@ def _dar_xp(xp_ganho: int):
 
 # ── MÚLTIPLA ESCOLHA ─────────────────────────────────────────────────────────
 if tipo == "multipla_escolha":
-    opcoes = desafio.get("opcoes", [])
+    opcoes  = desafio.get("opcoes", [])
     correta = desafio.get("resposta", "")
-    resposta_key = "mc_resp_" + str(fase_idx) + "_" + str(idx)
 
     if not opcoes:
         st.error("Desafio sem opções definidas.")
-    else:
+    elif not st.session_state.get("aguardando_continuar"):
         for i, opcao in enumerate(opcoes):
             btn_key = "mc_" + str(fase_idx) + "_" + str(idx) + "_" + str(i)
             if st.button(opcao, key=btn_key, use_container_width=True):
                 if opcao == correta:
-                    st.markdown('<div class="fb-ok"><div class="fb-title-ok">✅ Correto!</div><div class="fb-body" style="color:#86efac;">' + desafio.get("explicacao","Muito bem!") + '</div></div>', unsafe_allow_html=True)
+                    st.session_state["fb_html"] = '<div class="fb-ok"><div class="fb-title-ok">✅ Correto!</div><div class="fb-body" style="color:#86efac;">' + desafio.get("explicacao","Muito bem!") + '</div></div>'
                     xp_dado = _dar_xp(JOGO["xp_por_acerto"])
                     _avancar_desafio(True, xp_dado)
                 else:
                     _descontar_vida()
-                    st.markdown('<div class="fb-err"><div class="fb-title-err">❌ Incorreto!</div><div class="fb-body" style="color:#fca5a5;">A resposta correta é: <strong>' + correta + '</strong><br>' + desafio.get("explicacao","") + '</div></div>', unsafe_allow_html=True)
+                    st.session_state["fb_html"] = (
+                        '<div class="fb-err"><div class="fb-title-err">❌ Incorreto!</div>'
+                        '<div class="fb-body" style="color:#fca5a5;">'
+                        'A resposta correta é: <strong>' + correta + '</strong><br>'
+                        + desafio.get("explicacao","") + '</div></div>'
+                    )
                     _avancar_desafio(False, 0)
+                st.rerun()
 
-    # Botão pular
-    st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
-    if st.button(TEXTOS["btn_pular"] + ("" if is_admin else " -1 vida"), key="pular_mc"):
-        _descontar_vida() if not is_admin else None
-        _avancar_desafio(False, 0)
+        st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
+        if st.button(TEXTOS["btn_pular"] + ("" if is_admin else " -1 vida"), key="pular_mc"):
+            if not is_admin:
+                _descontar_vida()
+            st.session_state["fb_html"] = '<div class="fb-err"><div class="fb-title-err">⏭️ Pulado</div><div class="fb-body" style="color:#fca5a5;">Resposta correta: <strong>' + correta + '</strong></div></div>'
+            _avancar_desafio(False, 0)
+            st.rerun()
 
 
 # ── VERDADEIRO OU FALSO ───────────────────────────────────────────────────────
 elif tipo == "verdadeiro_falso":
-    correta = str(desafio.get("resposta", "")).lower()  # "verdadeiro" ou "falso"
+    correta = str(desafio.get("resposta", "")).lower()
 
-    # Mostra código/contexto se houver
     if desafio.get("codigo"):
         st.code(desafio["codigo"], language=ling)
 
-    col_v, col_f = st.columns(2)
-    with col_v:
-        if st.button("✅  Verdadeiro", use_container_width=True, key="vf_v_" + str(fase_idx) + "_" + str(idx)):
-            if correta == "verdadeiro":
-                st.markdown('<div class="fb-ok"><div class="fb-title-ok">✅ Correto!</div><div class="fb-body" style="color:#86efac;">' + desafio.get("explicacao","") + '</div></div>', unsafe_allow_html=True)
-                xp_dado = _dar_xp(JOGO["xp_por_acerto"])
-                _avancar_desafio(True, xp_dado)
-            else:
-                _descontar_vida()
-                st.markdown('<div class="fb-err"><div class="fb-title-err">❌ Falso!</div><div class="fb-body" style="color:#fca5a5;">' + desafio.get("explicacao","") + '</div></div>', unsafe_allow_html=True)
-                _avancar_desafio(False, 0)
+    if not st.session_state.get("aguardando_continuar"):
+        col_v, col_f = st.columns(2)
+        with col_v:
+            if st.button("✅  Verdadeiro", use_container_width=True, key="vf_v_" + str(fase_idx) + "_" + str(idx)):
+                if correta == "verdadeiro":
+                    st.session_state["fb_html"] = '<div class="fb-ok"><div class="fb-title-ok">✅ Correto!</div><div class="fb-body" style="color:#86efac;">' + desafio.get("explicacao","") + '</div></div>'
+                    xp_dado = _dar_xp(JOGO["xp_por_acerto"])
+                    _avancar_desafio(True, xp_dado)
+                else:
+                    _descontar_vida()
+                    st.session_state["fb_html"] = '<div class="fb-err"><div class="fb-title-err">❌ Errado! Era Falso.</div><div class="fb-body" style="color:#fca5a5;">' + desafio.get("explicacao","") + '</div></div>'
+                    _avancar_desafio(False, 0)
+                st.rerun()
 
-    with col_f:
-        if st.button("❌  Falso", use_container_width=True, key="vf_f_" + str(fase_idx) + "_" + str(idx)):
-            if correta == "falso":
-                st.markdown('<div class="fb-ok"><div class="fb-title-ok">✅ Correto!</div><div class="fb-body" style="color:#86efac;">' + desafio.get("explicacao","") + '</div></div>', unsafe_allow_html=True)
-                xp_dado = _dar_xp(JOGO["xp_por_acerto"])
-                _avancar_desafio(True, xp_dado)
-            else:
-                _descontar_vida()
-                st.markdown('<div class="fb-err"><div class="fb-title-err">❌ Verdadeiro!</div><div class="fb-body" style="color:#fca5a5;">' + desafio.get("explicacao","") + '</div></div>', unsafe_allow_html=True)
-                _avancar_desafio(False, 0)
+        with col_f:
+            if st.button("❌  Falso", use_container_width=True, key="vf_f_" + str(fase_idx) + "_" + str(idx)):
+                if correta == "falso":
+                    st.session_state["fb_html"] = '<div class="fb-ok"><div class="fb-title-ok">✅ Correto!</div><div class="fb-body" style="color:#86efac;">' + desafio.get("explicacao","") + '</div></div>'
+                    xp_dado = _dar_xp(JOGO["xp_por_acerto"])
+                    _avancar_desafio(True, xp_dado)
+                else:
+                    _descontar_vida()
+                    st.session_state["fb_html"] = '<div class="fb-err"><div class="fb-title-err">❌ Errado! Era Verdadeiro.</div><div class="fb-body" style="color:#fca5a5;">' + desafio.get("explicacao","") + '</div></div>'
+                    _avancar_desafio(False, 0)
+                st.rerun()
 
-    if st.button(TEXTOS["btn_pular"] + ("" if is_admin else " -1 vida"), key="pular_vf"):
-        _descontar_vida() if not is_admin else None
-        _avancar_desafio(False, 0)
+        if st.button(TEXTOS["btn_pular"] + ("" if is_admin else " -1 vida"), key="pular_vf"):
+            if not is_admin:
+                _descontar_vida()
+            st.session_state["fb_html"] = '<div class="fb-err"><div class="fb-title-err">⏭️ Pulado</div><div class="fb-body" style="color:#fca5a5;">Resposta correta: <strong>' + correta.capitalize() + '</strong></div></div>'
+            _avancar_desafio(False, 0)
+            st.rerun()
 
 
 # ── PREENCHER LACUNA ──────────────────────────────────────────────────────────
@@ -549,18 +579,28 @@ elif tipo == "preencher_lacuna":
 
         # Botões para cada palavra
         cols = st.columns(min(len(palavras), 4))
-        for i, palavra in enumerate(palavras):
-            btn_key = "lac_" + str(fase_idx) + "_" + str(idx) + "_" + str(i)
-            with cols[i % len(cols)]:
-                if st.button(palavra, key=btn_key, use_container_width=True):
-                    if palavra == correta:
-                        st.markdown('<div class="fb-ok"><div class="fb-title-ok">✅ Correto!</div><div class="fb-body" style="color:#86efac;">' + desafio.get("explicacao","") + '</div></div>', unsafe_allow_html=True)
-                        xp_dado = _dar_xp(JOGO["xp_por_acerto"])
-                        _avancar_desafio(True, xp_dado)
-                    else:
-                        _descontar_vida()
-                        st.markdown('<div class="fb-err"><div class="fb-title-err">❌ Incorreto!</div><div class="fb-body" style="color:#fca5a5;">A resposta correta é: <strong>' + correta + '</strong><br>' + desafio.get("explicacao","") + '</div></div>', unsafe_allow_html=True)
-                        _avancar_desafio(False, 0)
+        if not st.session_state.get("aguardando_continuar"):
+            for i, palavra in enumerate(palavras):
+                btn_key = "lac_" + str(fase_idx) + "_" + str(idx) + "_" + str(i)
+                with cols[i % len(cols)]:
+                    if st.button(palavra, key=btn_key, use_container_width=True):
+                        if palavra == correta:
+                            st.session_state["fb_html"] = (
+                                '<div class="fb-ok"><div class="fb-title-ok">✅ Correto!</div>'
+                                '<div class="fb-body" style="color:#86efac;">' + desafio.get("explicacao","Muito bem!") + '</div></div>'
+                            )
+                            xp_dado = _dar_xp(JOGO["xp_por_acerto"])
+                            _avancar_desafio(True, xp_dado)
+                        else:
+                            _descontar_vida()
+                            st.session_state["fb_html"] = (
+                                '<div class="fb-err"><div class="fb-title-err">❌ Incorreto!</div>'
+                                '<div class="fb-body" style="color:#fca5a5;">'
+                                'A resposta correta é: <strong>' + correta + '</strong><br>'
+                                + desafio.get("explicacao","") + '</div></div>'
+                            )
+                            _avancar_desafio(False, 0)
+                        st.rerun()
 
     if st.button(TEXTOS["btn_pular"] + ("" if is_admin else " -1 vida"), key="pular_lac"):
         _descontar_vida() if not is_admin else None
